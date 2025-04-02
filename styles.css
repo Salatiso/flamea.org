@@ -1,0 +1,594 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Container for consistent width */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background-color: #003087;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #0047ab;
+    border-radius: 5px;
+}
+
+nav ul li a.active {
+    background-color: #002060;
+    border-radius: 5px;
+}
+
+/* Sections */
+section {
+    padding: 40px 0;
+}
+
+section h2 {
+    font-size: 2em;
+    color: #003087;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+}
+
+section h3 {
+    font-size: 1.5em;
+    color: #003087;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+section p, section ul {
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+section ul {
+    list-style: none;
+}
+
+section ul li {
+    margin-bottom: 15px;
+    text-align: left; /* Left-align list items for readability */
+}
+
+/* Static Background Sections */
+.mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+    background-image: url('images/father-child.jpg'); /* Default for others */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Makes the background static */
+    position: relative;
+    min-height: 600px; /* Ensures enough space to scroll */
+    color: #fff; /* White text for contrast */
+}
+
+.work-strategies {
+    background-image: url('images/fathers-group.jpg');
+}
+
+.news, .blog-intro, .resources-intro {
+    background-image: url('images/father-reading.jpg');
+}
+
+.contact-info {
+    background-image: url('images/father-contact.jpg'); /* Specific for contact-info */
+}
+
+.mission::before, .about-mission::before, .work-strategies::before, .news::before, .blog-intro::before, .resources-intro::before, .contact-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 48, 0.6); /* Dark blue overlay for readability */
+    z-index: 1;
+}
+
+.mission .container, .about-mission .container, .work-strategies .container, .news .container, .blog-intro .container, .resources-intro .container, .contact-info .container {
+    position: relative;
+    z-index: 2; /* Text above overlay */
+}
+
+/* News Item Styling */
+.news-item {
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.news-item h3 a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.news-item h3 a:hover {
+    color: #e6f0fa; /* Light blue on hover */
+}
+
+/* More Link Styling */
+.more-link {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.more-link a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.more-link a:hover {
+    color: #e6f0fa;
+}
+
+.more-link i {
+    margin-left: 5px;
+}
+
+/* Image Styling (for other sections) */
+.section-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Book Image Box Styling */
+.book-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.book-image-box {
+    display: block;
+    width: 180px; /* Fixed width for consistency */
+    height: auto;
+    background-color: #fff;
+    border: 2px double #003087;
+    padding: 10px;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.book-image-box:hover {
+    transform: scale(1.05);
+}
+
+/* Downloadable List Styling */
+.download-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.download-list li {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.download-list li:hover {
+    background-color: #e0e0e0;
+}
+
+.download-list a {
+    color: #003087;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.download-list a:hover {
+    text-decoration: underline;
+}
+
+/* Icon List Styling */
+.icon-list {
+    list-style: none;
+    padding: 0;
+}
+
+.icon-list li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-list i {
+    color: #003087;
+    margin-right: 10px;
+    font-size: 1.2em;
+    transition: transform 0.3s;
+}
+
+.icon-list li:hover i {
+    transform: scale(1.2);
+}
+
+.icon-list strong {
+    color: #003087;
+}
+
+/* Specific Section Styles */
+.about-mission {
+    background-color: #f9f9f9; /* Fallback */
+}
+
+.about-values {
+    background-color: #f9f9f9;
+}
+
+.about-structure {
+    background-color: #fff;
+}
+
+.about-audience {
+    background-color: #f9f9f9;
+}
+
+.vision {
+    background-color: #fff;
+}
+
+.values {
+    background-color: #f9f9f9;
+}
+
+.work-strategies {
+    background-color: #e6f0fa; /* Fallback */
+}
+
+.work-structure {
+    background-color: #fff3e6;
+}
+
+.work-audience {
+    background-color: #e6fae6;
+}
+
+.work-funding {
+    background-color: #faf0e6;
+}
+
+.work-evaluation {
+    background-color: #f0e6fa;
+}
+
+.contact-info {
+    background-color: #f9f9f9; /* Fallback */
+    text-align: center;
+}
+
+.contact-info a {
+    color: #fff; /* White for contrast on background */
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    color: #e6f0fa; /* Light blue on hover */
+}
+
+.contact-form {
+    background-color: #fff;
+    text-align: center;
+}
+
+.contact-form a {
+    color: #003087;
+    text-decoration: none;
+}
+
+.contact-form a:hover {
+    text-decoration: underline;
+}
+
+.news {
+    background-color: #f9f9f9; /* Fallback */
+}
+
+.books {
+    background-color: #fff;
+}
+
+.book-item {
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.book-item h3 {
+    font-size: 1.5em;
+    color: #003087;
+    margin-bottom: 10px;
+}
+
+.book-item p {
+    font-size: 1em;
+}
+
+.book-item p strong {
+    color: #003087;
+}
+
+.blog-intro {
+    background-color: #f9f9f9; /* Fallback */
+    text-align: center;
+}
+
+.blog-posts {
+    background-color: #fff;
+}
+
+.blog-post {
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.blog-post h3 {
+    font-size: 1.5em;
+    color: #003087;
+    margin-bottom: 10px;
+}
+
+.blog-post p {
+    font-size: 1em;
+}
+
+.blog-submit {
+    background-color: #fff;
+    text-align: center;
+}
+
+.blog-submit a {
+    color: #003087;
+    text-decoration: none;
+}
+
+.blog-submit a:hover {
+    text-decoration: underline;
+}
+
+.resources-intro {
+    background-color: #f9f9f9; /* Fallback */
+    text-align: center;
+}
+
+.resources-templates {
+    background-color: #fff;
+    text-align: center;
+}
+
+.resources-links {
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+/* Contact Form Styles */
+.contact-form form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    color: #003087;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.form-group textarea {
+    min-height: 120px;
+}
+
+.contact-form button {
+    background-color: #003087;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #0047ab;
+}
+
+/* Footer */
+footer {
+    background-color: #003087;
+    color: white;
+    text-align: center;
+    padding: 40px 0 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-contact {
+    margin-bottom: 20px;
+}
+
+.footer-contact p {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.footer-contact a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-contact a:hover {
+    text-decoration: underline;
+}
+
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-contact ul li {
+    margin-bottom: 5px;
+}
+
+.footer-contact i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+footer > .container > p {
+    font-size: 0.9em;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 1em;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+
+    section h3 {
+        font-size: 1.3em;
+    }
+
+    section p, section ul {
+        font-size: 1em;
+        padding: 0 15px;
+    }
+
+    .mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+        min-height: 500px; /* Adjust for smaller screens */
+    }
+
+    .form-group label {
+        font-size: 1em;
+    }
+
+    .contact-form button {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+
+    .book-item h3, .blog-post h3 {
+        font-size: 1.3em;
+    }
+
+    .section-image {
+        max-width: 90%;
+    }
+
+    .book-image-box {
+        width: 150px; /* Fixed width for smaller screens */
+    }
+
+    .book-images {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .icon-list i {
+        font-size: 1em;
+    }
+
+    .download-list li {
+        padding: 8px;
+    }
+
+    .footer-contact p {
+        font-size: 0.9em;
+    }
+
+    .footer-contact i {
+        font-size: 1em;
+    }
+}
