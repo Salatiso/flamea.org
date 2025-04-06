@@ -4,135 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flamea - Home</title>
-    <style>
-        /* Reset default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif; /* Replace with your site's font if different */
-            line-height: 1.6;
-            color: #333; /* Adjust to your site's text color */
-        }
-
-        /* Header styles */
-        header {
-            background-color: #1a1a1a; /* Dark background, adjust to match your site */
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        nav a, nav button {
-            margin: 0 15px;
-            text-decoration: none;
-        }
-
-        /* Button styles */
-        .btn {
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #fff;
-            background-color: #ff4500; /* Flamea-inspired orange, adjust to your site's color */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .podcast-btn:hover, .search-btn:hover {
-            background-color: #cc3700; /* Darker shade for hover */
-        }
-
-        /* Search container */
-        #search-container {
-            margin: 10px 0;
-            display: none; /* Hidden by default */
-        }
-
-        #search-input {
-            padding: 8px;
-            width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        #search-container button {
-            padding: 8px 15px;
-            margin-left: 5px;
-            background-color: #ff4500;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Main content (placeholder for your existing content) */
-        main {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            color: #ff4500; /* Adjust to your site's heading color */
-        }
-
-        /* Footer (placeholder for your existing footer) */
-        footer {
-            background-color: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Assuming your CSS file is named styles.css -->
 </head>
 <body>
     <header>
-        <nav>
-            <!-- Existing navigation links (adjust as per your site) -->
-            <a href="index.html" class="btn">Home</a>
-            <a href="about.html" class="btn">About</a>
-            <a href="contact.html" class="btn">Contact</a>
-            
-            <!-- New Podcast Feed Button -->
-            <a href="https://anchor.fm/s/10357aacc/podcast/rss" class="btn podcast-btn" target="_blank" rel="noopener noreferrer">
-                Podcast Feed
-            </a>
-            
-            <!-- New Search Button -->
-            <button class="btn search-btn" onclick="toggleSearch()">Search</button>
-        </nav>
-        
-        <!-- Search Input (hidden by default) -->
-        <div id="search-container">
-            <input type="text" id="search-input" placeholder="Search Flamea..." />
-            <button onclick="performSearch()">Go</button>
+        <div class="container">
+            <h1>Flamea</h1>
+            <p>Your existing tagline or description here</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="https://anchor.fm/s/10357aacc/podcast/rss" class="podcast-btn" target="_blank" rel="noopener noreferrer">Podcast Feed</a></li>
+                    <li><button class="search-btn" onclick="toggleSearch()">Search</button></li>
+                </ul>
+                <div id="search-container">
+                    <input type="text" id="search-input" placeholder="Search Flamea...">
+                    <button onclick="performSearch()">Go</button>
+                </div>
+            </nav>
         </div>
     </header>
 
     <main>
-        <!-- Your existing homepage content goes here -->
-        <h1>Welcome to Flamea</h1>
-        <p>This is a placeholder for your existing content. Do not change this section—replace it with your actual homepage content from https://flamea.org/.</p>
+        <!-- Your existing homepage content -->
+        <section class="mission">
+            <div class="container">
+                <h2>Your Mission Title</h2>
+                <p>Your existing mission content here.</p>
+            </div>
+        </section>
+        <!-- Add more sections as per your original index.html -->
     </main>
 
     <footer>
-        <!-- Your existing footer content -->
-        <p>&copy; 2025 Flamea. All rights reserved.</p>
+        <div class="container">
+            <div class="footer-contact">
+                <p>Your existing footer content here.</p>
+            </div>
+            <p>© 2025 Flamea. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
@@ -144,9 +56,7 @@
         function performSearch() {
             const query = document.getElementById('search-input').value.trim();
             if (query) {
-                // Basic alert for now; replace with your search logic if needed
-                alert('Searching for: ' + query);
-                // Example: window.location.href = `/search?q=${encodeURIComponent(query)}`;
+                alert('Searching for: ' + query); // Replace with your search logic if needed
             }
         }
     </script>
