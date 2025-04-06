@@ -592,3 +592,66 @@ footer > .container > p {
         font-size: 1em;
     }
 }
+
+/* New Styles for Podcast Feed and Search Buttons */
+.podcast-btn, .search-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    background-color: #003087; /* Matches header and nav */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: inline-block; /* Ensures consistent behavior with links */
+    cursor: pointer; /* For button */
+}
+
+.podcast-btn:hover, .search-btn:hover {
+    background-color: #0047ab; /* Matches nav hover */
+}
+
+#search-container {
+    margin-top: 10px;
+    display: none; /* Hidden by default */
+}
+
+#search-input {
+    padding: 8px;
+    width: 200px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#search-container button {
+    padding: 8px 15px;
+    margin-left: 5px;
+    background-color: #003087; /* Matches site theme */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#search-container button:hover {
+    background-color: #0047ab; /* Matches nav hover */
+}
+
+/* Responsive adjustments for new buttons */
+@media (max-width: 768px) {
+    .podcast-btn, .search-btn {
+        font-size: 1em;
+        padding: 5px 8px;
+    }
+
+    #search-input {
+        width: 150px; /* Smaller width on mobile */
+    }
+
+    #search-container button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+}
