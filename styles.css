@@ -24,6 +24,7 @@ header {
     color: white;
     text-align: center;
     padding: 40px 0;
+    position: relative; /* For positioning RSS button */
 }
 
 header h1 {
@@ -598,18 +599,55 @@ footer > .container > p {
 
 /* New Styles for Search, Chatbot, and RSS Feed */
 
-/* Search Bar */
+/* RSS Feed Button and Ticker (Top-Right Under Header) */
+.rss-header {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3; /* Above background overlay */
+}
+
+.rss-toggle-btn {
+    background: #f5a623;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.rss-toggle-btn:hover {
+    background: #e69520;
+}
+
+#rssTicker {
+    margin-top: 10px;
+    background: #003087;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 300px;
+}
+
+/* Search Bar (Bottom-Right, Fixed) */
+.search-fixed {
+    position: fixed;
+    bottom: 80px; /* Above chatbot */
+    right: 20px;
+    z-index: 1000;
+}
+
 .search-container {
     display: inline-block;
     position: relative;
-    margin-left: 20px;
 }
 
 #searchInput {
     padding: 5px 30px 5px 10px;
     border: none;
     border-radius: 15px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 48, 135, 0.8); /* Dark blue with opacity */
     color: #fff;
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -621,7 +659,7 @@ footer > .container > p {
 
 #searchInput:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 48, 135, 1);
 }
 
 .search-icon {
@@ -633,9 +671,6 @@ footer > .container > p {
 }
 
 #searchResults {
-    position: absolute;
-    top: 60px;
-    right: 20px;
     background: #003087;
     color: #fff;
     border-radius: 5px;
@@ -644,6 +679,8 @@ footer > .container > p {
     display: none;
     z-index: 1000;
     padding: 10px;
+    margin-top: 5px;
+    max-width: 200px;
 }
 
 #searchResults a {
@@ -657,20 +694,7 @@ footer > .container > p {
     text-decoration: underline;
 }
 
-/* Chatbot */
+/* Chatbot (Bottom-Right, Fixed) */
 .tawk-button {
     z-index: 1000;
-}
-
-/* RSS Feed Ticker */
-.rss-ticker {
-    margin-top: 10px;
-    text-align: center;
-}
-
-#rssTicker {
-    margin-top: 10px;
-    background: #003087;
-    padding: 10px;
-    border-radius: 5px;
 }
