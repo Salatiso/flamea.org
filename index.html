@@ -44,7 +44,7 @@
         <div class="rss-ticker">
             <button onclick="toggleTicker()" style="background: #f5a623; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Show Podcast Updates</button>
             <div id="rssTicker" style="display: none;">
-                <!-- Replace with your Elfsight RSS Feed Ticker embed code -->
+                <!-- Elfsight RSS Feed Ticker Embed Code -->
                 <div class="elfsight-app-[your-ticker-widget-id]"></div>
             </div>
         </div>
@@ -60,6 +60,8 @@
             ticker.style.display = ticker.style.display === 'none' ? 'block' : 'none';
         }
     </script>
+    <!-- Elfsight Script (Add this only once, typically in the footer) -->
+    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     <!-- Tawk.to Chatbot Script -->
     <!-- Replace [your-widget-id] with your actual Tawk.to widget ID -->
     <script type="text/javascript">
