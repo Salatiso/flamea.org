@@ -118,7 +118,10 @@ section ul li {
 }
 
 .contact-info {
-    background-image: url('images/father-contact.jpg'); /* Specific for contact-info */
+    background-image: url('images/father-contact.jpg');
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
 }
 
 .mission::before, .about-mission::before, .work-strategies::before, .news::before, .blog-intro::before, .resources-intro::before, .contact-info::before {
@@ -591,4 +594,83 @@ footer > .container > p {
     .footer-contact i {
         font-size: 1em;
     }
+}
+
+/* New Styles for Search, Chatbot, and RSS Feed */
+
+/* Search Bar */
+.search-container {
+    display: inline-block;
+    position: relative;
+    margin-left: 20px;
+}
+
+#searchInput {
+    padding: 5px 30px 5px 10px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+#searchInput::placeholder {
+    color: #ccc;
+}
+
+#searchInput:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+#searchResults {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #003087;
+    color: #fff;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+    padding: 10px;
+}
+
+#searchResults a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+}
+
+#searchResults a:hover {
+    text-decoration: underline;
+}
+
+/* Chatbot */
+.tawk-button {
+    z-index: 1000;
+}
+
+/* RSS Feed Ticker */
+.rss-ticker {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#rssTicker {
+    margin-top: 10px;
+    background: #003087;
+    padding: 10px;
+    border-radius: 5px;
 }
