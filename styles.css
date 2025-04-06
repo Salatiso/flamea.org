@@ -9,9 +9,6 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 /* Container for consistent width */
@@ -27,17 +24,11 @@ header {
     color: white;
     text-align: center;
     padding: 40px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 header h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
-    flex: 1 1 100%;
-    text-align: center;
 }
 
 header p {
@@ -57,8 +48,7 @@ nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 1.1em;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 5px 10px;
     transition: background-color 0.3s;
 }
 
@@ -92,8 +82,7 @@ section h3 {
     text-align: center;
 }
 
-section p,
-section ul {
+section p, section ul {
     font-size: 1.1em;
     max-width: 800px;
     margin: 0 auto 20px;
@@ -106,73 +95,46 @@ section ul {
 
 section ul li {
     margin-bottom: 15px;
-    text-align: left;
+    text-align: left; /* Left-align list items for readability */
 }
 
 /* Static Background Sections */
-.mission,
-.about-mission,
-.work-strategies,
-.news,
-.blog-intro,
-.resources-intro,
-.contact-info {
-    background-image: url('images/father-child.jpg');
-    /* Default for others */
+.mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+    background-image: url('images/father-child.jpg'); /* Default for others */
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    /* Makes the background static */
+    background-attachment: fixed; /* Makes the background static */
     position: relative;
-    min-height: 600px;
-    /* Ensures enough space to scroll */
-    color: #fff;
-    /* White text for contrast */
+    min-height: 600px; /* Ensures enough space to scroll */
+    color: #fff; /* White text for contrast */
 }
 
 .work-strategies {
     background-image: url('images/fathers-group.jpg');
 }
 
-.news,
-.blog-intro,
-.resources-intro {
+.news, .blog-intro, .resources-intro {
     background-image: url('images/father-reading.jpg');
 }
 
 .contact-info {
-    background-image: url('images/father-contact.jpg');
-    /* Specific for contact-info */
+    background-image: url('images/father-contact.jpg'); /* Specific for contact-info */
 }
 
-.mission::before,
-.about-mission::before,
-.work-strategies::before,
-.news::before,
-.blog-intro::before,
-.resources-intro::before,
-.contact-info::before {
+.mission::before, .about-mission::before, .work-strategies::before, .news::before, .blog-intro::before, .resources-intro::before, .contact-info::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 48, 0.6);
-    /* Dark blue overlay for readability */
+    background-color: rgba(0, 0, 48, 0.6); /* Dark blue overlay for readability */
     z-index: 1;
 }
 
-.mission .container,
-.about-mission .container,
-.work-strategies .container,
-.news .container,
-.blog-intro .container,
-.resources-intro .container,
-.contact-info .container {
+.mission .container, .about-mission .container, .work-strategies .container, .news .container, .blog-intro .container, .resources-intro .container, .contact-info .container {
     position: relative;
-    z-index: 2;
-    /* Text above overlay */
+    z-index: 2; /* Text above overlay */
 }
 
 /* News Item Styling */
@@ -188,8 +150,7 @@ section ul li {
 }
 
 .news-item h3 a:hover {
-    color: #e6f0fa;
-    /* Light blue on hover */
+    color: #e6f0fa; /* Light blue on hover */
 }
 
 /* More Link Styling */
@@ -233,8 +194,7 @@ section ul li {
 
 .book-image-box {
     display: block;
-    width: 180px;
-    /* Fixed width for consistency */
+    width: 180px; /* Fixed width for consistency */
     height: auto;
     background-color: #fff;
     border: 2px double #003087;
@@ -303,8 +263,7 @@ section ul li {
 
 /* Specific Section Styles */
 .about-mission {
-    background-color: #f9f9f9;
-    /* Fallback */
+    background-color: #f9f9f9; /* Fallback */
 }
 
 .about-values {
@@ -328,8 +287,7 @@ section ul li {
 }
 
 .work-strategies {
-    background-color: #e6f0fa;
-    /* Fallback */
+    background-color: #e6f0fa; /* Fallback */
 }
 
 .work-structure {
@@ -349,20 +307,17 @@ section ul li {
 }
 
 .contact-info {
-    background-color: #f9f9f9;
-    /* Fallback */
+    background-color: #f9f9f9; /* Fallback */
     text-align: center;
 }
 
 .contact-info a {
-    color: #fff;
-    /* White for contrast on background */
+    color: #fff; /* White for contrast on background */
     text-decoration: none;
 }
 
 .contact-info a:hover {
-    color: #e6f0fa;
-    /* Light blue on hover */
+    color: #e6f0fa; /* Light blue on hover */
 }
 
 .contact-form {
@@ -380,8 +335,7 @@ section ul li {
 }
 
 .news {
-    background-color: #f9f9f9;
-    /* Fallback */
+    background-color: #f9f9f9; /* Fallback */
 }
 
 .books {
@@ -408,8 +362,7 @@ section ul li {
 }
 
 .blog-intro {
-    background-color: #f9f9f9;
-    /* Fallback */
+    background-color: #f9f9f9; /* Fallback */
     text-align: center;
 }
 
@@ -447,8 +400,7 @@ section ul li {
 }
 
 .resources-intro {
-    background-color: #f9f9f9;
-    /* Fallback */
+    background-color: #f9f9f9; /* Fallback */
     text-align: center;
 }
 
@@ -549,7 +501,6 @@ footer {
 .footer-contact i {
     margin-right: 8px;
     font-size: 1.2em;
-    transition: transform 0.3s;
 }
 
 footer > .container > p {
@@ -558,13 +509,8 @@ footer > .container > p {
 
 /* Animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Responsive Design */
@@ -594,21 +540,13 @@ footer > .container > p {
         font-size: 1.3em;
     }
 
-    section p,
-    section ul {
+    section p, section ul {
         font-size: 1em;
         padding: 0 15px;
     }
 
-    .mission,
-    .about-mission,
-    .work-strategies,
-    .news,
-    .blog-intro,
-    .resources-intro,
-    .contact-info {
-        min-height: 500px;
-        /* Adjust for smaller screens */
+    .mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+        min-height: 500px; /* Adjust for smaller screens */
     }
 
     .form-group label {
@@ -620,8 +558,7 @@ footer > .container > p {
         padding: 8px 16px;
     }
 
-    .book-item h3,
-    .blog-post h3 {
+    .book-item h3, .blog-post h3 {
         font-size: 1.3em;
     }
 
@@ -630,8 +567,7 @@ footer > .container > p {
     }
 
     .book-image-box {
-        width: 150px;
-        /* Fixed width for smaller screens */
+        width: 150px; /* Fixed width for smaller screens */
     }
 
     .book-images {
@@ -654,133 +590,5 @@ footer > .container > p {
 
     .footer-contact i {
         font-size: 1em;
-    }
-}
-
-/* New Styles for RSS, Search, and Chatbot */
-.header-icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    /* Adjust as needed */
-    margin-left: auto;
-    /* Push icons to the right */
-}
-
-.header-icons button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    color: #fff;
-    /* Or your header text color */
-}
-
-.header-icons button:hover {
-    opacity: 0.8;
-}
-
-.rss-toggle-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-#rssTicker {
-    background-color: #f0f0f0;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.search-fixed {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 25px;
-    padding: 5px 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-#searchInput {
-    border: none;
-    outline: none;
-    width: 200px;
-    padding: 8px;
-}
-
-.search-icon {
-    color: #888;
-    cursor: pointer;
-}
-
-#searchResults {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    width: 250px;
-    display: none;
-    margin-top: 5px;
-}
-
-.chatbot-icon {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
-    background-color: #007bff;
-    /* Chatbot icon background color */
-    color: #fff;
-    width: 50px;
-    /* Adjust size as needed */
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    /* Adjust icon size as needed */
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.chatbot-icon:hover {
-    background-color: #0056b3;
-    /* Darker shade on hover */
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    header nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .header-icons {
-        margin-left: 0;
-        justify-content: center;
-    }
-
-    .search-fixed {
-        position: static;
-        margin-top: 20px;
     }
 }
