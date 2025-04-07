@@ -66,40 +66,25 @@
 
     <section class="books">
         <div class="container">
-            <h2>Our Publications</h2>
+            <h2 id="publications">Our Publications</h2>
             <p>Dive into our powerful books that fuel the fight for equality and family justice. Available in all formats (eBooks, paperbacks, audiobooks), these works by Salatiso Lonwabo Mdeni are at the heart of F²LAMEA’s mission:</p>
             <div class="book-item">
-                <h3>"Goliath's Reckoning: Unveiling the Biased Truth Behind Children's Court that Discriminates Against Fathers"</h3>
+                <h3><a href="https://play.google.com/books/reader?id=gZcNEQAAQBAJ&pg=GBS.PP1.w.2.0.1&hl=en_ZA" target="_blank">"Goliath's Reckoning: Unveiling the Biased Truth Behind Children's Court that Discriminates Against Fathers"</a></h3>
                 <p><strong>Author:</strong> Salatiso Lonwabo Mdeni</p>
                 <p><strong>Publication Date:</strong> 2024</p>
                 <p><strong>Description:</strong> A bold exposé of family court biases, this book fights for fathers’ rights and the true best interests of children.</p>
-                <div class="book-images">
-                    <a href="https://play.google.com/books/reader?id=gZcNEQAAQBAJ&pg=GBS.PP1.w.2.0.1&hl=en_ZA" target="_blank">
-                        <img src="images/book-goliaths-reckoning.JPG" alt="Goliath's Reckoning book cover" class="book-image-box">
-                    </a>
-                </div>
             </div>
             <div class="book-item">
-                <h3>"The Homeschooling Father: Why and How I Got Started"</h3>
+                <h3><a href="https://play.google.com/books/reader?id=NscJEQAAQBAJ&pg=GBS.PP1.w.1.0.0&hl=en_ZA" target="_blank">"The Homeschooling Father: Why and How I Got Started"</a></h3>
                 <p><strong>Author:</strong> Salatiso Lonwabo Mdeni</p>
                 <p><strong>Publication Date:</strong> 2024</p>
                 <p><strong>Description:</strong> A personal journey into homeschooling, this book showcases a father’s dedication to education and family unity, sparking F²LAMEA’s broader advocacy.</p>
-                <div class="book-images">
-                    <a href="https://play.google.com/books/reader?id=NscJEQAAQBAJ&pg=GBS.PP1.w.1.0.0&hl=en_ZA" target="_blank">
-                        <img src="images/The-Homeschooling-Father-Why-and-How-I-Got-Started.jpg" alt="The Homeschooling Father book cover" class="book-image-box">
-                    </a>
-                </div>
             </div>
             <div class="book-item">
-                <h3>"Beyond Redress: Prioritising the Child's Best Interests to Achieve Equality Before the Law in South Africa"</h3>
+                <h3><a href="https://play.google.com/books/reader?id=fs0SEQAAQBAJ&hl=en_ZA" target="_blank">"Beyond Redress: Prioritising the Child's Best Interests to Achieve Equality Before the Law in South Africa"</a></h3>
                 <p><strong>Author:</strong> Salatiso Lonwabo Mdeni</p>
                 <p><strong>Publication Date:</strong> 2024</p>
                 <p><strong>Description:</strong> This book challenges race and gender biases in South Africa’s legal system, using the child’s best interests as a lever for change.</p>
-                <div class="book-images">
-                    <a href="https://play.google.com/books/reader?id=fs0SEQAAQBAJ&hl=en_ZA" target="_blank">
-                        <img src="images/book-beyond-redress.JPG" alt="Beyond Redress book cover" class="book-image-box">
-                    </a>
-                </div>
             </div>
             <p><strong>Additional Purchase Options:</strong> Grab these books in your preferred format from a variety of stores, including:</p>
             <ul>
@@ -162,28 +147,4 @@
 
             const parser = new RSSParser();
             const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS issues
-            const feedUrl = "https://anchor.fm/s/10357aacc/podcast/rss";
-
-            try {
-                const feed = await parser.parseURL(CORS_PROXY + feedUrl);
-                feed.items.forEach(item => {
-                    const episodeDiv = document.createElement('div');
-                    episodeDiv.className = 'episode';
-                    episodeDiv.innerHTML = `
-                        <h4>${item.title}</h4>
-                        <p>${item.pubDate}</p>
-                        <audio controls>
-                            <source src="${item.enclosure.url}" type="${item.enclosure.type}">
-                            Your browser does not support the audio element.
-                        </audio>
-                    `;
-                    episodeList.appendChild(episodeDiv);
-                });
-            } catch (error) {
-                episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
-                console.error('Error fetching RSS feed:', error);
-            }
-        }
-    </script>
-</body>
-</html>
+            const feedUrl = "https://anchor.fm/s/10357aacc/podcast
