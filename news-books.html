@@ -6,8 +6,10 @@
     <title>Latest News & Articles - F²LAMEA</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Add rss-parser library from CDN for podcast player -->
+    <script src="https://unpkg.com/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </head>
-<body>
+<body class="news-page">
     <header>
         <div class="container">
             <h1>F²LAMEA</h1>
@@ -21,7 +23,19 @@
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
+                    <li><button class="podcast-btn" onclick="togglePodcastPlayer()">Podcast Player</button></li>
+                    <li><button class="search-btn" onclick="toggleSearch()">Search</button></li>
                 </ul>
+                <!-- Search container -->
+                <div id="search-container">
+                    <input type="text" id="search-input" placeholder="Search Flamea...">
+                    <button onclick="performSearch()">Go</button>
+                </div>
+                <!-- Podcast player container (hidden by default) -->
+                <div id="podcast-player" style="display: none; margin-top: 20px;">
+                    <h3>Latest Podcasts</h3>
+                    <div id="episode-list"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -33,7 +47,8 @@
             <div class="news-item">
                 <h3><a href="https://medium.com/@spiceinc/the-high-courts-failure-as-the-upper-guardian-holding-the-judiciary-accountable-for-perpetuating-cfd033ddb0bb" target="_blank">February 23, 2025: The High Court’s Failure as the Upper Guardian: Holding the Judiciary Accountable for Perpetuating Paternal Discrimination</a></h3>
                 <p>The High Court’s Failure as the Upper Guardian: Holding the Judiciary Accountable for Perpetuating Paternal Discrimination.</p>
-            </div><div class="news-item">
+            </div>
+            <div class="news-item">
                 <h3><a href="https://medium.com/@spiceinc/moving-beyond-the-surface-exposing-the-hidden-harms-of-judicial-bias-in-fatherhood-matters-fc93de1ee53d" target="_blank">February 14, 2025: Fathers’ Fight for Justice in South African Courts</a></h3>
                 <p>An in-depth look at how fathers are battling systemic biases in family courts, with actionable insights for change.</p>
             </div>
@@ -54,6 +69,17 @@
             <h2>Our Publications</h2>
             <p>Dive into our powerful books that fuel the fight for equality and family justice. Available in all formats (eBooks, paperbacks, audiobooks), these works by Salatiso Lonwabo Mdeni are at the heart of F²LAMEA’s mission:</p>
             <div class="book-item">
+                <h3>"Goliath's Reckoning: Unveiling the Biased Truth Behind Children's Court that Discriminates Against Fathers"</h3>
+                <p><strong>Author:</strong> Salatiso Lonwabo Mdeni</p>
+                <p><strong>Publication Date:</strong> 2024</p>
+                <p><strong>Description:</strong> A bold exposé of family court biases, this book fights for fathers’ rights and the true best interests of children.</p>
+                <div class="book-images">
+                    <a href="https://play.google.com/books/reader?id=gZcNEQAAQBAJ&pg=GBS.PP1.w.2.0.1&hl=en_ZA" target="_blank">
+                        <img src="images/book-goliaths-reckoning.JPG" alt="Goliath's Reckoning book cover" class="book-image-box">
+                    </a>
+                </div>
+            </div>
+            <div class="book-item">
                 <h3>"The Homeschooling Father: Why and How I Got Started"</h3>
                 <p><strong>Author:</strong> Salatiso Lonwabo Mdeni</p>
                 <p><strong>Publication Date:</strong> 2024</p>
@@ -72,17 +98,6 @@
                 <div class="book-images">
                     <a href="https://play.google.com/books/reader?id=fs0SEQAAQBAJ&hl=en_ZA" target="_blank">
                         <img src="images/book-beyond-redress.JPG" alt="Beyond Redress book cover" class="book-image-box">
-                    </a>
-                </div>
-            </div>
-            <div class="book-item">
-                <h3>"Goliath's Reckoning: Unveiling the Biased Truth Behind Children's Court that Discriminates Against Fathers"</h3>
-                <p><strong>Author:</strong> Salatiso Lonwabo Mdeni</p>
-                <p><strong>Publication Date:</strong> 2024</p>
-                <p><strong>Description:</strong> A bold exposé of family court biases, this book fights for fathers’ rights and the true best interests of children.</p>
-                <div class="book-images">
-                    <a href="https://play.google.com/books/reader?id=gZcNEQAAQBAJ&pg=GBS.PP1.w.2.0.1&hl=en_ZA" target="_blank">
-                        <img src="images/book-goliaths-reckoning.JPG" alt="Goliath's Reckoning book cover" class="book-image-box">
                     </a>
                 </div>
             </div>
@@ -115,5 +130,60 @@
             <p>© 2025 F²LAMEA. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Search functionality
+        function toggleSearch() {
+            const searchContainer = document.getElementById('search-container');
+            searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function performSearch() {
+            const query = document.getElementById('search-input').value.trim();
+            if (query) {
+                alert('Searching for: ' + query); // Replace with your search logic if needed
+            }
+        }
+
+        // Podcast player functionality
+        function togglePodcastPlayer() {
+            const player = document.getElementById('podcast-player');
+            if (player.style.display === 'none') {
+                player.style.display = 'block';
+                loadPodcastEpisodes(); // Load episodes when player is shown
+            } else {
+                player.style.display = 'none';
+            }
+        }
+
+        async function loadPodcastEpisodes() {
+            const episodeList = document.getElementById('episode-list');
+            if (episodeList.innerHTML) return; // Only load once
+
+            const parser = new RSSParser();
+            const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS issues
+            const feedUrl = "https://anchor.fm/s/10357aacc/podcast/rss";
+
+            try {
+                const feed = await parser.parseURL(CORS_PROXY + feedUrl);
+                feed.items.forEach(item => {
+                    const episodeDiv = document.createElement('div');
+                    episodeDiv.className = 'episode';
+                    episodeDiv.innerHTML = `
+                        <h4>${item.title}</h4>
+                        <p>${item.pubDate}</p>
+                        <audio controls>
+                            <source src="${item.enclosure.url}" type="${item.enclosure.type}">
+                            Your browser does not support the audio element.
+                        </audio>
+                    `;
+                    episodeList.appendChild(episodeDiv);
+                });
+            } catch (error) {
+                episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
+                console.error('Error fetching RSS feed:', error);
+            }
+        }
+    </script>
 </body>
 </html>
