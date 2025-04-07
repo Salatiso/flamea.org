@@ -33,7 +33,7 @@ header {
 
 /* Add padding to the body to prevent content from being hidden under the fixed header */
 body {
-    padding-top: 200px; /* Adjust this value based on the height of your header */
+    padding-top: 350px; /* Increased to account for header height, navigation, and toggled elements */
 }
 
 header h1 {
@@ -604,7 +604,7 @@ footer > .container > p {
 
     /* Adjust body padding for smaller screens */
     body {
-        padding-top: 300px; /* Increase padding on mobile due to taller header */
+        padding-top: 500px; /* Increased padding on mobile to account for taller header */
     }
 }
 
