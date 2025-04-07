@@ -147,6 +147,7 @@ section ul li {
     align-items: center;
     justify-content: center;
     gap: 10px; /* Space between icon and text */
+    font-weight: bold; /* Make list items bold */
 }
 
 /* Mission Card Styling */
@@ -175,6 +176,17 @@ section ul li {
 .mission-card li:hover i {
     color: #e6f0fa; /* Light blue on hover */
     transform: scale(1.2); /* Slight scale-up on hover */
+}
+
+/* Mission Card Links */
+.mission-card a {
+    color: #fff; /* White links */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.mission-card a:hover {
+    color: #e6f0fa; /* Light blue on hover */
 }
 
 /* Call-to-Action Box */
