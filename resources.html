@@ -6,8 +6,10 @@
     <title>Resources - F²LAMEA</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Add rss-parser library from CDN for podcast player -->
+    <script src="https://unpkg.com/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </head>
-<body>
+<body class="resources-page">
     <header>
         <div class="container">
             <h1>F²LAMEA</h1>
@@ -21,7 +23,19 @@
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html" class="active">Resources</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
+                    <li><button class="podcast-btn" onclick="togglePodcastPlayer()">Podcast Player</button></li>
+                    <li><button class="search-btn" onclick="toggleSearch()">Search</button></li>
                 </ul>
+                <!-- Search container -->
+                <div id="search-container">
+                    <input type="text" id="search-input" placeholder="Search Flamea...">
+                    <button onclick="performSearch()">Go</button>
+                </div>
+                <!-- Podcast player container (hidden by default) -->
+                <div id="podcast-player" style="display: none; margin-top: 20px;">
+                    <h3>Latest Podcasts</h3>
+                    <div id="episode-list"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -29,52 +43,30 @@
     <section class="resources-intro">
         <div class="container">
             <h2>Resources</h2>
-            <p>Welcome to our Resources page. Here, you’ll find valuable tools, legal templates, forms, guides, and links to organizations and legislation to support parents and families navigating family courts and related systems. These resources are designed to empower you with the knowledge and tools needed to advocate for your rights and the best interests of your children.</p>
+            <p>Explore our collection of resources designed to support fathers, families, and advocates in navigating family courts and advocating for equality.</p>
         </div>
     </section>
 
     <section class="resources-templates">
         <div class="container">
-            <h2>Putting the Law into Action: Templates and Resources for Fathers and Families</h2>
-            <p>Knowing what you need to do is one thing, but putting it into action is another. Many fathers face the challenge of articulating their rights amidst overwhelming emotions and systemic barriers. These pre-populated templates are designed as examples to guide you through drafting affidavits and submissions to various entities. They reflect real struggles—like my own—and aim to help you communicate effectively with courts and organizations. While these serve as a starting point, always seek the latest forms and advice directly from relevant authorities.</p>
-            <p>To bring a matter to the Children’s Court, you’ll need Form 02 (J767), preferably supported by an affidavit. For guidance on what points to include in your affidavit, see the <em>Simple Affidavit for Children’s Court</em> or <em>Simple Affidavit for Equality Court</em> as examples.</p>
-            <h3>Downloadable Templates</h3>
+            <h2>Downloadable Templates</h2>
+            <p>Access our free templates to assist with legal documentation and advocacy efforts.</p>
             <ul class="download-list">
-                <li>1. <a href="templates/form02-j767.pdf" download="form02-j767.pdf">Bringing Matter to Children’s Court</a> - Form 02 (J767) is used to bring a matter to the Children’s Court in terms of section 53 of the Children’s Act, 2005 (Act No. 38 of 2005).</li>
-                <li>2. <a href="templates/affidavit-template.pdf" download="Affidavit_Template.pdf">Simple Affidavit for Children’s Court</a> - A sample affidavit to assert your parental rights.</li>
-                <li>3. <a href="templates/affidavit-template2.pdf" download="Affidavit_Template2.pdf">Simple Affidavit for Equality or Children’s Court</a> - A sample affidavit to assert your parental rights.</li>
-                <li>4. <a href="templates/magistrates-complaint-template.pdf" download="Magistrates_Complaint_Template.pdf">Complaint to the Magistrates Commission</a> - Challenge unethical magistrate conduct.</li>
-                <li>5. <a href="templates/lpc-complaint-template.pdf" download="LPC_Complaint_Template.pdf">Complaint to the Legal Practice Council</a> - Address legal practitioners facilitating rights deprivation.</li>
-                <li>6. <a href="templates/npa-complaint-template.pdf" download="NPA_Complaint_Template.pdf">Criminal Complaint Affidavit to the NPA</a> - Report potential parental abduction or kidnapping.</li>
-                <li>7. <a href="templates/cge-complaint-template.pdf" download="CGE_Complaint_Template.pdf">Complaint to the Commission for Gender Equality</a> - Highlight gender discrimination in court.</li>
-                <li>8. <a href="templates/public-protector-complaint-template.pdf" download="Public_Protector_Complaint_Template.pdf">Complaint to the Public Protector</a> - Address systemic discrimination and High Court failures.</li>
-                <li>9. <a href="templates/salrc-request-template.pdf" download="SALRC_Request_Template.pdf">Request to the South African Law Reform Commission</a> - Advocate for legal reform.</li>
-                <li>10. <a href="templates/equality-court-form2-guide.pdf" download="Equality_Court_Form2_Guide.pdf">Equality Court Form 2 Guide</a> - A completed example for filing a discrimination complaint.</li>
+                <li><a href="templates/affidavit-template.pdf" target="_blank">Affidavit Template</a></li>
+                <li><a href="templates/court-letter-template.pdf" target="_blank">Court Letter Template</a></li>
+                <li><a href="templates/parenting-plan-template.pdf" target="_blank">Parenting Plan Template</a></li>
             </ul>
-            <p><strong>Note:</strong> These templates are examples to assist with content and structure. For the most current official forms, visit:</p>
-            <ul>
-                <li><a href="https://www.justice.gov.za/forms/child/ChildrensAct_J767%20[20230315].pdf" target="_blank">Form 2 (J767) - Children’s Court</a></li>
-                <li><a href="https://www.justice.gov.za/forms/form_cj.html" target="_blank">Other Children’s Court Forms</a></li>
-                <li><a href="https://www.justice.gov.za/FMAdv/f_main.htm" target="_blank">Family Advocate Forms</a></li>
-                <li><a href="https://www.justice.gov.za/EQCact/forms/eqc_form2_J693.pdf" target="_blank">Equality Court Form 2 (J693)</a></li>
-            </ul>
-            <p><em>Disclaimer:</em> These templates are for informational purposes only and should be reviewed by a legal professional before submission.</p>
         </div>
     </section>
 
     <section class="resources-links">
         <div class="container">
-            <h2>Other Resources and Links</h2>
-            <ul>
-                <li><a href="https://www.justice.gov.za/FMAdv/f_main.htm" target="_blank">The Family Advocate</a> - Support for family law matters in South Africa.</li>
-                <li><a href="https://www.f4j.co.za/?v=eacb463a8002" target="_blank">Fathers 4 Justice</a> - Advocacy for fathers’ rights in South Africa.</li>
-                <li><a href="https://www.justice.gov.za/constitution/index.html" target="_blank">The South African Constitution</a> - The foundation of equality and rights.</li>
-                <li><a href="https://www.justice.gov.za/vg/children.html" target="_blank">The Family Courts & Children's Act</a> - Information on family courts and legislation.</li>
-                <li><a href="https://www.justice.gov.za/EQCact/eqc_main.html" target="_blank">The Equality Courts</a> - Courts addressing discrimination cases.</li>
-                <li><a href="https://www.justice.gov.za/family.html" target="_blank">South African Department of Justice and Constitutional Development (Family Law Section)</a> - Family law resources.</li>
-                <li><a href="https://popia.co.za/" target="_blank">POPIA (Protection of Personal Information Act)</a> - Legislation on data protection.</li>
-                <li><a href="https://www.justice.gov.za/" target="_blank">Department of Justice and Constitutional Development</a> - Access to the official Department of Justice and Constitutional Development website.</li>
-                <li><em>Links to other legal aid organizations or support groups coming soon.</em></li>
+            <h2>Useful Links</h2>
+            <p>Find additional resources and support through these trusted organizations and websites.</p>
+            <ul class="icon-list">
+                <li><i class="fas fa-link"></i><a href="https://www.justice.gov.za/" target="_blank">South African Department of Justice</a></li>
+                <li><i class="fas fa-link"></i><a href="https://www.lrc.org.za/" target="_blank">Legal Resources Centre</a></li>
+                <li><i class="fas fa-link"></i><a href="https://www.fathersrights.org/" target="_blank">Fathers’ Rights Movement</a></li>
             </ul>
         </div>
     </section>
@@ -96,5 +88,60 @@
             <p>© 2025 F²LAMEA. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Search functionality
+        function toggleSearch() {
+            const searchContainer = document.getElementById('search-container');
+            searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function performSearch() {
+            const query = document.getElementById('search-input').value.trim();
+            if (query) {
+                alert('Searching for: ' + query); // Replace with your search logic if needed
+            }
+        }
+
+        // Podcast player functionality
+        function togglePodcastPlayer() {
+            const player = document.getElementById('podcast-player');
+            if (player.style.display === 'none') {
+                player.style.display = 'block';
+                loadPodcastEpisodes(); // Load episodes when player is shown
+            } else {
+                player.style.display = 'none';
+            }
+        }
+
+        async function loadPodcastEpisodes() {
+            const episodeList = document.getElementById('episode-list');
+            if (episodeList.innerHTML) return; // Only load once
+
+            const parser = new RSSParser();
+            const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS issues
+            const feedUrl = "https://anchor.fm/s/10357aacc/podcast/rss";
+
+            try {
+                const feed = await parser.parseURL(CORS_PROXY + feedUrl);
+                feed.items.forEach(item => {
+                    const episodeDiv = document.createElement('div');
+                    episodeDiv.className = 'episode';
+                    episodeDiv.innerHTML = `
+                        <h4>${item.title}</h4>
+                        <p>${item.pubDate}</p>
+                        <audio controls>
+                            <source src="${item.enclosure.url}" type="${item.enclosure.type}">
+                            Your browser does not support the audio element.
+                        </audio>
+                    `;
+                    episodeList.appendChild(episodeDiv);
+                });
+            } catch (error) {
+                episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
+                console.error('Error fetching RSS feed:', error);
+            }
+        }
+    </script>
 </body>
 </html>
