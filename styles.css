@@ -655,3 +655,27 @@ footer > .container > p {
         font-size: 0.9em;
     }
 }
+
+/* New Styles for Podcast Player */
+.episode {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    color: #333;
+}
+
+.episode h4 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.episode p {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.episode audio {
+    width: 100%;
+    max-width: 500px;
+}
