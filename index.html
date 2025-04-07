@@ -6,6 +6,8 @@
     <title>F²LAMEA - Fathers & Family Legal Advocacy Movement</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Add rss-parser library from CDN -->
+    <script src="https://unpkg.com/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </head>
 <body>
     <header>
@@ -21,12 +23,19 @@
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="https://anchor.fm/s/10357aacc/podcast/rss" class="podcast-btn" target="_blank" rel="noopener noreferrer">Podcast Feed</a></li>
+                    <!-- Replace podcast button with a toggle button for the player -->
+                    <li><button class="podcast-btn" onclick="togglePodcastPlayer()">Podcast Player</button></li>
                     <li><button class="search-btn" onclick="toggleSearch()">Search</button></li>
                 </ul>
+                <!-- Search container -->
                 <div id="search-container">
                     <input type="text" id="search-input" placeholder="Search Flamea...">
                     <button onclick="performSearch()">Go</button>
+                </div>
+                <!-- Podcast player container (hidden by default) -->
+                <div id="podcast-player" style="display: none; margin-top: 20px;">
+                    <h3>Latest Podcasts</h3>
+                    <div id="episode-list"></div>
                 </div>
             </nav>
         </div>
@@ -86,6 +95,7 @@
     </footer>
 
     <script>
+        // Search functionality
         function toggleSearch() {
             const searchContainer = document.getElementById('search-container');
             searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
@@ -95,6 +105,46 @@
             const query = document.getElementById('search-input').value.trim();
             if (query) {
                 alert('Searching for: ' + query); // Replace with your search logic if needed
+            }
+        }
+
+        // Podcast player functionality
+        function togglePodcastPlayer() {
+            const player = document.getElementById('podcast-player');
+            if (player.style.display === 'none') {
+                player.style.display = 'block';
+                loadPodcastEpisodes(); // Load episodes when player is shown
+            } else {
+                player.style.display = 'none';
+            }
+        }
+
+        async function loadPodcastEpisodes() {
+            const episodeList = document.getElementById('episode-list');
+            if (episodeList.innerHTML) return; // Only load once
+
+            const parser = new RSSParser();
+            const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS issues
+            const feedUrl = "https://anchor.fm/s/10357aacc/podcast/rss";
+
+            try {
+                const feed = await parser.parseURL(CORS_PROXY + feedUrl);
+                feed.items.forEach(item => {
+                    const episodeDiv = document.createElement('div');
+                    episodeDiv.className = 'episode';
+                    episodeDiv.innerHTML = `
+                        <h4>${item.title}</h4>
+                        <p>${item.pubDate}</p>
+                        <audio controls>
+                            <source src="${item.enclosure.url}" type="${item.enclosure.type}">
+                            Your browser does not support the audio element.
+                        </audio>
+                    `;
+                    episodeList.appendChild(episodeDiv);
+                });
+            } catch (error) {
+                episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
+                console.error('Error fetching RSS feed:', error);
             }
         }
     </script>
