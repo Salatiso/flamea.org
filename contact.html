@@ -8,6 +8,8 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <!-- Add rss-parser library from CDN for podcast player -->
     <script src="https://unpkg.com/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
+    <!-- Add search index -->
+    <script src="searchIndex.js"></script>
 </head>
 <body class="contact-page">
     <!-- Fixed Podcast Toggle Button -->
@@ -46,14 +48,24 @@
         </div>
     </header>
 
+    <!-- Search Results Container -->
+    <section id="search-results" class="container" style="display: none;">
+        <h2>Search Results</h2>
+        <div id="results-list"></div>
+        <div id="external-search-options" style="margin-top: 20px;">
+            <p>No results found on this site? Try searching wider:</p>
+            <button onclick="searchGoogle()">Search with Google</button>
+        </div>
+    </section>
+
     <section class="contact-info">
         <div class="container">
             <h2>Contact Us</h2>
             <p>We’d love to hear from you! Whether you have questions, want to share your story, or are interested in getting involved, please reach out using the contact information below or submit your message through our form.</p>
             <div class="footer-contact">
-                <p><strong>Email:</strong> <a href="mailto:flamea2024@gmail.com">flamea2024@gmail.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:salatiso@flamea.org">salatiso@flamea.org</a></p>
                 <p><strong>Website:</strong> <a href="https://flamea.org/" target="_blank">https://flamea.org/</a></p>
-                <p><strong>X (Twitter):</strong> <a href="https://twitter.com/flamea2024" target="_blank"><i class="fab fa-x-twitter"></i> @flamea2024</a></p>
+                <p><strong>X (Twitter):</strong helpless <a href="https://twitter.com/flamea2024" target="_blank"><i class="fab fa-x-twitter"></i> @flamea2024</a></p>
                 <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@Flamea2024" target="_blank"><i class="fab fa-youtube"></i> @Flamea2024</a></p>
             </div>
         </div>
@@ -77,7 +89,7 @@
     <footer>
         <div class="container">
             <div class="footer-contact">
-                <p><strong>Email:</strong> <a href="mailto:flamea2024@gmail.com">flamea2024@gmail.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:salatiso@flamea.org">salatiso@flamea.org</a></p>
                 <p><strong>Website:</strong> <a href="https://flamea.org/" target="_blank">https://flamea.org/</a></p>
                 <p><strong>X (Twitter):</strong> <a href="https://twitter.com/flamea2024" target="_blank"><i class="fab fa-x-twitter"></i> @flamea2024</a></p>
                 <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@Flamea2024" target="_blank"><i class="fab fa-youtube"></i> @Flamea2024</a></p>
@@ -98,18 +110,57 @@
         // Search functionality
         function toggleSearch() {
             const searchContainer = document.getElementById('search-container');
+            const searchResults = document.getElementById('search-results');
             searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+            searchResults.style.display = 'none';
         }
 
         function performSearch() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            const resultsList = document.getElementById('results-list');
+            const searchResults = document.getElementById('search-results');
+            const externalSearchOptions = document.getElementById('external-search-options');
+            resultsList.innerHTML = '';
+
+            if (!query) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => item.content.toLowerCase().includes(query));
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'result-item';
+                    resultItem.innerHTML = `
+                        <h3><a href="${result.url}">${result.page}</a></h3>
+                        <p>${highlightMatch(result.content, query)}</p>
+                    `;
+                    resultsList.appendChild(resultItem);
+                });
+                externalSearchOptions.style.display = 'none';
+            } else {
+                resultsList.innerHTML = '<p>No results found on this site.</p>';
+                externalSearchOptions.style.display = 'block';
+            }
+            searchResults.style.display = 'block';
+        }
+
+        function highlightMatch(content, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return content.replace(regex, '<strong>$1</strong>').substring(0, 200) + '...';
+        }
+
+        function searchGoogle() {
             const query = document.getElementById('search-input').value.trim();
             if (query) {
-                alert('Searching for: ' + query); // Replace with your search logic if needed
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}+site:flamea.org`;
+                window.open(googleSearchUrl, '_blank');
             }
         }
 
         // Podcast player functionality
-        let isPodcastLoaded = false; // Boolean flag to track if episodes are loaded
+        let isPodcastLoaded = false;
 
         function togglePodcastBox() {
             const podcastBox = document.getElementById('podcast-box');
@@ -118,14 +169,14 @@
             } else {
                 podcastBox.classList.add('show');
                 if (!isPodcastLoaded) {
-                    loadPodcastEpisodes(); // Load episodes only if not already loaded
+                    loadPodcastEpisodes();
                 }
             }
         }
 
         async function loadPodcastEpisodes() {
             const episodeList = document.getElementById('episode-list');
-            if (isPodcastLoaded) return; // Only load once
+            if (isPodcastLoaded) return;
 
             const parser = new RSSParser();
             const CORS_PROXY = "https://api.allorigins.win/raw?url=";
@@ -146,7 +197,7 @@
                     `;
                     episodeList.appendChild(episodeDiv);
                 });
-                isPodcastLoaded = true; // Set flag to true after loading
+                isPodcastLoaded = true;
             } catch (error) {
                 episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
                 console.error('Error fetching RSS feed:', error);
