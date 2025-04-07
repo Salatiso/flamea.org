@@ -151,17 +151,18 @@ section ul li {
 
 /* Mission Card Styling */
 .mission-card {
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)); /* Gradient for depth */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Slightly more opaque white border */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow for more depth */
+    border-radius: 15px; /* Slightly larger rounded corners */
+    padding: 30px; /* Increased padding for better spacing */
     margin-bottom: 30px;
-    transition: transform 0.3s; /* Smooth hover effect */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
 }
 
 .mission-card:hover {
-    transform: scale(1.02); /* Slight scale-up on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Deeper shadow on hover */
 }
 
 /* Mission Card Icons */
@@ -184,6 +185,11 @@ section ul li {
     padding: 20px;
     text-align: center;
     margin-top: 30px;
+    transition: background 0.3s; /* Smooth hover effect */
+}
+
+.cta-box:hover {
+    background: rgba(0, 48, 135, 0.9); /* Slightly darker on hover */
 }
 
 /* Static Background Sections - Now Transparent */
@@ -541,7 +547,7 @@ footer > .container > p {
 
     /* Responsive adjustments for mission cards */
     .mission-card {
-        padding: 15px;
+        padding: 20px;
         margin-bottom: 20px;
     }
 
