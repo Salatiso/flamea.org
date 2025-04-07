@@ -132,27 +132,66 @@ section ul {
 
 section ul li {
     margin-bottom: 15px;
-    text-align: left; /* Left-align list items for readability */
+    text-align: left; /* Default for other sections */
     color: #fff; /* Ensure list items are white */
 }
 
-/* Explicitly set text color for specific sections to ensure consistency */
-.about-mission, .vision, .about-values, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+/* Mission Section Specific Styles */
+.mission p, .mission ul {
+    text-align: center; /* Center all text in mission section */
+}
+
+.mission ul li {
+    text-align: center; /* Center list items in mission section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+/* Mission Card Styling */
+.mission-card {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px;
+    margin-bottom: 30px;
+    transition: transform 0.3s; /* Smooth hover effect */
+}
+
+.mission-card:hover {
+    transform: scale(1.02); /* Slight scale-up on hover */
+}
+
+/* Mission Card Icons */
+.mission-card i {
+    color: #fff; /* White icons */
+    font-size: 1.2em;
+    transition: color 0.3s, transform 0.3s; /* Smooth hover effect */
+}
+
+.mission-card li:hover i {
+    color: #e6f0fa; /* Light blue on hover */
+    transform: scale(1.2); /* Slight scale-up on hover */
+}
+
+/* Call-to-Action Box */
+.cta-box {
+    background: rgba(0, 48, 135, 0.8); /* Darker blue background */
+    border: 2px solid #fff; /* White border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Static Background Sections - Now Transparent */
+.mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
     background: none; /* Remove background image */
     color: #fff; /* White text for contrast on the body background */
     position: relative;
     min-height: 300px; /* Reduced for consistent spacing */
-}
-
-.about-mission p, .about-mission ul, .about-mission ul li,
-.vision p, .vision ul, .vision ul li,
-.about-values p, .about-values ul, .about-values ul li,
-.work-strategies p, .work-strategies ul, .work-strategies ul li,
-.news p, .news ul, .news ul li,
-.blog-intro p, .blog-intro ul, .blog-intro ul li,
-.resources-intro p, .resources-intro ul, .resources-intro ul li,
-.contact-info p, .contact-info ul, .contact-info ul li {
-    color: #fff; /* Explicitly set text to white to avoid inheritance issues */
 }
 
 .work-strategies, .news, .blog-intro, .resources-intro {
@@ -180,6 +219,25 @@ section ul li {
 .mission .container, .about-mission .container, .work-strategies .container, .news .container, .blog-intro .container, .resources-intro .container, .contact-info .container {
     position: relative;
     z-index: 2; /* Text above overlay */
+}
+
+/* Explicitly set text color for specific sections to ensure consistency */
+.about-mission, .vision, .about-values, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+    background: none; /* Remove background image */
+    color: #fff; /* White text for contrast on the body background */
+    position: relative;
+    min-height: 300px; /* Reduced for consistent spacing */
+}
+
+.about-mission p, .about-mission ul, .about-mission ul li,
+.vision p, .vision ul, .vision ul li,
+.about-values p, .about-values ul, .about-values ul li,
+.work-strategies p, .work-strategies ul, .work-strategies ul li,
+.news p, .news ul, .news ul li,
+.blog-intro p, .blog-intro ul, .blog-intro ul li,
+.resources-intro p, .resources-intro ul, .resources-intro ul li,
+.contact-info p, .contact-info ul, .contact-info ul li {
+    color: #fff; /* Explicitly set text to white to avoid inheritance issues */
 }
 
 /* News Item Styling */
@@ -479,6 +537,20 @@ footer > .container > p {
     /* Adjust body padding for smaller screens */
     body {
         padding-top: 500px; /* Increased padding on mobile to account for taller header */
+    }
+
+    /* Responsive adjustments for mission cards */
+    .mission-card {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .mission-card i {
+        font-size: 1em;
+    }
+
+    .cta-box {
+        padding: 15px;
     }
 }
 
