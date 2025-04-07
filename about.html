@@ -9,22 +9,28 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>F²LAMEA</h1>
-            <p>Fathers & Family Legal Advocacy Movement for Equality and Accountability</p>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About Us</a></li>
-                    <li><a href="our-work.html">Our Work</a></li>
-                    <li><a href="news-books.html">Latest News & Books</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="container">
+        <h1>F²LAMEA</h1>
+        <p>Fathers & Family Legal Advocacy Movement for Equality and Accountability</p>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="our-work.html">Our Work</a></li>
+                <li><a href="news-books.html">Latest News & Books</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="https://anchor.fm/s/10357aacc/podcast/rss" class="podcast-btn" target="_blank" rel="noopener noreferrer" title="Subscribe to our podcast in your favorite app">Podcast Feed</a></li>
+                <li><button class="search-btn" onclick="toggleSearch()">Search</button></li>
+            </ul>
+            <div id="search-container">
+                <input type="text" id="search-input" placeholder="Search Flamea...">
+                <button onclick="performSearch()">Go</button>
+            </div>
+        </nav>
+    </div>
+</header>
 
     <section class="about-mission">
         <div class="container">
