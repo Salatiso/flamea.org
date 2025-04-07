@@ -147,4 +147,28 @@
 
             const parser = new RSSParser();
             const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS issues
-            const feedUrl = "https://anchor.fm/s/10357aacc/podcast
+            const feedUrl = "https://anchor.fm/s/10357aacc/podcast/rss";
+
+            try {
+                const feed = await parser.parseURL(CORS_PROXY + feedUrl);
+                feed.items.forEach(item => {
+                    const episodeDiv = document.createElement('div');
+                    episodeDiv.className = 'episode';
+                    episodeDiv.innerHTML = `
+                        <h4>${item.title}</h4>
+                        <p>${item.pubDate}</p>
+                        <audio controls>
+                            <source src="${item.enclosure.url}" type="${item.enclosure.type}">
+                            Your browser does not support the audio element.
+                        </audio>
+                    `;
+                    episodeList.appendChild(episodeDiv);
+                });
+            } catch (error) {
+                episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
+                console.error('Error fetching RSS feed:', error);
+            }
+        }
+    </script>
+</body>
+</html>
