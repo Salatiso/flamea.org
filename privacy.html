@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - F²LAMEA</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Add rss-parser library from CDN for podcast player -->
+    <script src="https://unpkg.com/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
+</head>
+<body class="contact-page">
+    <!-- Fixed Podcast Toggle Button -->
+    <button id="podcast-toggle-btn" class="podcast-toggle-btn" onclick="togglePodcastBox()">Podcast</button>
+
+    <!-- Sticky Podcast Box -->
+    <div id="podcast-box" class="podcast-box">
+        <div class="podcast-header">
+            <h3>Latest Podcasts</h3>
+            <button class="podcast-close-btn" onclick="togglePodcastBox()">×</button>
+        </div>
+        <div id="episode-list" class="episode-list"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>F²LAMEA</h1>
+            <p>Fathers & Family Legal Advocacy Movement for Equality and Accountability</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="our-work.html">Our Work</a></li>
+                    <li><a href="news-books.html">Latest News & Articles</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><button class="search-btn" onclick="toggleSearch()">Search</button></li>
+                </ul>
+                <!-- Search container -->
+                <div id="search-container">
+                    <input type="text" id="search-input" placeholder="Search Flamea...">
+                    <button onclick="performSearch()">Go</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-info">
+        <div class="container">
+            <h2>Privacy Policy</h2>
+            <p>Last updated: April 07, 2025</p>
+            <p>F²LAMEA is committed to protecting your privacy and ensuring compliance with the Protection of Personal Information Act (POPIA) in South Africa. This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our website (flamea.org) or submit information through our contact form.</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>We collect the following personal information when you submit our contact form:</p>
+            <ul>
+                <li>Name</li>
+                <li>Email address</li>
+                <li>Message content (which may include additional personal information you choose to share)</li>
+            </ul>
+            <p>We do not use cookies or tracking technologies on our website, so no additional data is collected automatically.</p>
+
+            <h3>2. Purpose of Collection</h3>
+            <p>We collect your personal information for the following purposes:</p>
+            <ul>
+                <li>To respond to your inquiries or messages submitted via the contact form.</li>
+                <li>To provide support or information related to our advocacy services, publications, or community initiatives.</li>
+            </ul>
+
+            <h3>3. Legal Basis for Processing</h3>
+            <p>We process your personal information based on your explicit consent, which you provide by checking the consent box before submitting the contact form. You may withdraw your consent at any time by contacting us (see Section 7).</p>
+
+            <h3>4. How We Store and Protect Your Information</h3>
+            <p>Your contact form data is collected and stored securely by Google Forms, a third-party service. Google complies with global data protection standards equivalent to POPIA. If we download form responses, we ensure the data is encrypted and access is restricted to authorized personnel only. We retain your data only for as long as necessary to fulfill the purpose of collection, after which it is securely deleted.</p>
+
+            <h3>5. Sharing of Information</h3>
+            <p>We do not share your personal information with third parties except as follows:</p>
+            <ul>
+                <li>With Google, as the provider of Google Forms, to store and process your form submission. Google’s servers may be located outside South Africa, but they comply with data protection standards equivalent to POPIA.</li>
+                <li>If required by law or to protect our legal rights.</li>
+            </ul>
+
+            <h3>6. Your Rights Under POPIA</h3>
+            <p>As a data subject, you have the following rights under POPIA:</p>
+            <ul>
+                <li><strong>Right to Access:</strong> You can request access to the personal information we hold about you.</li>
+                <li><strong>Right to Correction:</strong> You can request that we correct any inaccurate or incomplete information.</li>
+                <li><strong>Right to Deletion:</strong> You can request that we delete your personal information.</li>
+                <li><strong>Right to Object:</strong> You can object to the processing of your personal information.</li>
+                <li><strong>Right to Withdraw Consent:</strong> You can withdraw your consent at any time, though this will not affect processing already completed.</li>
+            </ul>
+            <p>To exercise these rights, please contact our Information Officer (see Section 7).</p>
+
+            <h3>7. Contact Information</h3>
+            <p>Our Information Officer is responsible for ensuring POPIA compliance. You can contact them at:</p>
+            <p><strong>Email:</strong> <a href="mailto:flamea2024@gmail.com">flamea2024@gmail.com</a></p>
+            <p>If you have any questions about this Privacy Policy or wish to exercise your rights, please reach out to us.</p>
+
+            <h3>8. Data Breach Notification</h3>
+            <p>In the event of a data breach, we will notify the Information Regulator and affected individuals as required by POPIA.</p>
+
+            <h3>9. Changes to This Privacy Policy</h3>
+            <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last updated" date.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <p><strong>Email:</strong> <a href="mailto:flamea2024@gmail.com">flamea2024@gmail.com</a></p>
+                <p><strong>Website:</strong> <a href="https://flamea.org/" target="_blank">https://flamea.org/</a></p>
+                <p><strong>X (Twitter):</strong> <a href="https://twitter.com/flamea2024" target="_blank"><i class="fab fa-x-twitter"></i> @flamea2024</a></p>
+                <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@Flamea2024" target="_blank"><i class="fab fa-youtube"></i> @Flamea2024</a></p>
+                <p><strong>Books Available from:</strong></p>
+                <ul>
+                    <li><a href="https://play.google.com/store/search?q=salatiso&c=books&hl=en_ZA" target="_blank">Google Play Books</a></li>
+                    <li><a href="https://books.apple.com/au/author/salatiso-mdeni/id1745396063" target="_blank">Apple Books</a></li>
+                    <li><a href="https://www.takealot.com/goliath-s-reckoning/PLID96099334" target="_blank">Takealot</a></li>
+                </ul>
+            </div>
+            <p>© 2025 F²LAMEA. All rights reserved.</p>
+            <p>Icons provided by <a href="https://fontawesome.com/license/free" target="_blank">Font Awesome (CC BY 4.0)</a>. Podcast functionality powered by <a href="https://github.com/bobby-brennan/rss-parser" target="_blank">rss-parser (MIT License)</a>.</p>
+            <p><a href="privacy.html">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        function toggleSearch() {
+            const searchContainer = document.getElementById('search-container');
+            searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function performSearch() {
+            const query = document.getElementById('search-input').value.trim();
+            if (query) {
+                alert('Searching for: ' + query); // Replace with your search logic if needed
+            }
+        }
+
+        // Podcast player functionality
+        let isPodcastLoaded = false; // Boolean flag to track if episodes are loaded
+
+        function togglePodcastBox() {
+            const podcastBox = document.getElementById('podcast-box');
+            if (podcastBox.classList.contains('show')) {
+                podcastBox.classList.remove('show');
+            } else {
+                podcastBox.classList.add('show');
+                if (!isPodcastLoaded) {
+                    loadPodcastEpisodes(); // Load episodes only if not already loaded
+                }
+            }
+        }
+
+        async function loadPodcastEpisodes() {
+            const episodeList = document.getElementById('episode-list');
+            if (isPodcastLoaded) return; // Only load once
+
+            const parser = new RSSParser();
+            const CORS_PROXY = "https://api.allorigins.win/raw?url=";
+            const feedUrl = "https://anchor.fm/s/10357aacc/podcast/rss";
+
+            try {
+                const feed = await parser.parseURL(CORS_PROXY + feedUrl);
+                feed.items.forEach(item => {
+                    const episodeDiv = document.createElement('div');
+                    episodeDiv.className = 'episode';
+                    episodeDiv.innerHTML = `
+                        <h4>${item.title}</h4>
+                        <p>${item.pubDate}</p>
+                        <audio controls>
+                            <source src="${item.enclosure.url}" type="${item.enclosure.type}">
+                            Your browser does not support the audio element.
+                        </audio>
+                    `;
+                    episodeList.appendChild(episodeDiv);
+                });
+                isPodcastLoaded = true; // Set flag to true after loading
+            } catch (error) {
+                episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
+                console.error('Error fetching RSS feed:', error);
+            }
+        }
+    </script>
+</body>
+</html>
