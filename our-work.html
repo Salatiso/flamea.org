@@ -10,6 +10,18 @@
     <script src="https://unpkg.com/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </head>
 <body class="work-page">
+    <!-- Fixed Podcast Toggle Button -->
+    <button id="podcast-toggle-btn" class="podcast-toggle-btn" onclick="togglePodcastBox()">Podcast</button>
+
+    <!-- Sticky Podcast Box -->
+    <div id="podcast-box" class="podcast-box">
+        <div class="podcast-header">
+            <h3>Latest Podcasts</h3>
+            <button class="podcast-close-btn" onclick="togglePodcastBox()">×</button>
+        </div>
+        <div id="episode-list" class="episode-list"></div>
+    </div>
+
     <header>
         <div class="container">
             <h1>F²LAMEA</h1>
@@ -19,11 +31,10 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="our-work.html" class="active">Our Work</a></li>
-                    <li><a href="news-books.html">Latest News & Books</a></li>
+                    <li><a href="news-books.html">Latest News & Articles</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><button class="podcast-btn" onclick="togglePodcastPlayer()">Podcast Player</button></li>
                     <li><button class="search-btn" onclick="toggleSearch()">Search</button></li>
                 </ul>
                 <!-- Search container -->
@@ -31,53 +42,48 @@
                     <input type="text" id="search-input" placeholder="Search Flamea...">
                     <button onclick="performSearch()">Go</button>
                 </div>
-                <!-- Podcast player container (hidden by default) -->
-                <div id="podcast-player" style="display: none; margin-top: 20px;">
-                    <h3>Latest Podcasts</h3>
-                    <div id="episode-list"></div>
-                </div>
             </nav>
         </div>
     </header>
 
     <section class="work-strategies">
         <div class="container">
-            <h2>Key Strategies</h2>
-            <ul>
-                <li><strong>Research and Documentation:</strong> Conduct comprehensive research on the prevalence and impact of discriminatory practices in family courts and related systems.</li>
-                <li><strong>Legal Action and Accountability:</strong> Utilise legal mechanisms, including POPIA, to challenge discriminatory laws and practices and hold institutions accountable.</li>
-                <li><strong>Public Awareness and Education:</strong> Raise awareness about the issue of discrimination in family courts and educate the public, parents, and legal professionals about their rights and responsibilities.</li>
-                <li><strong>Policy Advocacy and Reform:</strong> Advocate for legislative and policy changes that promote equality and eliminate discriminatory practices.</li>
-                <li><strong>Partnerships and Collaboration:</strong> Build strong partnerships with other organisations and stakeholders to maximise our impact.</li>
+            <h2>Our Strategies</h2>
+            <p>We employ a multi-faceted approach to advocate for fathers and families, ensuring systemic change and support at every level:</p>
+            <ul class="icon-list">
+                <li><i class="fas fa-gavel"></i> <strong>Legal Advocacy:</strong> We provide resources and support for fathers navigating family courts, pushing for fair legal processes.</li>
+                <li><i class="fas fa-book"></i> <strong>Education & Awareness:</strong> Through publications, podcasts, and media, we educate the public on systemic biases.</li>
+                <li><i class="fas fa-users"></i> <strong>Community Building:</strong> We foster a supportive network for fathers and families to share experiences and solutions.</li>
+                <li><i class="fas fa-balance-scale"></i> <strong>Policy Reform:</strong> We work with policymakers to drive legislative changes for equality and accountability.</li>
             </ul>
         </div>
     </section>
 
     <section class="work-structure">
         <div class="container">
-            <h2>Organisational Structure</h2>
-            <p>F²LAMEA is an advocacy group for now with aspirations to be registered as a non-profit organisation (NPO) in South Africa. The organisation will be governed by a Board of Directors, which will provide strategic guidance and oversight. A team of dedicated staff and volunteers will carry out the day-to-day operations of the organisation.</p>
+            <h2>Organizational Structure</h2>
+            <p>F²LAMEA operates as a non-profit organization with a dedicated team of advocates, legal experts, and community leaders. Our structure ensures that every voice is heard and every action is impactful.</p>
+        </div>
+    </section>
+
+    <section class="work-audience">
+        <div class="container">
+            <h2>Target Audience</h2>
+            <p>We serve fathers, families, and individuals affected by systemic discrimination in family courts, as well as allies who support our mission for equality and justice.</p>
         </div>
     </section>
 
     <section class="work-funding">
         <div class="container">
             <h2>Funding</h2>
-            <p>F²LAMEA will seek funding from a variety of sources, including:</p>
-            <ul>
-                <li>Founder Contributions</li>
-                <li>Membership fees</li>
-                <li>Individual donations</li>
-                <li>Grants from foundations and government agencies</li>
-                <li>Fundraising events</li>
-            </ul>
+            <p>Our work is supported by donations, grants, and proceeds from book sales. Every contribution helps us continue our advocacy and support services.</p>
         </div>
     </section>
 
     <section class="work-evaluation">
         <div class="container">
             <h2>Evaluation</h2>
-            <p>F²LAMEA will regularly evaluate its progress and impact to ensure that we are achieving our goals and making a positive difference in the lives of the people we serve.</p>
+            <p>We measure our impact through community feedback, legal outcomes, and policy changes, ensuring that our efforts lead to tangible improvements for fathers and families.</p>
         </div>
     </section>
 
@@ -114,22 +120,26 @@
         }
 
         // Podcast player functionality
-        function togglePodcastPlayer() {
-            const player = document.getElementById('podcast-player');
-            if (player.style.display === 'none') {
-                player.style.display = 'block';
-                loadPodcastEpisodes(); // Load episodes when player is shown
+        let isPodcastLoaded = false; // Boolean flag to track if episodes are loaded
+
+        function togglePodcastBox() {
+            const podcastBox = document.getElementById('podcast-box');
+            if (podcastBox.classList.contains('show')) {
+                podcastBox.classList.remove('show');
             } else {
-                player.style.display = 'none';
+                podcastBox.classList.add('show');
+                if (!isPodcastLoaded) {
+                    loadPodcastEpisodes(); // Load episodes only if not already loaded
+                }
             }
         }
 
         async function loadPodcastEpisodes() {
             const episodeList = document.getElementById('episode-list');
-            if (episodeList.innerHTML) return; // Only load once
+            if (isPodcastLoaded) return; // Only load once
 
             const parser = new RSSParser();
-            const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS issues
+            const CORS_PROXY = "https://api.allorigins.win/raw?url=";
             const feedUrl = "https://anchor.fm/s/10357aacc/podcast/rss";
 
             try {
@@ -147,6 +157,7 @@
                     `;
                     episodeList.appendChild(episodeDiv);
                 });
+                isPodcastLoaded = true; // Set flag to true after loading
             } catch (error) {
                 episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
                 console.error('Error fetching RSS feed:', error);
