@@ -10,6 +10,18 @@
     <script src="https://unpkg.com/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </head>
 <body class="blog-page">
+    <!-- Fixed Podcast Toggle Button -->
+    <button id="podcast-toggle-btn" class="podcast-toggle-btn" onclick="togglePodcastBox()">Podcast</button>
+
+    <!-- Sticky Podcast Box -->
+    <div id="podcast-box" class="podcast-box">
+        <div class="podcast-header">
+            <h3>Latest Podcasts</h3>
+            <button class="podcast-close-btn" onclick="togglePodcastBox()">×</button>
+        </div>
+        <div id="episode-list" class="episode-list"></div>
+    </div>
+
     <header>
         <div class="container">
             <h1>F²LAMEA</h1>
@@ -23,18 +35,12 @@
                     <li><a href="blog.html" class="active">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><button class="podcast-btn" onclick="togglePodcastPlayer()">Podcast Player</button></li>
                     <li><button class="search-btn" onclick="toggleSearch()">Search</button></li>
                 </ul>
                 <!-- Search container -->
                 <div id="search-container">
                     <input type="text" id="search-input" placeholder="Search Flamea...">
                     <button onclick="performSearch()">Go</button>
-                </div>
-                <!-- Podcast player container (hidden by default) -->
-                <div id="podcast-player" style="display: none; margin-top: 20px;">
-                    <h3>Latest Podcasts</h3>
-                    <div id="episode-list"></div>
                 </div>
             </nav>
         </div>
@@ -99,22 +105,26 @@
         }
 
         // Podcast player functionality
-        function togglePodcastPlayer() {
-            const player = document.getElementById('podcast-player');
-            if (player.style.display === 'none') {
-                player.style.display = 'block';
-                loadPodcastEpisodes(); // Load episodes when player is shown
+        let isPodcastLoaded = false; // Boolean flag to track if episodes are loaded
+
+        function togglePodcastBox() {
+            const podcastBox = document.getElementById('podcast-box');
+            if (podcastBox.classList.contains('show')) {
+                podcastBox.classList.remove('show');
             } else {
-                player.style.display = 'none';
+                podcastBox.classList.add('show');
+                if (!isPodcastLoaded) {
+                    loadPodcastEpisodes(); // Load episodes only if not already loaded
+                }
             }
         }
 
         async function loadPodcastEpisodes() {
             const episodeList = document.getElementById('episode-list');
-            if (episodeList.innerHTML) return; // Only load once
+            if (isPodcastLoaded) return; // Only load once
 
             const parser = new RSSParser();
-            const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS issues
+            const CORS_PROXY = "https://api.allorigins.win/raw?url=";
             const feedUrl = "https://anchor.fm/s/10357aacc/podcast/rss";
 
             try {
@@ -132,6 +142,7 @@
                     `;
                     episodeList.appendChild(episodeDiv);
                 });
+                isPodcastLoaded = true; // Set flag to true after loading
             } catch (error) {
                 episodeList.innerHTML = '<p>Error loading podcast episodes. Please try again later.</p>';
                 console.error('Error fetching RSS feed:', error);
