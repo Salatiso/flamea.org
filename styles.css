@@ -537,8 +537,8 @@ footer > .container > p {
     }
 }
 
-/* New Styles for Podcast Feed and Search Buttons */
-.podcast-btn, .search-btn {
+/* Search Button Styles */
+.search-btn {
     color: white;
     text-decoration: none;
     font-size: 1.1em;
@@ -550,7 +550,7 @@ footer > .container > p {
     cursor: pointer; /* For button */
 }
 
-.podcast-btn:hover, .search-btn:hover {
+.search-btn:hover {
     background-color: #0047ab; /* Matches nav hover */
 }
 
@@ -583,9 +583,9 @@ footer > .container > p {
     background-color: #0047ab; /* Matches nav hover */
 }
 
-/* Responsive adjustments for new buttons */
+/* Responsive adjustments for search button */
 @media (max-width: 768px) {
-    .podcast-btn, .search-btn {
+    .search-btn {
         font-size: 1em;
         padding: 5px 8px;
     }
@@ -600,14 +600,82 @@ footer > .container > p {
     }
 }
 
-/* New Styles for Podcast Player */
-#podcast-player {
-    max-height: 200px; /* Limit height to make it scrollable */
-    overflow-y: auto; /* Enable vertical scrolling */
+/* New Styles for Sticky Podcast Box */
+.podcast-toggle-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 2000; /* Above header */
+    color: white;
+    background-color: #003087;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.podcast-toggle-btn:hover {
+    background-color: #0047ab;
+}
+
+.podcast-box {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    height: 400px;
+    background-color: #003087;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 2000; /* Above header */
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.podcast-box.show {
+    display: flex; /* Show the box */
+    transform: translateX(0); /* Slide in */
+}
+
+.podcast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.podcast-header h3 {
+    color: #fff;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.podcast-close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.podcast-close-btn:hover {
+    color: #e6f0fa;
+}
+
+.episode-list {
+    flex: 1;
+    overflow-y: auto; /* Scrollable episode list */
+    padding: 10px;
 }
 
 .episode {
-    margin: 15px 0;
+    margin: 10px 0;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 5px;
@@ -627,6 +695,35 @@ footer > .container > p {
 .episode audio {
     width: 100%;
     max-width: 500px;
+}
+
+/* Responsive adjustments for podcast box */
+@media (max-width: 768px) {
+    .podcast-box {
+        width: 250px;
+        height: 300px;
+    }
+
+    .podcast-toggle-btn {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .podcast-header h3 {
+        font-size: 1em;
+    }
+
+    .podcast-close-btn {
+        font-size: 1.2em;
+    }
+
+    .episode h4 {
+        font-size: 1em;
+    }
+
+    .episode p {
+        font-size: 0.8em;
+    }
 }
 
 /* Google Form Styling */
