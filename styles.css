@@ -9,6 +9,11 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
+    /* Apply the background image to the body */
+    background-image: url('images/father-contact.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Makes the background image fixed */
 }
 
 /* Container for consistent width */
@@ -20,7 +25,7 @@ body {
 
 /* Header */
 header {
-    background-color: #003087;
+    background-color: #003087; /* Solid blue background */
     color: white;
     text-align: center;
     padding: 40px 0;
@@ -109,7 +114,7 @@ section ul li {
 }
 
 /* Static Background Sections */
-.mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+.mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro {
     background-image: url('images/father-child.jpg'); /* Default for others */
     background-size: cover;
     background-position: center;
@@ -127,11 +132,15 @@ section ul li {
     background-image: url('images/father-reading.jpg');
 }
 
+/* Remove background image from contact-info since it's now on the body */
 .contact-info {
-    background-image: url('images/father-contact.jpg'); /* Specific for contact-info */
+    background: none; /* Remove the background image */
+    color: #fff; /* White text for contrast on the body background */
+    position: relative;
+    min-height: 600px; /* Ensures enough space to scroll */
 }
 
-.mission::before, .about-mission::before, .work-strategies::before, .news::before, .blog-intro::before, .resources-intro::before, .contact-info::before {
+.contact-info::before {
     content: '';
     position: absolute;
     top: 0;
@@ -316,20 +325,6 @@ section ul li {
     background-color: #f0e6fa;
 }
 
-.contact-info {
-    background-color: #f9f9f9; /* Fallback */
-    text-align: center;
-}
-
-.contact-info a {
-    color: #fff; /* White for contrast on background */
-    text-decoration: none;
-}
-
-.contact-info a:hover {
-    color: #e6f0fa; /* Light blue on hover */
-}
-
 .contact-form {
     background-color: #fff;
     text-align: center;
@@ -472,7 +467,7 @@ section ul li {
 
 /* Footer */
 footer {
-    background-color: #003087;
+    background-color: #003087; /* Solid blue background */
     color: white;
     text-align: center;
     padding: 40px 0 20px;
