@@ -8,6 +8,8 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <!-- Add rss-parser library from CDN for podcast player -->
     <script src="https://unpkg.com/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
+    <!-- Add search index -->
+    <script src="searchIndex.js"></script>
 </head>
 <body class="work-page">
     <!-- Fixed Podcast Toggle Button -->
@@ -46,6 +48,17 @@
         </div>
     </header>
 
+    <!-- Search Results Container -->
+    <section id="search-results" class="container" style="display: none;">
+        <h2>Search Results</h2>
+        <div id="results-list"></div>
+        <div id="external-search-options" style="margin-top: 20px;">
+            <p>No results found on this site? Try searching wider:</p>
+            <button onclick="searchGoogle()">Search with Google</button>
+            <!-- Grok search option will be added here if feasible in the future -->
+        </div>
+    </section>
+
     <section class="work-strategies">
         <div class="container">
             <h2>Our Strategies</h2>
@@ -69,7 +82,7 @@
     <footer>
         <div class="container">
             <div class="footer-contact">
-                <p><strong>Email:</strong> <a href="mailto:flamea2024@gmail.com">flamea2024@gmail.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:salatiso@flamea.org">salatiso@flamea.org</a></p>
                 <p><strong>Website:</strong> <a href="https://flamea.org/" target="_blank">https://flamea.org/</a></p>
                 <p><strong>X (Twitter):</strong> <a href="https://twitter.com/flamea2024" target="_blank"><i class="fab fa-x-twitter"></i> @flamea2024</a></p>
                 <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@Flamea2024" target="_blank"><i class="fab fa-youtube"></i> @Flamea2024</a></p>
@@ -90,13 +103,55 @@
         // Search functionality
         function toggleSearch() {
             const searchContainer = document.getElementById('search-container');
+            const searchResults = document.getElementById('search-results');
             searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+            searchResults.style.display = 'none'; // Hide results when toggling search bar
         }
 
         function performSearch() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            const resultsList = document.getElementById('results-list');
+            const searchResults = document.getElementById('search-results');
+            const externalSearchOptions = document.getElementById('external-search-options');
+            resultsList.innerHTML = ''; // Clear previous results
+
+            if (!query) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            // Search through the index
+            const results = searchIndex.filter(item => item.content.toLowerCase().includes(query));
+
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'result-item';
+                    resultItem.innerHTML = `
+                        <h3><a href="${result.url}">${result.page}</a></h3>
+                        <p>${highlightMatch(result.content, query)}</p>
+                    `;
+                    resultsList.appendChild(resultItem);
+                });
+                externalSearchOptions.style.display = 'none'; // Hide external search options if results are found
+            } else {
+                resultsList.innerHTML = '<p>No results found on this site.</p>';
+                externalSearchOptions.style.display = 'block'; // Show external search options if no results
+            }
+
+            searchResults.style.display = 'block'; // Show the results section
+        }
+
+        function highlightMatch(content, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return content.replace(regex, '<strong>$1</strong>').substring(0, 200) + '...';
+        }
+
+        function searchGoogle() {
             const query = document.getElementById('search-input').value.trim();
             if (query) {
-                alert('Searching for: ' + query); // Replace with your search logic if needed
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}+site:flamea.org`;
+                window.open(googleSearchUrl, '_blank');
             }
         }
 
