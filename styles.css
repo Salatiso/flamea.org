@@ -9,12 +9,31 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
-    /* Apply the background image to the body */
-    background-image: url('images/father-contact.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Makes the background image fixed */
     background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+}
+
+/* Page-specific background images */
+body.index-page {
+    background-image: url('images/father-child.jpg');
+}
+
+body.about-page {
+    background-image: url('images/father-child.jpg');
+}
+
+body.work-page {
+    background-image: url('images/fathers-group.jpg');
+}
+
+body.news-page, body.blog-page, body.resources-page {
+    background-image: url('images/father-reading.jpg');
+}
+
+body.contact-page {
+    background-image: url('images/father-contact.jpg');
 }
 
 /* Container for consistent width */
@@ -114,34 +133,26 @@ section ul li {
     text-align: left; /* Left-align list items for readability */
 }
 
-/* Static Background Sections */
-.mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro {
-    background-image: url('images/father-child.jpg'); /* Default for others */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Makes the background static */
-    position: relative;
-    min-height: 600px; /* Ensures enough space to scroll */
-    color: #fff; /* White text for contrast */
-}
-
-.work-strategies {
-    background-image: url('images/fathers-group.jpg');
-}
-
-.news, .blog-intro, .resources-intro {
-    background-image: url('images/father-reading.jpg');
-}
-
-/* Contact-Info Section */
-.contact-info {
-    background: none; /* Remove the background image */
+/* Static Background Sections - Now Transparent */
+.mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+    background: none; /* Remove background image */
     color: #fff; /* White text for contrast on the body background */
     position: relative;
-    min-height: 300px; /* Reduced from 600px to decrease spacing */
+    min-height: 300px; /* Reduced for consistent spacing */
 }
 
-.contact-info::before {
+.work-strategies, .news, .blog-intro, .resources-intro {
+    background: none; /* Remove specific background images */
+}
+
+.contact-info {
+    background: none; /* Already updated */
+    color: #fff;
+    position: relative;
+    min-height: 300px;
+}
+
+.contact-info::before, .mission::before, .about-mission::before, .work-strategies::before, .news::before, .blog-intro::before, .resources-intro::before {
     content: '';
     position: absolute;
     top: 0;
@@ -215,7 +226,8 @@ section ul li {
 .book-image-box {
     display: block;
     width: 180px; /* Fixed width for consistency */
-    height: auto;
+    height: 270px; /* Fixed height to ensure all images are the same size */
+    object-fit: cover; /* Ensures the image scales properly within the fixed dimensions */
     background-color: #fff;
     border: 2px double #003087;
     padding: 10px;
@@ -281,53 +293,12 @@ section ul li {
     color: #003087;
 }
 
-/* Specific Section Styles */
-.about-mission {
-    background-color: #f9f9f9; /* Fallback */
-}
-
-.about-values {
-    background-color: #f9f9f9;
-}
-
-.about-structure {
-    background-color: #fff;
-}
-
-.about-audience {
-    background-color: #f9f9f9;
-}
-
-.vision {
-    background-color: #fff;
-}
-
-.values {
-    background-color: #f9f9f9;
-}
-
-.work-strategies {
-    background-color: #e6f0fa; /* Fallback */
-}
-
-.work-structure {
-    background-color: #fff3e6;
-}
-
-.work-audience {
-    background-color: #e6fae6;
-}
-
-.work-funding {
-    background-color: #faf0e6;
-}
-
-.work-evaluation {
-    background-color: #f0e6fa;
+/* Specific Section Styles - Make Transparent */
+.about-mission, .about-values, .about-structure, .about-audience, .vision, .values, .work-strategies, .work-structure, .work-audience, .work-funding, .work-evaluation, .contact-form, .news, .books, .blog-intro, .blog-posts, .blog-submit, .resources-intro, .resources-templates, .resources-links {
+    background: none; /* Make all sections transparent */
 }
 
 .contact-form {
-    background: none; /* Make transparent to show body background */
     text-align: center;
 }
 
@@ -338,132 +309,6 @@ section ul li {
 
 .contact-form a:hover {
     text-decoration: underline;
-}
-
-.news {
-    background-color: #f9f9f9; /* Fallback */
-}
-
-.books {
-    background-color: #fff;
-}
-
-.book-item {
-    max-width: 800px;
-    margin: 0 auto 30px;
-}
-
-.book-item h3 {
-    font-size: 1.5em;
-    color: #003087;
-    margin-bottom: 10px;
-}
-
-.book-item p {
-    font-size: 1em;
-}
-
-.book-item p strong {
-    color: #003087;
-}
-
-.blog-intro {
-    background-color: #f9f9f9; /* Fallback */
-    text-align: center;
-}
-
-.blog-posts {
-    background-color: #fff;
-}
-
-.blog-post {
-    max-width: 800px;
-    margin: 0 auto 30px;
-}
-
-.blog-post h3 {
-    font-size: 1.5em;
-    color: #003087;
-    margin-bottom: 10px;
-}
-
-.blog-post p {
-    font-size: 1em;
-}
-
-.blog-submit {
-    background-color: #fff;
-    text-align: center;
-}
-
-.blog-submit a {
-    color: #003087;
-    text-decoration: none;
-}
-
-.blog-submit a:hover {
-    text-decoration: underline;
-}
-
-.resources-intro {
-    background-color: #f9f9f9; /* Fallback */
-    text-align: center;
-}
-
-.resources-templates {
-    background-color: #fff;
-    text-align: center;
-}
-
-.resources-links {
-    background-color: #f9f9f9;
-    text-align: center;
-}
-
-/* Contact Form Styles */
-.contact-form form {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 1.1em;
-    color: #003087;
-    margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: vertical;
-}
-
-.form-group textarea {
-    min-height: 120px;
-}
-
-.contact-form button {
-    background-color: #003087;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.contact-form button:hover {
-    background-color: #0047ab;
 }
 
 /* Footer */
@@ -574,6 +419,7 @@ footer > .container > p {
 
     .book-image-box {
         width: 150px; /* Fixed width for smaller screens */
+        height: 225px; /* Adjusted height for smaller screens */
     }
 
     .book-images {
