@@ -14,6 +14,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Makes the background image fixed */
+    background-repeat: no-repeat; /* Ensures the image doesn't repeat */
 }
 
 /* Container for consistent width */
@@ -132,12 +133,12 @@ section ul li {
     background-image: url('images/father-reading.jpg');
 }
 
-/* Remove background image from contact-info since it's now on the body */
+/* Contact-Info Section */
 .contact-info {
     background: none; /* Remove the background image */
     color: #fff; /* White text for contrast on the body background */
     position: relative;
-    min-height: 600px; /* Ensures enough space to scroll */
+    min-height: 300px; /* Reduced from 600px to decrease spacing */
 }
 
 .contact-info::before {
@@ -326,7 +327,7 @@ section ul li {
 }
 
 .contact-form {
-    background-color: #fff;
+    background: none; /* Make transparent to show body background */
     text-align: center;
 }
 
@@ -551,7 +552,7 @@ footer > .container > p {
     }
 
     .mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
-        min-height: 500px; /* Adjust for smaller screens */
+        min-height: 250px; /* Reduced for smaller screens */
     }
 
     .form-group label {
