@@ -8,7 +8,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    color: #fff; /* Changed to white for better contrast */
+    color: #fff; /* Set default text color to white */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Makes the background image fixed */
@@ -100,6 +100,7 @@ nav ul li a.active {
 /* Sections */
 section {
     padding: 40px 0;
+    color: #fff; /* Ensure all section text is white */
 }
 
 section h2 {
@@ -135,12 +136,23 @@ section ul li {
     color: #fff; /* Ensure list items are white */
 }
 
-/* Static Background Sections - Now Transparent */
-.mission, .about-mission, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
+/* Explicitly set text color for specific sections to ensure consistency */
+.about-mission, .vision, .about-values, .work-strategies, .news, .blog-intro, .resources-intro, .contact-info {
     background: none; /* Remove background image */
     color: #fff; /* White text for contrast on the body background */
     position: relative;
     min-height: 300px; /* Reduced for consistent spacing */
+}
+
+.about-mission p, .about-mission ul, .about-mission ul li,
+.vision p, .vision ul, .vision ul li,
+.about-values p, .about-values ul, .about-values ul li,
+.work-strategies p, .work-strategies ul, .work-strategies ul li,
+.news p, .news ul, .news ul li,
+.blog-intro p, .blog-intro ul, .blog-intro ul li,
+.resources-intro p, .resources-intro ul, .resources-intro ul li,
+.contact-info p, .contact-info ul, .contact-info ul li {
+    color: #fff; /* Explicitly set text to white to avoid inheritance issues */
 }
 
 .work-strategies, .news, .blog-intro, .resources-intro {
@@ -184,6 +196,10 @@ section ul li {
 
 .news-item h3 a:hover {
     color: #e6f0fa; /* Light blue on hover */
+}
+
+.news-item p {
+    color: #fff; /* Ensure news item descriptions are white */
 }
 
 /* More Link Styling */
@@ -307,6 +323,11 @@ section ul li {
 /* Specific Section Styles - Make Transparent */
 .about-mission, .about-values, .vision, .work-strategies, .work-structure, .work-audience, .work-funding, .work-evaluation, .contact-form, .news, .books, .blog-intro, .blog-posts, .blog-submit, .resources-intro, .resources-templates, .resources-links {
     background: none; /* Make all sections transparent */
+}
+
+.work-structure p, .work-audience p, .work-funding p, .work-evaluation p,
+.books p, .blog-posts p, .blog-submit p, .resources-templates p, .resources-links p {
+    color: #fff; /* Ensure text in these sections is white */
 }
 
 .contact-form {
