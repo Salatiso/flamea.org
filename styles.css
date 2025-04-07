@@ -24,6 +24,16 @@ header {
     color: white;
     text-align: center;
     padding: 40px 0;
+    position: fixed; /* Fix the header to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+/* Add padding to the body to prevent content from being hidden under the fixed header */
+body {
+    padding-top: 200px; /* Adjust this value based on the height of your header */
 }
 
 header h1 {
@@ -591,6 +601,11 @@ footer > .container > p {
     .footer-contact i {
         font-size: 1em;
     }
+
+    /* Adjust body padding for smaller screens */
+    body {
+        padding-top: 300px; /* Increase padding on mobile due to taller header */
+    }
 }
 
 /* New Styles for Podcast Feed and Search Buttons */
@@ -657,6 +672,11 @@ footer > .container > p {
 }
 
 /* New Styles for Podcast Player */
+#podcast-player {
+    max-height: 200px; /* Limit height to make it scrollable */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
 .episode {
     margin: 15px 0;
     padding: 10px;
