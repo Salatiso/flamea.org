@@ -3,105 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sazi Code & Create - Logo Variations</title>
+    <title>Sazi.life - Knowledge for Every Generation</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons (optional, could use SVGs or Lucide) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Light gray background */
+            scroll-behavior: smooth;
         }
-        .logo-container {
-            background-color: white;
-            border-radius: 0.75rem; /* Rounded corners */
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/2c3e50/ffffff?text=Sazi.life+Background&font=inter');
+            background-size: cover;
+            background-position: center;
+        }
+        .module-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        .coming-soon-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 200px; /* Ensure consistent height */
+            border-radius: 0.5rem; /* Match card rounding */
         }
-        .logo-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #4b5563; /* Gray-600 */
-            margin-bottom: 1.5rem;
-            text-align: center;
+         .language-selector select {
+            background-color: #4A5568; /* Tailwind gray-700 */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem; /* Tailwind rounded-md */
+            border: none;
+            appearance: none; /* Removes default system appearance */
+            cursor: pointer;
+        }
+        .language-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.5); /* Tailwind yellow-400 focus ring */
         }
     </style>
 </head>
-<body class="p-8">
+<body class="bg-gray-50">
 
-    <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">Sazi Code & Create: Logo Variations</h1>
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-extrabold">Sazi.life</a>
+            <div class="space-x-4 hidden md:flex">
+                <a href="#home" class="hover:text-yellow-400 transition duration-300">Home</a>
+                <a href="#modules" class="hover:text-yellow-400 transition duration-300">Modules</a>
+                <a href="#about" class="hover:text-yellow-400 transition duration-300">About Us</a>
+                <a href="#membership" class="hover:text-yellow-400 transition duration-300">Membership</a>
+                <a href="#contact" class="hover:text-yellow-400 transition duration-300">Contact</a>
+            </div>
+            <div class="language-selector hidden md:block">
+                 <select id="language-switcher-desktop" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="xh">isiXhosa</option>
+                    <option value="zu">isiZulu</option>
+                    <option value="af">Afrikaans</option>
+                    <option value="st">Sesotho</option>
+                    <option value="ts">Xitsonga</option>
+                    <option value="ve">Tshivenḓa</option>
+                    <option value="ss">siSwati</option>
+                    <option value="nr">isiNdebele</option>
+                    <option value="fr">Français</option>
+                    <option value="pt">Português</option>
+                    <option value="es">Español</option>
+                    <option value="sw">Kiswahili</option>
+                    <option value="sn">chiShona</option>
+                    <option value="ja">日本語</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-3 space-y-2">
+            <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">Home</a>
+            <a href="#modules" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">Modules</a>
+            <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">About Us</a>
+            <a href="#membership" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">Membership</a>
+            <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">Contact</a>
+            <div class="language-selector px-3 py-2">
+                 <select id="language-switcher-mobile" class="w-full" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="xh">isiXhosa</option>
+                    <option value="zu">isiZulu</option>
+                     <option value="af">Afrikaans</option>
+                    <option value="st">Sesotho</option>
+                    <option value="ts">Xitsonga</option>
+                    <option value="ve">Tshivenḓa</option>
+                    <option value="ss">siSwati</option>
+                    <option value="nr">isiNdebele</option>
+                    <option value="fr">Français</option>
+                    <option value="pt">Português</option>
+                    <option value="es">Español</option>
+                    <option value="sw">Kiswahili</option>
+                    <option value="sn">chiShona</option>
+                    <option value="ja">日本語</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+             <a href="#" class="block px-3 py-2 rounded-md text-base font-medium bg-yellow-500 hover:bg-yellow-600 text-center">Login/Sign Up</a>
+        </div>
+    </nav>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white py-20 md:py-32">
+        <div class="container mx-auto text-center px-6">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6" data-translate="slogan">Sazi.life: Knowledge for Every Generation</h1>
+            <p class="text-lg md:text-2xl mb-10 max-w-3xl mx-auto" data-translate="hero_subtext">
+                Unlock your potential with accessible, holistic education. Explore diverse learning pathways in language, technology, practical skills, and home life, designed for all ages and backgrounds.
+            </p>
+            <a href="#modules" class="bg-yellow-500 hover:bg-yellow-600 text-gray-800 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105" data-translate="explore_modules_btn">
+                Explore Modules
+            </a>
+        </div>
+    </section>
 
-        <!-- Logo Variation 1: Minimalist & Bold -->
-        <div class="logo-container">
-            <div class="logo-title">Variation 1: Minimalist & Bold</div>
-            <div>
-                <span class="text-5xl font-extrabold text-blue-600">Sazi</span>
-                <span class="block text-2xl font-medium text-gray-700 mt-1 tracking-wide">Code & Create</span>
+    <!-- Modules Section -->
+    <section id="modules" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-translate="learning_modules_title">Our Learning Modules</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sazi isiXhosa Card -->
+                <div class="module-card bg-white rounded-lg shadow-md p-6 relative">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-language text-4xl text-blue-500 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-700" data-translate="isixhosa_title">Sazi isiXhosa</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-translate="isixhosa_desc">Dive into the richness of the isiXhosa language and culture. Interactive lessons for all levels.</p>
+                    <a href="#" class="text-blue-500 font-semibold hover:underline" data-translate="learn_more_btn">Learn More &rarr;</a>
+                </div>
+
+                <!-- Sazi Code & Create Card -->
+                <div class="module-card bg-white rounded-lg shadow-md p-6 relative">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-laptop-code text-4xl text-green-500 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-700" data-translate="code_create_title">Sazi Code & Create</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-translate="code_create_desc">From basic digital literacy to advanced web development and AI. Empower yourself with tech skills.</p>
+                    <a href="#" class="text-green-500 font-semibold hover:underline" data-translate="learn_more_btn">Learn More &rarr;</a>
+                </div>
+
+                <!-- Sazi Home Life Card -->
+                <div class="module-card bg-white rounded-lg shadow-md p-6 relative">
+                     <div class="flex items-center mb-4">
+                        <i class="fas fa-home text-4xl text-purple-500 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-700" data-translate="home_life_title">Sazi Home Life</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-translate="home_life_desc">Master everyday essentials. Tutorials on cooking, cleaning, DIY, gardening, and smart home management.</p>
+                    <a href="https://www.youtube.com/@Salatiso" target="_blank" class="text-purple-500 font-semibold hover:underline" data-translate="learn_more_btn">Explore Salatiso's DIY &rarr;</a>
+                </div>
+                
+                <!-- Sazi Funda (Coming Soon) Card -->
+                <div class="module-card bg-white rounded-lg shadow-md p-6 relative">
+                    <div class="flex items-center mb-4">
+                         <i class="fas fa-book-open text-4xl text-orange-500 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-700" data-translate="funda_title">Sazi Funda</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-translate="funda_desc">Online Learning & Homeschooling curricula (Grade 0-12) designed for engaging and effective education at home.</p>
+                    <div class="coming-soon-overlay">
+                        <span class="text-orange-600 font-bold text-xl" data-translate="coming_soon_funda">Exciting Content Coming Soon!</span>
+                    </div>
+                    <a href="#" class="text-orange-500 font-semibold hover:underline invisible" data-translate="learn_more_btn">Learn More &rarr;</a>
+                </div>
+
+                <!-- Sazi Izakhono (Coming Soon) Card -->
+                <div class="module-card bg-white rounded-lg shadow-md p-6 relative">
+                     <div class="flex items-center mb-4">
+                        <i class="fas fa-tools text-4xl text-red-500 mr-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-700" data-translate="izakhono_title">Sazi Izakhono (Skills Hub)</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4" data-translate="izakhono_desc">Develop practical life skills. From welding and plumbing to advanced DIY and mechanics.</p>
+                     <div class="coming-soon-overlay">
+                        <span class="text-red-600 font-bold text-xl" data-translate="coming_soon_izakhono">Practical Workshops Coming Soon!</span>
+                    </div>
+                    <a href="#" class="text-red-500 font-semibold hover:underline invisible" data-translate="learn_more_btn">Learn More &rarr;</a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Logo Variation 2: Playful Dot Accent -->
-        <div class="logo-container">
-            <div class="logo-title">Variation 2: Playful Dot Accent</div>
-            <div>
-                <span class="text-5xl font-extrabold text-green-600">
-                    Saz<span class="text-yellow-500">i</span>
-                </span>
-                <span class="block text-2xl font-medium text-gray-700 mt-1 tracking-wide">Code & Create</span>
+    <!-- About Us Section -->
+    <section id="about" class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="bg-white p-10 md:p-16 rounded-lg shadow-xl">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-10" data-translate="about_sazi_title">About Sazi.life</h2>
+                <div class="md:flex md:items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-10">
+                        <img src="https://placehold.co/600x400/e2e8f0/333333?text=Salatiso&font=inter" alt="Salatiso - Founder of Sazi.life" class="rounded-lg shadow-md w-full">
+                         <p class="text-center text-sm text-gray-500 mt-2">Salatiso, Founder of Sazi.life</p>
+                    </div>
+                    <div class="md:w-1/2 text-gray-700 leading-relaxed">
+                        <p class="mb-4" data-translate="about_para1">
+                            Sazi.life, founded by Salatiso, is rooted in a deep passion for making knowledge accessible to everyone, especially the youth and rural communities. "Sazi," an isiXhosa word meaning "we know" or "we understand," perfectly encapsulates our mission to foster learning, critical thinking, and self-sufficiency.
+                        </p>
+                        <p class="mb-4" data-translate="about_para2">
+                            Growing up in Transkei and witnessing the power of community and informal wisdom alongside formal education, Salatiso was inspired to create a platform that blends the best of both worlds. Sazi.life is more than an educational website; it's a holistic ecosystem designed to empower individuals across generations with academic knowledge, practical life skills, and cultural understanding.
+                        </p>
+                        <p class="mb-4" data-translate="about_para3">
+                           Our modules, from Sazi isiXhosa to Sazi Code & Create and Sazi Home Life, are crafted to be interactive, engaging, and adaptable to various learning styles and needs. We are committed to bridging the digital divide and providing tools that help individuals not just to learn, but to create, innovate, and build better futures for themselves and their communities. Join us on this journey of lifelong learning and empowerment.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Logo Variation 3: Interconnected Lines -->
-        <div class="logo-container">
-            <div class="logo-title">Variation 3: Interconnected Lines</div>
-            <div class="relative">
-                <span class="text-5xl font-extrabold text-purple-600">Sazi</span>
-                <span class="block text-2xl font-medium text-gray-700 mt-1 tracking-wide">Code & Create</span>
-                <!-- Subtle decorative lines -->
-                <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-purple-300 rounded-full"></div>
-                <div class="absolute -bottom-4 right-0 w-1/3 h-1 bg-indigo-300 rounded-full"></div>
+    <!-- Membership Section -->
+     <section id="membership" class="py-16 bg-yellow-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6" data-translate="join_community_title">Join the Sazi.life Community</h2>
+            <p class="text-xl text-gray-700 mb-10 max-w-2xl mx-auto" data-translate="join_community_desc">
+                Become a member to track your progress, connect with learners, contribute content, and unlock the full potential of Sazi.life.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 mb-10">
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-user-friends text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2" data-translate="member_tier1_title">Guest Explorer</h3>
+                    <p class="text-gray-600" data-translate="member_tier1_desc">Sample free introductory content.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-user-plus text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2" data-translate="member_tier2_title">Registered Member (Free)</h3>
+                    <p class="text-gray-600" data-translate="member_tier2_desc">Access all free courses, track progress, join forums.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-star text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2" data-translate="member_tier3_title">Premium Subscriber</h3>
+                    <p class="text-gray-600" data-translate="member_tier3_desc">Exclusive content & features (Coming Soon!).</p>
+                </div>
+            </div>
+            <a href="#" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300" data-translate="signup_now_btn">
+                Sign Up Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-translate="contact_us_title">Get In Touch</h2>
+            <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-xl">
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-semibold mb-2" data-translate="name_label">Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-semibold mb-2" data-translate="email_label">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="you@example.com" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 font-semibold mb-2" data-translate="message_label">Message</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-800 font-bold py-3 px-6 rounded-md transition duration-300" data-translate="send_message_btn">
+                        Send Message
+                    </button>
+                </form>
             </div>
         </div>
+    </section>
 
-        <!-- Logo Variation 4: Bracketed/Tag Emphasis -->
-        <div class="logo-container">
-            <div class="logo-title">Variation 4: Bracketed/Tag Emphasis</div>
-            <div>
-                <span class="text-5xl font-extrabold text-teal-600">Sazi</span>
-                <span class="block text-2xl font-medium text-gray-700 mt-1 tracking-wide">
-                    <span class="text-teal-500">&lt;</span>Code & Create<span class="text-teal-500">/&gt;</span>
-                </span>
-            </div>
-        </div>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        <!-- Logo Variation 5: Gradient Text (Conceptual - Tailwind alone has limited direct gradient text support) -->
-        <div class="logo-container">
-            <div class="logo-title">Variation 5: Gradient Emphasis</div>
-            <div>
-                <span class="text-5xl font-extrabold bg-gradient-to-r from-blue-500 to-green-500 text-transparent bg-clip-text">Sazi</span>
-                <span class="block text-2xl font-medium text-gray-700 mt-1 tracking-wide">Code & Create</span>
-                 <p class="text-xs text-gray-500 mt-2">(Gradient applied via CSS background-clip)</p>
-            </div>
-        </div>
+        // Basic translation dictionary (expand this)
+        // For a full solution, a library like i18next would be better.
+        const translations = {
+            en: {
+                slogan: "Sazi.life: Knowledge for Every Generation",
+                hero_subtext: "Unlock your potential with accessible, holistic education. Explore diverse learning pathways in language, technology, practical skills, and home life, designed for all ages and backgrounds.",
+                explore_modules_btn: "Explore Modules",
+                learning_modules_title: "Our Learning Modules",
+                isixhosa_title: "Sazi isiXhosa",
+                isixhosa_desc: "Dive into the richness of the isiXhosa language and culture. Interactive lessons for all levels.",
+                code_create_title: "Sazi Code & Create",
+                code_create_desc: "From basic digital literacy to advanced web development and AI. Empower yourself with tech skills.",
+                home_life_title: "Sazi Home Life",
+                home_life_desc: "Master everyday essentials. Tutorials on cooking, cleaning, DIY, gardening, and smart home management.",
+                funda_title: "Sazi Funda",
+                funda_desc: "Online Learning & Homeschooling curricula (Grade 0-12) designed for engaging and effective education at home.",
+                izakhono_title: "Sazi Izakhono (Skills Hub)",
+                izakhono_desc: "Develop practical life skills. From welding and plumbing to advanced DIY and mechanics.",
+                learn_more_btn: "Learn More &rarr;",
+                coming_soon_funda: "Exciting Content Coming Soon!",
+                coming_soon_izakhono: "Practical Workshops Coming Soon!",
+                about_sazi_title: "About Sazi.life",
+                about_para1: "Sazi.life, founded by Salatiso, is rooted in a deep passion for making knowledge accessible to everyone, especially the youth and rural communities. \"Sazi,\" an isiXhosa word meaning \"we know\" or \"we understand,\" perfectly encapsulates our mission to foster learning, critical thinking, and self-sufficiency.",
+                about_para2: "Growing up in Transkei and witnessing the power of community and informal wisdom alongside formal education, Salatiso was inspired to create a platform that blends the best of both worlds. Sazi.life is more than an educational website; it's a holistic ecosystem designed to empower individuals across generations with academic knowledge, practical life skills, and cultural understanding.",
+                about_para3: "Our modules, from Sazi isiXhosa to Sazi Code & Create and Sazi Home Life, are crafted to be interactive, engaging, and adaptable to various learning styles and needs. We are committed to bridging the digital divide and providing tools that help individuals not just to learn, but to create, innovate, and build better futures for themselves and their communities. Join us on this journey of lifelong learning and empowerment.",
+                join_community_title: "Join the Sazi.life Community",
+                join_community_desc: "Become a member to track your progress, connect with learners, contribute content, and unlock the full potential of Sazi.life.",
+                member_tier1_title: "Guest Explorer",
+                member_tier1_desc: "Sample free introductory content.",
+                member_tier2_title: "Registered Member (Free)",
+                member_tier2_desc: "Access all free courses, track progress, join forums.",
+                member_tier3_title: "Premium Subscriber",
+                member_tier3_desc: "Exclusive content & features (Coming Soon!).",
+                signup_now_btn: "Sign Up Now",
+                contact_us_title: "Get In Touch",
+                name_label: "Name",
+                email_label: "Email",
+                message_label: "Message",
+                send_message_btn: "Send Message",
+            },
+            xh: { // Example translations for isiXhosa - these would need to be accurate
+                slogan: "Sazi.life: Ulwazi Lwezizukulwana Zonke",
+                hero_subtext: "Vula amandla akho ngemfundo efikelelekayo, epheleleyo. Phonononga iindlela ezahlukeneyo zokufunda kulwimi, itekhnoloji, izakhono eziphathekayo, kunye nobomi basekhaya, ezenzelwe yonke iminyaka kunye nemvelaphi.",
+                explore_modules_btn: "Phonononga Iimodyuli",
+                learning_modules_title: "Iimodyuli Zethu Zokufunda",
+                isixhosa_title: "Sazi isiXhosa",
+                isixhosa_desc: "Ngena kubutyebi bolwimi lwesiXhosa nenkcubeko. Izifundo ezisebenzisanayo kuwo onke amanqanaba.",
+                code_create_title: "Sazi Qhoda Udale",
+                code_create_desc: "Ukususela kulwazi olusisiseko lwedijithali ukuya kuphuhliso lwewebhu oluphezulu kunye ne-AI. Zixhobise ngezakhono zobuchwepheshe.",
+                home_life_title: "Sazi Ubomi Basekhaya",
+                home_life_desc: "Funda izinto eziyimfuneko zemihla ngemihla. Izifundo zokupheka, ukucoca, i-DIY, ukulima igadi, kunye nolawulo olukrelekrele lwekhaya.",
+                funda_title: "Sazi Funda",
+                funda_desc: "Ukufunda kwi-Intanethi kunye neKharityhulam yokuFunda eKhaya (Ibanga 0-12) eyilelwe imfundo ebandakanyayo nesebenzayo ekhaya.",
+                izakhono_title: "Sazi Izakhono (Iziko Lezakhono)",
+                izakhono_desc: "Phuhlisa izakhono zobomi ezisebenzayo. Ukusuka kwi-welding kunye ne-plumbing ukuya kwi-DIY ephezulu kunye noomatshini.",
+                learn_more_btn: "Funda Okungakumbi &rarr;",
+                coming_soon_funda: "Umxholo Onika Umdla Uyeza Kungekudala!",
+                coming_soon_izakhono: "Iindibano Zokusebenzela Eziphathekayo Ziyeza Kungekudala!",
+                about_sazi_title: "Malunga neSazi.life",
+                about_para1: "ISazi.life, eyasekwa nguSalatiso, isekelwe kuthando olunzulu lokwenza ulwazi lufikeleleke kuye wonke umntu, ngakumbi ulutsha kunye noluntu lwasemaphandleni. \"Sazi,\" igama lesiXhosa elithetha \"siyazi\" okanye \"siyaqonda,\" liwuchaza ngokugqibeleleyo umsebenzi wethu wokukhuthaza ukufunda, ukucinga okunzulu, kunye nokuzimela.",
+                about_para2: "Ekhulela eTranskei kwaye ebona amandla oluntu kunye nobulumko obungekho sikweni ecaleni kwemfundo esesikweni, uSalatiso waphefumlelwa ukuba enze iqonga elidibanisa okona kulungileyo kuwo omabini la mazwe. ISazi.life ingaphezulu kwewebhusayithi yezemfundo; yinkqubo yendalo epheleleyo eyenzelwe ukuxhobisa abantu kwizizukulwana ngezizukulwana ngolwazi lwezemfundo, izakhono zobomi ezisebenzayo, kunye nokuqonda inkcubeko.",
+                about_para3: "Iimodyuli zethu, ukusuka kwiSazi isiXhosa ukuya kwiSazi Code & Create kunye neSazi Home Life, zenzelwe ukuba zisebenzisane, zibandakanye, kwaye ziqhelane neendlela ezahlukeneyo zokufunda kunye neemfuno. Sizibophelele ekuvaleni umsantsa wedijithali kunye nokubonelela ngezixhobo ezinceda abantu kungekuphela nje ukuba bafunde, kodwa ukuba benze, baqulunqe, kwaye bakhe ikamva elingcono labo kunye noluntu lwabo. Joyina nathi kolu hambo lokufunda ubomi bonke kunye nokuxhotyiswa.",
+                join_community_title: "Joyina uLuntu lweSazi.life",
+                join_community_desc: "Yiba lilungu lokulandelela inkqubela yakho, nxibelelana nabafundi, ufake isandla kumxholo, kwaye uvule amandla apheleleyo eSazi.life.",
+                member_tier1_title: "UMhloli woMdwendwe",
+                member_tier1_desc: "Zama umxholo wamahala wokwazisa.",
+                member_tier2_title: "Ilungu Elibhalisiweyo (Mahala)",
+                member_tier2_desc: "Fikelela kuzo zonke izifundo zasimahla, landelela inkqubela phambili, joyina iiforam.",
+                member_tier3_title: "UMrhumi oPhambili",
+                member_tier3_desc: "Umxholo okhethekileyo kunye neempawu (Kuyeza Kungekudala!).",
+                signup_now_btn: "Bhalisa Ngoku",
+                contact_us_title: "Qhagamshelana Nathi",
+                name_label: "Igama",
+                email_label: "I-imeyile",
+                message_label: "Umyalezo",
+                send_message_btn: "Thumela Umyalezo",
+            }
+            // ... Add other languages here
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                } else if (translations['en'] && translations['en'][key]) {
+                    el.textContent = translations['en'][key]; // Fallback to English
+                }
+            });
+            // Ensure both desktop and mobile selectors are updated
+            document.getElementById('language-switcher-desktop').value = lang;
+            document.getElementById('language-switcher-mobile').value = lang;
+        }
         
-        <!-- Logo Variation 6: Clean & Modern with Subtext Line -->
-        <div class="logo-container">
-            <div class="logo-title">Variation 6: Clean & Modern with Line</div>
-            <div>
-                <span class="text-5xl font-extrabold text-indigo-600">Sazi</span>
-                <hr class="my-2 border-indigo-300 w-1/2 mx-auto">
-                <span class="block text-xl font-semibold text-gray-600 tracking-wider">Code & Create</span>
-            </div>
-        </div>
+        // Set initial language based on browser or default to English
+        // For a more robust solution, consider localStorage to remember user's choice
+        const initialLang = navigator.language.split('-')[0];
+        if (translations[initialLang]) {
+            changeLanguage(initialLang);
+        } else {
+            changeLanguage('en');
+        }
 
-    </div>
+    </script>
 
 </body>
 </html>
