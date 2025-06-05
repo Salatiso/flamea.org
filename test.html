@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flamea: Empowering Men, Strengthening Families</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        .hero-section {
+            background: linear-gradient(rgba(10, 36, 99, 0.8), rgba(10, 36, 99, 0.7)), url('https://placehold.co/1920x1080/e0e0e0/333333?text=Supportive+Community+Background') no-repeat center center;
+            background-size: cover;
+        }
+        .flamea-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem; /* Responsive font size in Tailwind: text-4xl lg:text-5xl */
+            color: #FFD166; /* Warm Gold */
+        }
+        .flamea-logo-f {
+            color: #FFD166; /* Warm Gold */
+            /* A more complex flame might need SVG or a special character, this is a simple color highlight */
+        }
+        .slogan-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .feature-card {
+            background-color: white;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+        }
+        .feature-icon {
+            width: 4rem; /* w-16 */
+            height: 4rem; /* h-16 */
+            margin-bottom: 1rem; /* mb-4 */
+            color: #0A2463; /* Navy Blue */
+        }
+        .btn-primary {
+            background-color: #FFD166; /* Warm Gold */
+            color: #0A2463; /* Navy Blue */
+            font-weight: 600;
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #fca503; /* Darker Gold/Orange */
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #FFD166; /* Warm Gold */
+            border: 2px solid #FFD166;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #FFD166;
+            color: #0A2463;
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        .text-navy { color: #0A2463; } /* Navy Blue */
+        .text-gold { color: #FFD166; } /* Warm Gold */
+        .bg-navy-light { background-color: #e7eaf6; } /* Lighter shade for contrast */
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Placeholder Logo -->
+            <a href="#" class="flamea-logo-text">
+                <span class="flamea-logo-f">F</span>lamea
+            </a>
+            <nav class="space-x-4">
+                <a href="#features" class="text-gray-600 hover:text-navy transition duration-300">Features</a>
+                <a href="#tools" class="text-gray-600 hover:text-navy transition duration-300">Tools</a>
+                <a href="#resources" class="text-gray-600 hover:text-navy transition duration-300">Resources</a>
+                <a href="#register" class="btn-secondary text-sm hidden sm:inline-block">Register / Login</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="#features" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Features</a>
+            <a href="#tools" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Tools</a>
+            <a href="#resources" class="block px-6 py-3 text-gray-600 hover:bg-gray-100">Resources</a>
+            <a href="#register" class="block px-6 py-3 text-navy hover:bg-gray-100 font-semibold">Register / Login</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                <span class="flamea-logo-f">F</span>lamea
+            </h1>
+            <p class="slogan-text text-2xl md:text-3xl mb-8">Empowering Men, Strengthening Families.</p>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                Discover tools, resources, and a supportive community dedicated to helping fathers thrive and build harmonious family relationships.
+            </p>
+            <div class="space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
+                <a href="#features" class="btn-primary inline-block">Explore Resources</a>
+                <a href="#register" class="btn-secondary inline-block">Join Our Community</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission Section -->
+    <section class="py-16 bg-navy-light">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-navy mb-6">Our Mission</h2>
+            <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                Flamea is dedicated to empowering men with the knowledge, skills, and support they need to be confident and engaged fathers. We aim to foster harmonious parenting relationships that benefit children, by providing practical tools, expert resources, and a welcoming community. We believe in strengthening families by championing the vital role of fathers.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-12">What We Offer</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature Card 1: Interactive Tools -->
+                <div class="feature-card p-8 text-center">
+                    <svg class="feature-icon mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.646.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.242 1.417l-.973.972a.988.988 0 000 1.407l.973.972a1.125 1.125 0 01.242 1.417l-1.296 2.247a1.125 1.125 0 01-1.37.49l-1.217-.456a1.125 1.125 0 00-1.075.124c-.073.044-.146.087-.22.127-.333.184-.583.496-.646.87l-.213 1.281c-.09.543-.56.94-1.11.94h-2.593c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.645-.87-.074-.04-.147-.083-.22-.127a1.125 1.125 0 00-1.075-.124l-1.217.456a1.125 1.125 0 01-1.37-.49l-1.296-2.247a1.125 1.125 0 01.242-1.417l.973-.972a.988.988 0 000-1.407l-.973-.972a1.125 1.125 0 01-.242-1.417l1.296-2.247a1.125 1.125 0 011.37-.49l1.217.456c.355.133.75.072 1.075-.124.073-.044.146-.087.22-.127.333-.184.583-.496.646-.87l.213-1.281z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <h3 class="text-2xl font-semibold text-navy mb-3">Interactive Tools</h3>
+                    <p class="text-gray-600">Access practical tools like our Parenting Plan Builder, Dispute Tracker, and Parental Evaluation to navigate challenges and plan effectively.</p>
+                </div>
+
+                <!-- Feature Card 2: Expert Resources -->
+                <div class="feature-card p-8 text-center">
+                    <svg class="feature-icon mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                    </svg>
+                    <h3 class="text-2xl font-semibold text-navy mb-3">Expert Resources</h3>
+                    <p class="text-gray-600">Gain insights from our on-screen books, curated legal information, practical articles, news, videos, and podcasts tailored for fathers.</p>
+                </div>
+
+                <!-- Feature Card 3: Supportive Community -->
+                <div class="feature-card p-8 text-center">
+                    <svg class="feature-icon mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72m.94-3.198l-.001-.031c0-.225.012-.447.037-.666A11.944 11.944 0 0012 3c2.17 0 4.207.576 5.963 1.584A6.062 6.062 0 0018 5.281m0 0a5.971 5.971 0 00.94 3.197m0 0A5.995 5.995 0 0012 11.25a5.995 5.995 0 005.058-2.772m0 0a3 3 0 004.681-2.72M3 18.72v-2.472c0-.94.769-1.71 1.71-1.71h2.58c.149 0 .293.029.429.085a5.94 5.94 0 014.542 0c.136-.056.28-.085.429-.085h2.58c.94 0 1.71.77 1.71 1.71v2.472c0 .94-.769 1.71-1.71 1.71H4.71c-.94 0-1.71-.77-1.71-1.71z" />
+                    </svg>
+                    <h3 class="text-2xl font-semibold text-navy mb-3">Supportive Community</h3>
+                    <p class="text-gray-600">Register to save your documents, track progress, and connect with a community that understands and supports your journey in fatherhood.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Resource/Book Section -->
+    <section id="resources" class="py-16 bg-navy-light">
+        <div class="container mx-auto px-6">
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://placehold.co/600x400/cccccc/555555?text=Book+Cover:+Goliath's+Reckoning" alt="Goliath's Reckoning Book Cover" class="rounded-lg shadow-xl w-full">
+                     <!-- Fallback for image -->
+                    <script>
+                        const img = document.querySelector('img[alt="Goliath\'s Reckoning Book Cover"]');
+                        img.onerror = function() {
+                            this.src = 'https://placehold.co/600x400/E0E0E0/555555?text=Image+Not+Available';
+                            this.alt = 'Placeholder image: Book Cover Not Available';
+                        };
+                    </script>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Featured Resource</h2>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Goliath's Reckoning</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Dive into "Goliath's Reckoning," a powerful exploration of the challenges fathers face and a guide to navigating legal and personal hurdles with strength and wisdom. Access this and other insightful books on Flamea to empower your fatherhood journey.
+                    </p>
+                    <a href="#" class="btn-primary">Read On Screen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="register" class="py-20 bg-navy text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Strengthen Your Role as a Father?</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-xl mx-auto">
+                Join Flamea today to access all our tools, save your progress, read our exclusive book content, and become part of a supportive network.
+            </p>
+            <a href="#" class="btn-primary text-lg">Register for Full Access</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="md:flex md:justify-between">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="flamea-logo-text text-2xl">
+                        <span class="flamea-logo-f">F</span>lamea
+                    </a>
+                    <p class="mt-2 text-sm slogan-text text-gray-400">Empowering Men, Strengthening Families.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-white font-semibold mb-2">Quick Links</h3>
+                        <ul>
+                            <li><a href="#" class="hover:text-gold transition duration-300">About Us</a></li>
+                            <li><a href="#features" class="hover:text-gold transition duration-300">Features</a></li>
+                            <li><a href="#" class="hover:text-gold transition duration-300">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-semibold mb-2">Resources</h3>
+                        <ul>
+                            <li><a href="#tools" class="hover:text-gold transition duration-300">Tools</a></li>
+                            <li><a href="#" class="hover:text-gold transition duration-300">Books</a></li>
+                            <li><a href="#" class="hover:text-gold transition duration-300">Legal Info</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-semibold mb-2">Legal</h3>
+                        <ul>
+                            <li><a href="#" class="hover:text-gold transition duration-300">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-gold transition duration-300">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-8 border-gray-700">
+            <p class="text-center text-sm">
+                &copy; <span id="currentYear"></span> Flamea.org. All rights reserved.
+                <br>
+                This website provides informational resources and tools. It does not offer legal advice.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Set current year in footer
+        const currentYearSpan = document.getElementById('currentYear');
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
