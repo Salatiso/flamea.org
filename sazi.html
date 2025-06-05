@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sazi.tech - A Family Learning Adventure</title>
+    <!-- Chosen Palette: Warm Harmony (Beige, Warm Gray, Terracotta, Teal) -->
+    <!-- Application Structure Plan: A single-page application using a "portal" or "hub" structure. The main view presents several interactive cards, each leading to a full-screen modal or a dedicated section for a specific learning path or topic (e.g., "Little Explorers," "Static vs. React," "The Quiz Hub"). This avoids vertical scrolling and allows users to jump directly to content relevant to them. The structure is designed for multi-generational use, separating content by complexity while keeping everything within one cohesive experience. User flow is non-linear, encouraging exploration. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Multi-generational learning needs. Goal: Engagement. Viz/Method: Interactive cards with icons. Interaction: Click to open modal. Justification: Visually separates learning paths for different ages. Method: HTML/CSS/JS.
+        - Report Info: Static vs. React comparison. Goal: Compare/Inform. Viz/Method: Tabbed interface within a modal, showing code snippets, pros/cons lists, and a timeline-like deployment guide. Interaction: Clicking tabs, hovering over terms for definitions. Justification: Organizes complex information into digestible chunks. Library/Method: HTML/CSS/JS for tabs, Chart.js for a simple performance comparison chart.
+        - Report Info: AI in development. Goal: Inform/Change. Viz/Method: Horizontal timeline. Interaction: Clicking points on the timeline to reveal info. Justification: Shows evolution over time in an engaging way. Method: HTML/CSS/JS.
+        - Report Info: 50-question quiz. Goal: Engage/Test Knowledge. Viz/Method: A multi-step modal. Interaction: Answering questions, seeing results. Justification: Gamifies learning and provides immediate feedback. Method: HTML/CSS/JS.
+        - Report Info: Accessibility. Goal: Organize. Viz/Method: A dropdown language selector. Interaction: Selecting a language. Justification: Prepares the structure for future translation. Method: HTML/CSS/JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F5DC; /* Beige */
+        }
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .portal-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .modal {
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+            transform: scale(0.95);
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .quiz-question {
+            display: none;
+        }
+        .quiz-question.active {
+            display: block;
+        }
+        .answer-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+        .answer-btn.selected {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .timeline-item .timeline-content {
+            display: none;
+        }
+        .timeline-item.active .timeline-content {
+            display: block;
+        }
+        .game-card {
+            perspective: 1000px;
+        }
+        .game-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .game-card.flipped .game-card-inner {
+            transform: rotateY(180deg);
+        }
+        .game-card-front, .game-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-beige text-gray-800">
+
+    <div id="app" class="main-container p-4 sm:p-6 lg:p-8">
+
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-700">Sazi<span class="text-teal-600">.</span>tech</h1>
+            <div class="relative">
+                <select id="language-switcher" class="bg-white border border-gray-300 rounded-md py-2 px-3 text-gray-700">
+                    <option value="en">English</option>
+                    <option value="xh">isiXhosa</option>
+                    <option value="zu">isiZulu</option>
+                    <option value="af">Afrikaans</option>
+                    <option value="st">Sesotho</option>
+                    <option value="sw">Swahili</option>
+                </select>
+            </div>
+        </header>
+
+        <main class="flex-grow flex items-center justify-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl w-full">
+                
+                <div class="portal-card bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer" onclick="openModal('modal-kids')">
+                    <div class="text-6xl mb-4">🧸</div>
+                    <h2 class="text-2xl font-bold mb-2 text-gray-700">Little Explorers</h2>
+                    <p class="text-gray-500">Ages 4-8. Fun games & simple activities to spark curiosity.</p>
+                </div>
+
+                <div class="portal-card bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer" onclick="openModal('modal-teens')">
+                    <div class="text-6xl mb-4">🚀</div>
+                    <h2 class="text-2xl font-bold mb-2 text-gray-700">Young Coders</h2>
+                    <p class="text-gray-500">Ages 9-15. Build skills from the ground up. Start your journey!</p>
+                </div>
+
+                <div class="portal-card bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer" onclick="openModal('modal-adults')">
+                    <div class="text-6xl mb-4">💡</div>
+                    <h2 class="text-2xl font-bold mb-2 text-gray-700">Pro Learners</h2>
+                    <p class="text-gray-500">For adults & grandma! Dive deep into advanced topics & tools.</p>
+                </div>
+                
+                <div class="portal-card bg-teal-500 text-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer md:col-span-2 lg:col-span-1" onclick="openModal('modal-static-react')">
+                    <div class="text-6xl mb-4">⚙️</div>
+                    <h2 class="text-2xl font-bold mb-2">Static HTML vs React</h2>
+                    <p>Understand the core differences and how to build & deploy both.</p>
+                </div>
+
+                <div class="portal-card bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer" onclick="openModal('modal-ai')">
+                    <div class="text-6xl mb-4">🤖</div>
+                    <h2 class="text-2xl font-bold mb-2 text-gray-700">AI in Development</h2>
+                    <p class="text-gray-500">Explore your AI assistants: Gemini, Copilot, Grok & more.</p>
+                </div>
+                
+                <div class="portal-card bg-amber-500 text-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer" onclick="openModal('modal-quiz')">
+                     <div class="text-6xl mb-4">🏆</div>
+                    <h2 class="text-2xl font-bold mb-2">The Knowledge Hub Quiz</h2>
+                    <p>Test your skills! 50 questions on web dev, AI, and more.</p>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="text-center text-gray-500 mt-8">
+            <p>&copy; 2024 Sazi.life - A Family Learning Adventure. Building knowledge, together.</p>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <!-- Little Explorers Modal -->
+    <div id="modal-kids" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 justify-center items-center p-4">
+        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 relative">
+            <button onclick="closeModal('modal-kids')" class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-gray-800">&times;</button>
+            <h2 class="text-3xl font-bold text-teal-600 mb-4">Welcome Little Explorers! 🧸</h2>
+            <p class="mb-6 text-gray-600">Let's play some fun games to learn about colors, shapes, and matching!</p>
+            <div id="kids-game-container" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Memory Game will be generated here -->
+            </div>
+             <button id="reset-game-btn" class="mt-6 bg-teal-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-teal-600">Play Again!</button>
+        </div>
+    </div>
+
+    <!-- Young Coders Modal -->
+    <div id="modal-teens" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 justify-center items-center p-4">
+        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 relative">
+            <button onclick="closeModal('modal-teens')" class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-gray-800">&times;</button>
+            <h2 class="text-3xl font-bold text-teal-600 mb-4">Hey, Young Coder! 🚀</h2>
+            <p class="mb-6 text-gray-600">This is your starting line. We'll learn about the building blocks of the web. The most important thing is to understand what websites are made of. Start with the "Static vs. React" portal to see the code, then come back here to solidify your knowledge.</p>
+             <div class="space-y-4">
+                <div>
+                    <h3 class="font-bold text-xl">1. HTML - The Skeleton</h3>
+                    <p>HyperText Markup Language (HTML) is the standard markup language for documents designed to be displayed in a web browser. It gives a webpage its structure, like a skeleton for a body. It uses "tags" like `<h1>` for headings and `<p>` for paragraphs.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl">2. CSS - The Style</h3>
+                    <p>Cascading Style Sheets (CSS) is what makes a website look good. It's the "clothing" for our HTML skeleton. You use it to add colors, fonts, spacing, and layouts. We use a powerful CSS framework called <span class="font-bold text-teal-600">Tailwind CSS</span> to make things beautiful quickly.</p>
+                </div>
+                 <div>
+                    <h3 class="font-bold text-xl">3. JavaScript - The Brains</h3>
+                    <p>JavaScript (JS) adds interactivity to a website. If HTML is the skeleton and CSS is the style, JS is the brain and muscles. It makes things happen, like opening a popup when you click a button or running a game. It's the magic behind the scenes!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pro Learners Modal -->
+    <div id="modal-adults" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 justify-center items-center p-4">
+        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 relative">
+            <button onclick="closeModal('modal-adults')" class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-gray-800">&times;</button>
+            <h2 class="text-3xl font-bold text-teal-600 mb-4">Advanced Learning Portal 💡</h2>
+            <p class="mb-6 text-gray-600">Let's dive into some powerful tools and concepts that bring modern web applications to life.</p>
+             <div class="space-y-6">
+                <div>
+                    <h3 class="font-bold text-xl">Firebase: Your Backend as a Service</h3>
+                    <p>Firebase (from Google) is an amazing platform that handles the "backend" stuff for you. This means user authentication, databases, and file storage without you needing to build a server from scratch. We can use it to create login systems, save user data (like quiz scores!), and build real-time chat apps.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-xl">Gemini API: Building with AI</h3>
+                    <p>The Gemini API allows us to integrate Google's powerful AI directly into our apps. You can use it to build a chatbot, generate creative text, analyze images, and much more. It's like having a creative partner that can understand and generate human-like language.</p>
+                </div>
+                 <div>
+                    <h3 class="font-bold text-xl">Hosting & Deployment Deep Dive</h3>
+                    <p>In the 'Static vs. React' portal, we cover the deployment process. As a pro learner, focus on understanding the 'why'. Why does a React app need a 'build' step? It's because JSX and modern JavaScript need to be compiled into plain HTML, CSS, and JS that all browsers can understand. The 'build' folder contains this optimized, ready-to-go code.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Static vs React Modal -->
+    <div id="modal-static-react" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 justify-center items-center p-4">
+        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto p-6 relative">
+            <button onclick="closeModal('modal-static-react')" class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-gray-800">&times;</button>
+            <h2 class="text-3xl font-bold text-teal-600 mb-2">Static HTML vs. React Apps</h2>
+            <p class="mb-6 text-gray-600">Let's break down the two main ways we build for the web.</p>
+            
+            <div class="border-b border-gray-200">
+                <nav class="flex space-x-4" id="svs-tabs">
+                    <button class="svs-tab-btn font-semibold py-2 px-4 border-b-2 border-teal-500 text-teal-600" data-tab="tab-intro">Introduction</button>
+                    <button class="svs-tab-btn font-semibold py-2 px-4 border-b-2 border-transparent text-gray-500" data-tab="tab-static">Static HTML</button>
+                    <button class="svs-tab-btn font-semibold py-2 px-4 border-b-2 border-transparent text-gray-500" data-tab="tab-react">React App</button>
+                    <button class="svs-tab-btn font-semibold py-2 px-4 border-b-2 border-transparent text-gray-500" data-tab="tab-deploy">Deployment Guide</button>
+                </nav>
+            </div>
+
+            <div class="py-6">
+                <div id="tab-intro" class="tab-content active">
+                    <h3 class="text-2xl font-bold mb-4">What's the difference?</h3>
+                    <p class="mb-4">Imagine building with blocks. A <strong class="text-teal-600">Static HTML site</strong> is like building a model house with basic blocks. It's solid, simple, and every part is pre-defined. You build it once, and it stays that way. This very website is a static site!</p>
+                    <p class="mb-4">A <strong class="text-amber-600">React App</strong> is like building with magical, dynamic LEGOs. You create reusable components (like a 'button' or a 'user profile') that can change and update themselves without rebuilding the entire house. It's perfect for complex applications where data changes often, like Facebook or Instagram.</p>
+                    <div class="chart-container relative h-64 md:h-80 mx-auto" style="max-width: 500px;">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-2">Conceptual comparison: Static sites load faster initially, while React apps are faster at updating content on the page.</p>
+                </div>
+                
+                <div id="tab-static" class="tab-content">
+                    <h3 class="text-2xl font-bold mb-4">Static HTML Site</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Structure (File: `index.html`)</h4>
+                            <p class="text-sm mb-2">Everything is in one file. Simple and straightforward.</p>
+                            <pre class="bg-gray-100 p-3 rounded-lg text-sm overflow-x-auto"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Site&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Pros & Cons</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span><strong>Fast & Simple:</strong> Very easy to build and loads quickly.</span></li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span><strong>Cheap to Host:</strong> Any basic hosting works.</span></li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2">❌</span><span><strong>Hard to Update:</strong> For large sites, changing something on every page is a lot of work.</span></li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2">❌</span><span><strong>Not Interactive:</strong> Complex features are difficult to add.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-react" class="tab-content">
+                    <h3 class="text-2xl font-bold mb-4">React App</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Structure (File: `src/App.js`)</h4>
+                             <p class="text-sm mb-2">Code is broken into reusable "components". This looks like HTML but it's called JSX.</p>
+                            <pre class="bg-gray-100 p-3 rounded-lg text-sm overflow-x-auto"><code>import React from 'react';
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hello, React!&lt;/h1&gt;
+      &lt;p&gt;This is a component.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;</code></pre>
+                        </div>
+                        <div>
+                             <h4 class="font-bold text-lg mb-2">Pros & Cons</h4>
+                             <ul class="space-y-2">
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span><strong>Reusable Components:</strong> Build a button once, use it everywhere.</span></li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔</span><span><strong>Dynamic & Interactive:</strong> Great for complex apps where data changes.</span></li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2">❌</span><span><strong>More Complex:</strong> Requires setup and a "build" step.</span></li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2">❌</span><span><strong>Slightly Slower First Load:</strong> Needs to load the JavaScript library.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-deploy" class="tab-content">
+                    <h3 class="text-2xl font-bold mb-4">Deployment Guide: From VS Code to Live Site</h3>
+                    <p class="mb-4">This is your step-by-step guide for your specific setup: <strong class="text-teal-600">VS Code -> GitHub Desktop -> Namecheap Shared Hosting</strong>.</p>
+                    
+                    <div>
+                        <h4 class="text-xl font-bold text-teal-600 mb-2">For a Static HTML Site:</h4>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <li><strong>In VS Code:</strong> Write your `index.html`, CSS, and JS files. Save everything in a folder on your computer.</li>
+                            <li><strong>In GitHub Desktop:</strong> Click "Add Existing Repository". Select the folder you created. Write a summary (e.g., "Initial commit") and click "Commit to main". Then click "Publish repository" to send it to GitHub online.</li>
+                            <li><strong>In Namecheap cPanel:</strong> Open "File Manager". Navigate to `public_html`. If you're using a subdomain (e.g., `tech.sazi.life`), go into the folder with that name.</li>
+                            <li>Click "Upload" and upload all your files (`index.html`, etc.) one by one. That's it, your site is live!</li>
+                        </ol>
+                    </div>
+
+                    <hr class="my-6">
+                    
+                    <div>
+                        <h4 class="text-xl font-bold text-amber-600 mb-2">For a React App (This is the tricky part!):</h4>
+                         <ol class="list-decimal list-inside space-y-2">
+                             <li><strong>In VS Code Terminal:</strong> You need to "build" the app. Run the command: `npm run build`. This creates a `build` folder with all the optimized static files.</li>
+                             <li><strong>Find the `build` folder:</strong> It will be inside your project folder.</li>
+                             <li><strong>In GitHub Desktop:</strong> You don't need to push the `build` folder to GitHub, only your source code (`src` folder, `package.json`, etc). This is your backup.</li>
+                             <li><strong>In Namecheap cPanel:</strong> Open "File Manager" and go to your `public_html` or subdomain folder.</li>
+                             <li>Click "Upload". Before you upload, <strong class="text-red-500">ZIP the contents of the `build` folder</strong> (NOT the folder itself). Upload this single `.zip` file.</li>
+                             <li>Right-click the `.zip` file in File Manager and select "Extract". This will place all the optimized files in your hosting folder. Your React app is now live!</li>
+                             <li><strong>CRITICAL STEP FOR REACT ROUTER:</strong> If your React app uses different pages (routing), you must create a file called `.htaccess` in the same folder and add the code from the "Static vs React" tutorial to make sure refreshing the page doesn't cause a 404 error.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI in Dev Modal -->
+    <div id="modal-ai" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 justify-center items-center p-4">
+        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 relative">
+            <button onclick="closeModal('modal-ai')" class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-gray-800">&times;</button>
+            <h2 class="text-3xl font-bold text-teal-600 mb-4">Your AI Development Team 🤖</h2>
+            <p class="mb-6 text-gray-600">AI assistants are powerful tools that can help you code faster, learn new things, and solve problems. Here are the key players and how they help.</p>
+            
+            <div class="relative w-full overflow-x-auto pb-4">
+              <div class="flex items-center space-x-8" id="timeline-container">
+                <!-- Timeline items will be injected here -->
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="modal-quiz" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 justify-center items-center p-4">
+        <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 relative">
+            <button onclick="closeModal('modal-quiz')" class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-gray-800">&times;</button>
+            
+            <div id="quiz-start">
+                <h2 class="text-3xl font-bold text-amber-600 mb-4 text-center">The Knowledge Hub Quiz 🏆</h2>
+                <p class="text-center mb-6">Test your knowledge across 5 categories. 5 questions at a time. Are you ready?</p>
+                <div class="flex justify-center">
+                    <button onclick="startQuiz()" class="bg-amber-500 text-white font-bold py-3 px-8 rounded-lg text-xl hover:bg-amber-600">Start Quiz!</button>
+                </div>
+            </div>
+
+            <div id="quiz-container" class="hidden">
+                <h3 id="quiz-category" class="text-2xl font-bold mb-2"></h3>
+                <p id="quiz-progress" class="text-sm text-gray-500 mb-4"></p>
+                <div id="quiz-questions-container">
+                    <!-- Questions will be dynamically inserted here -->
+                </div>
+                <div class="mt-6 flex justify-between items-center">
+                     <button id="check-answer-btn" onclick="checkAnswer()" class="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-300">Check Answer</button>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="bg-teal-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-teal-600 disabled:bg-gray-300" disabled>Next</button>
+                </div>
+            </div>
+
+            <div id="quiz-results" class="hidden text-center">
+                 <h2 class="text-3xl font-bold text-amber-600 mb-4">Quiz Complete!</h2>
+                 <p class="text-xl mb-4">Your final score is:</p>
+                 <p id="final-score" class="text-6xl font-bold mb-6"></p>
+                 <div id="answers-summary" class="text-left space-y-2 mb-6 max-h-60 overflow-y-auto"></div>
+                 <button onclick="startQuiz()" class="bg-amber-500 text-white font-bold py-3 px-8 rounded-lg text-xl hover:bg-amber-600">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    // --- State Management & Initialization ---
+    let currentModal = null;
+    let performanceChart = null;
+    let quizData = [];
+    let currentCategoryIndex = 0;
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+    let checkedAnswer = false;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setupKidsGame();
+        setupAITimeline();
+        loadQuizData();
+        setupTabs();
+    });
+
+    // --- Modal Controls ---
+    function openModal(modalId) {
+        currentModal = document.getElementById(modalId);
+        if (currentModal) {
+            currentModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (modalId === 'modal-static-react' && !performanceChart) {
+                renderPerformanceChart();
+            }
+        }
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('active');
+            currentModal = null;
+            document.body.style.overflow = 'auto';
+            if (modalId === 'modal-quiz') {
+                 resetQuizState();
+            }
+        }
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && currentModal) {
+            closeModal(currentModal.id);
+        }
+    });
+
+    // --- Kids Game: Memory Match ---
+    function setupKidsGame() {
+        const emojis = ['🍎', '🍌', '🍇', '🍉', '🍓', '🍒', '🍍', '🥝'];
+        const gameItems = [...emojis, ...emojis].sort(() => 0.5 - Math.random());
+        const gameContainer = document.getElementById('kids-game-container');
+        gameContainer.innerHTML = '';
+        let flippedCards = [];
+        let matchedPairs = 0;
+
+        gameItems.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'game-card h-24 bg-teal-400 rounded-lg cursor-pointer';
+            card.innerHTML = `
+                <div class="game-card-inner">
+                    <div class="game-card-front bg-teal-500"></div>
+                    <div class="game-card-back bg-white text-4xl">${item}</div>
+                </div>
+            `;
+            card.addEventListener('click', () => {
+                if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                    card.classList.add('flipped');
+                    flippedCards.push(card);
+
+                    if (flippedCards.length === 2) {
+                        const [card1, card2] = flippedCards;
+                        const emoji1 = card1.querySelector('.game-card-back').textContent;
+                        const emoji2 = card2.querySelector('.game-card-back').textContent;
+
+                        if (emoji1 === emoji2) {
+                            matchedPairs++;
+                            flippedCards = [];
+                            if (matchedPairs === emojis.length) {
+                                setTimeout(() => alert('You did it! You found all the matches!'), 500);
+                            }
+                        } else {
+                            setTimeout(() => {
+                                card1.classList.remove('flipped');
+                                card2.classList.remove('flipped');
+                                flippedCards = [];
+                            }, 1000);
+                        }
+                    }
+                }
+            });
+            gameContainer.appendChild(card);
+        });
+        document.getElementById('reset-game-btn').addEventListener('click', setupKidsGame);
+    }
+    
+    // --- AI Timeline ---
+    function setupAITimeline() {
+        const timelineData = [
+            { name: 'Gemini', description: 'Google\'s most capable model. Great for creative tasks, complex reasoning, and multimodal inputs (text, images). Powers this website\'s creation!', icon: '🧠' },
+            { name: 'GitHub Copilot', description: 'Your AI pair programmer inside VS Code. It suggests whole lines or blocks of code as you type. A massive time-saver.', icon: '👨‍💻' },
+            { name: 'Grok', description: 'From xAI, known for its real-time knowledge from the X platform and a more rebellious personality. Good for current events.', icon: '⚡️' },
+            { name: 'Cursor & Void AI', description: 'These are AI-first code editors. They integrate AI more deeply than just a plugin, helping with debugging and codebase understanding.', icon: '📝' },
+             { name: 'ChatGPT', description: 'The famous conversational AI from OpenAI. Excellent for brainstorming, explaining concepts, and writing documentation.', icon: '💬' }
+        ];
+        const container = document.getElementById('timeline-container');
+        container.innerHTML = '';
+        timelineData.forEach((item, index) => {
+            const el = document.createElement('div');
+            el.className = 'timeline-item flex-shrink-0 w-48 text-center cursor-pointer';
+            el.innerHTML = `
+                <div class="relative mb-2">
+                    <div class="timeline-dot w-20 h-20 mx-auto rounded-full bg-gray-200 flex items-center justify-center text-4xl">${item.icon}</div>
+                </div>
+                <h4 class="font-bold">${item.name}</h4>
+                <div class="timeline-content text-sm text-gray-600 mt-2 p-2 bg-gray-50 rounded-lg">${item.description}</div>
+            `;
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('active'));
+                el.classList.add('active');
+            });
+            container.appendChild(el);
+        });
+         container.firstChild.classList.add('active');
+    }
+
+    // --- Static vs React Tabs & Chart ---
+    function setupTabs() {
+        const tabContainer = document.getElementById('svs-tabs');
+        if(!tabContainer) return;
+        
+        const tabButtons = tabContainer.querySelectorAll('.svs-tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('border-teal-500', 'text-teal-600');
+                    btn.classList.add('border-transparent', 'text-gray-500');
+                });
+                button.classList.add('border-teal-500', 'text-teal-600');
+                button.classList.remove('border-transparent', 'text-gray-500');
+
+                tabContents.forEach(content => content.classList.remove('active'));
+                document.getElementById(button.dataset.tab).classList.add('active');
+            });
+        });
+    }
+
+    function renderPerformanceChart() {
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        performanceChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Initial Page Load', 'Updating Content', 'Ease of Development (Beginner)'],
+                datasets: [
+                    {
+                        label: 'Static HTML',
+                        data: [9, 4, 9],
+                        backgroundColor: 'rgba(20, 184, 166, 0.6)',
+                        borderColor: 'rgba(15, 118, 110, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'React App',
+                        data: [6, 9, 5],
+                        backgroundColor: 'rgba(217, 119, 6, 0.6)',
+                        borderColor: 'rgba(146, 64, 14, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: 'Conceptual Comparison (Higher is Better)' },
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10
+                    }
+                }
+            }
+        });
+    }
+
+    // --- Quiz Logic ---
+    function loadQuizData() {
+        quizData = [
+            {
+                category: "HTML Basics",
+                questions: [
+                    { q: "What does HTML stand for?", a: ["HyperText Markup Language", "Hyper Tool Multi Language", "Home Text Makeup Language"], c: 0 },
+                    { q: "Which tag is used for the largest heading?", a: ["<h6>", "<h1>", "<head>"], c: 1 },
+                    { q: "What is the correct tag for a paragraph?", a: ["<p>", "<para>", "<paragraph>"], c: 0 },
+                    { q: "Which character is used to indicate an end tag?", a: ["<", "*", "/"], c: 2 },
+                    { q: "How do you add a link to a webpage?", a: ["<link src='...'>", "<a href='...'>", "<url>...<url>"], c: 1 }
+                ]
+            },
+            {
+                category: "CSS Fundamentals",
+                questions: [
+                    { q: "What does CSS stand for?", a: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets"], c: 1 },
+                    { q: "How do you select an element with id 'header'?", a: [".header", "#header", "header"], c: 1 },
+                    { q: "Which property is used to change the background color?", a: ["color", "bgcolor", "background-color"], c: 2 },
+                    { q: "Which property controls the text size?", a: ["font-style", "text-size", "font-size"], c: 2 },
+                    { q: "What is Tailwind?", a: ["A CSS Preprocessor", "A JavaScript Library", "A Utility-First CSS Framework"], c: 2 }
+                ]
+            },
+            {
+                category: "JavaScript Essentials",
+                questions: [
+                    { q: "Inside which HTML element do we put the JavaScript?", a: ["<js>", "<script>", "<javascript>"], c: 1 },
+                    { q: "How do you declare a variable that will not change?", a: ["let", "var", "const"], c: 2 },
+                    { q: "What is the correct way to write an IF statement?", a: ["if i = 5 then", "if (i == 5)", "if i == 5"], c: 1 },
+                    { q: "How does a 'for' loop start?", a: ["for (i = 0; i <= 5; i++)", "for i = 1 to 5", "for (i <= 5; i++)"], c: 0 },
+                    { q: "What does `document.getElementById()` do?", a: ["Creates a new element", "Gets an element by its CSS class", "Gets an element by its unique ID"], c: 2 }
+                ]
+            },
+            {
+                category: "React & Modern Dev",
+                questions: [
+                    { q: "What company developed React?", a: ["Google", "Facebook", "Microsoft"], c: 1 },
+                    { q: "What is JSX?", a: ["JavaScript XML", "A new programming language", "A CSS preprocessor"], c: 0 },
+                    { q: "What command creates a production build in a React app?", a: ["npm start", "npm build", "npm run build"], c: 2 },
+                    { q: "What is Firebase primarily used for?", a: ["Styling websites", "Backend services like databases", "Creating 3D graphics"], c: 1 },
+                    { q: "What is a 'component' in React?", a: ["A single HTML file", "A reusable piece of UI", "A CSS style rule"], c: 1 }
+                ]
+            },
+            {
+                category: "AI in Development",
+                questions: [
+                    { q: "Which AI is known as your 'AI pair programmer' in VS Code?", a: ["Gemini", "GitHub Copilot", "ChatGPT"], c: 1 },
+                    { q: "What does API stand for?", a: ["Application Programming Interface", "Advanced Program Interaction", "Apple Programming Interface"], c: 0 },
+                    { q: "Which AI is from Google and can handle multimodal inputs?", a: ["Grok", "Gemini", "Copilot"], c: 1 },
+                    { q: "The term 'LLM' in AI stands for:", a: ["Large Learning Model", "Long Language Model", "Large Language Model"], c: 2 },
+                    { q: "What is a primary benefit of using AI assistants in coding?", a: ["They write all the code for you", "They can speed up development and help learn", "They replace the need for a browser"], c: 1 }
+                ]
+            }
+        ];
+    }
+    
+    function resetQuizState() {
+        document.getElementById('quiz-start').style.display = 'block';
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('quiz-results').style.display = 'none';
+        currentCategoryIndex = 0;
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswers = [];
+    }
+
+    function startQuiz() {
+        document.getElementById('quiz-start').style.display = 'none';
+        document.getElementById('quiz-results').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        currentCategoryIndex = 0;
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswers = [];
+        displayQuestion();
+    }
+
+    function displayQuestion() {
+        checkedAnswer = false;
+        document.getElementById('check-answer-btn').disabled = false;
+        const categoryData = quizData[currentCategoryIndex];
+        const questionData = categoryData.questions[currentQuestionIndex];
+        
+        document.getElementById('quiz-category').textContent = categoryData.category;
+        document.getElementById('quiz-progress').textContent = `Question ${currentQuestionIndex + 1} of ${categoryData.questions.length}`;
+        
+        const container = document.getElementById('quiz-questions-container');
+        container.innerHTML = `
+            <p class="text-xl mb-4">${questionData.q}</p>
+            <div class="space-y-2">
+                ${questionData.a.map((answer, index) => `
+                    <button class="answer-btn w-full text-left p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition" data-index="${index}">
+                        ${answer}
+                    </button>
+                `).join('')}
+            </div>
+        `;
+
+        document.querySelectorAll('.answer-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (checkedAnswer) return;
+                document.querySelectorAll('.answer-btn').forEach(b => b.classList.remove('selected'));
+                e.currentTarget.classList.add('selected');
+                document.getElementById('next-question-btn').disabled = false;
+            });
+        });
+        
+        document.getElementById('next-question-btn').disabled = true;
+    }
+
+    function nextQuestion() {
+        const selectedButton = document.querySelector('.answer-btn.selected');
+        if (!selectedButton) return;
+
+        const answerIndex = parseInt(selectedButton.dataset.index);
+        const categoryData = quizData[currentCategoryIndex];
+        const questionData = categoryData.questions[currentQuestionIndex];
+
+        let gotScore = !checkedAnswer && answerIndex === questionData.c;
+        if(gotScore){
+            score++;
+        }
+        
+        userAnswers.push({
+            q: questionData.q,
+            a: questionData.a[answerIndex],
+            correct: questionData.a[questionData.c],
+            isCorrect: gotScore
+        });
+
+        currentQuestionIndex++;
+        if (currentQuestionIndex >= categoryData.questions.length) {
+            currentCategoryIndex++;
+            currentQuestionIndex = 0;
+            if(currentCategoryIndex >= quizData.length) {
+                showResults();
+                return;
+            }
+        }
+        displayQuestion();
+    }
+    
+    function checkAnswer() {
+        if(checkedAnswer) return;
+        checkedAnswer = true;
+        document.getElementById('check-answer-btn').disabled = true;
+        
+        const categoryData = quizData[currentCategoryIndex];
+        const questionData = categoryData.questions[currentQuestionIndex];
+        const correctIndex = questionData.c;
+        
+        document.querySelectorAll('.answer-btn').forEach((btn, index) => {
+            btn.disabled = true;
+            if(index === correctIndex) {
+                 btn.classList.add('bg-green-500', 'text-white');
+            }
+        });
+        
+        document.getElementById('next-question-btn').disabled = false;
+    }
+
+    function showResults() {
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('quiz-results').style.display = 'block';
+
+        const totalQuestions = quizData.reduce((sum, cat) => sum + cat.questions.length, 0);
+        document.getElementById('final-score').textContent = `${score} / ${totalQuestions}`;
+
+        const summaryContainer = document.getElementById('answers-summary');
+        summaryContainer.innerHTML = '<h4>Your Answers:</h4>' + userAnswers.map(ans => `
+            <div class="p-2 rounded ${ans.isCorrect ? 'bg-green-100' : 'bg-red-100'}">
+                <p class="font-bold">${ans.q}</p>
+                <p>You answered: ${ans.a}</p>
+                ${!ans.isCorrect ? `<p>Correct answer: ${ans.correct}</p>` : ''}
+            </div>
+        `).join('');
+    }
+
+</script>
+</body>
+</html>
