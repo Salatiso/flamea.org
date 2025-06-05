@@ -1,213 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flamea Logo Examples</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;700&family=Nunito:wght@400;700&family=Quicksand:wght@500;700&family=Comfortaa:wght@400;700&family=Bebas+Neue&family=Inter:wght@700&family=Merriweather:wght@400;700&family=Lora:wght@400;700&family=Fira+Sans:wght@400;600&family=Roboto:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            padding: 30px;
-            margin: 0;
-        }
-        .logo-container {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 80%;
-            max-width: 500px;
-        }
-        .logo-container h2 {
-            font-family: 'Montserrat', sans-serif;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: #333;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-        .slogan {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.9em;
-            color: #555;
-            margin-top: 8px;
-        }
-
-        /* General Logo Styling */
-        .logo {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        /* Concept 1: The Ascending Flame */
-        .logo-flame .flamea-f {
-            display: inline-block;
-            color: #FFD166; /* Warm Gold */
-            position: relative;
-        }
-        .logo-flame .flamea-f::before { /* Simple flame shape */
-            content: '';
-            position: absolute;
-            bottom: 70%; /* Adjust to position flame */
-            left: 40%;
-            width: 12px;
-            height: 20px;
-            background-color: #F4A261; /* Soft Orange */
-            border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
-            transform: translateX(-50%) rotate(-45deg) scaleY(1.2);
-            opacity: 0.8;
-        }
-        .logo-flame {
-            font-family: 'Montserrat', sans-serif;
-            color: #0A2463; /* Navy Blue */
-        }
-
-        /* Concept 2: The Bridge of Support */
-        .logo-bridge {
-            font-family: 'Nunito', sans-serif;
-            color: #2A9D8F; /* Calming Forest Green */
-            position: relative;
-        }
-        .logo-bridge .bridge-m, .logo-bridge .bridge-e {
-            display: inline-block;
-        }
-        .logo-bridge .bridge-arc {
-            display: inline-block;
-            width: 1ch; /* Adjust width based on font */
-            height: 8px; /* Height of the arc */
-            border-bottom: 4px solid #A8DADC; /* Lighter accent */
-            border-radius: 0 0 8px 8px;
-            position: relative;
-            top: -0.7em; /* Adjust vertical position */
-            margin: 0 -0.1em; /* Adjust spacing */
-        }
-
-
-        /* Concept 3: The Unified Strength */
-        .logo-strength {
-            font-family: 'Bebas Neue', sans-serif; /* Impactful font */
-            color: #343A40; /* Charcoal Grey */
-            letter-spacing: 1px;
-        }
-        .logo-strength .unified-fl { /* Simple "FL" connection idea */
-            color: #E67E22; /* Vibrant Orange */
-        }
-         .logo-strength .interlocking-lines {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-left: 5px;
-            position: relative;
-            top: -2px;
-        }
-        .logo-strength .interlocking-lines span {
-            display: block;
-            position: absolute;
-            height: 3px;
-            background-color: #E67E22;
-            border-radius: 2px;
-        }
-        .logo-strength .interlocking-lines .line1 { width: 100%; top: 0;}
-        .logo-strength .interlocking-lines .line2 { width: 80%; top: 8px; left:10%; }
-        .logo-strength .interlocking-lines .line3 { width: 100%; top: 16px;}
-
-
-        /* Concept 4: The Nurturing Hearth */
-        .logo-hearth {
-            font-family: 'Merriweather Sans', sans-serif; /* Softer, modern serif feel */
-            color: #707070; /* Warm Grey */
-        }
-        .logo-hearth .hearth-a {
-            position: relative;
-            display: inline-block;
-        }
-        .logo-hearth .hearth-a::after { /* Subtle hearth-like curve inside 'a' */
-            content: '';
-            position: absolute;
-            bottom: 0.15em; /* Adjust position */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0.5em; /* Adjust size */
-            height: 0.25em;
-            background-color: #FDEBD0; /* Light warm orange */
-            border-radius: 50% 50% 0 0;
-            opacity: 0.9;
-        }
-
-        /* Concept 5: The Clear Path Forward */
-        .logo-path {
-            font-family: 'Roboto', sans-serif; /* Clean, legible */
-            color: #007BFF; /* Professional Blue */
-        }
-        .logo-path .path-a {
-            position: relative;
-            display: inline-block;
-        }
-        .logo-path .path-a::after { /* Arrow-like accent */
-            content: '›'; /* Using a character for simplicity */
-            font-weight: bold;
-            color: #28A745; /* Bright Green */
-            position: absolute;
-            right: -0.4em; /* Adjust position */
-            top: 50%;
-            transform: translateY(-50%) scaleX(0.8);
-            font-size: 1.2em;
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <title>Flamea: Empowering Men, Strengthening Families</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body, html { margin:0; padding:0; height:100%; font-family: 'Segoe UI', Arial, sans-serif; background: #f7f5f0; }
+    .container { display: flex; flex-direction: column; height: 100vh; }
+    .header { display: flex; align-items: center; justify-content: space-between; padding: 2rem; background: #fff; box-shadow: 0 2px 8px #eee; }
+    .logo { font-size: 2.5rem; font-weight: bold; letter-spacing: 2px; color: #e57300; }
+    .slogan { font-size: 1.2rem; color: #444; font-style: italic; margin-left: 1rem;}
+    .nav { display: flex; gap: 2rem; }
+    .nav a { text-decoration: none; color: #333; font-weight: 500; }
+    .main { flex: 1; display: flex; flex-direction: row; gap: 2rem; padding: 2rem; }
+    .tiles { flex: 2; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+    .tile { flex: 1 1 45%; min-width: 260px; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px #e0e0e0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; cursor: pointer; transition: box-shadow 0.2s;}
+    .tile:hover { box-shadow: 0 8px 24px #e57300aa; }
+    .tile-icon { font-size: 2.5rem; margin-bottom: 1rem; color: #e57300; }
+    .tile-title { font-size: 1.2rem; font-weight: bold; color: #333; }
+    .tile-desc { font-size: 1rem; color: #666; margin-top: 0.5rem; text-align: center;}
+    .sidebar { flex: 1; display: flex; flex-direction: column; gap: 2rem; }
+    .timeline { background: #fff; border-radius: 16px; padding: 1rem; box-shadow: 0 2px 8px #e0e0e0; }
+    .timeline-title { font-weight: bold; margin-bottom: 1rem; color: #e57300; }
+    .timeline-content { font-size: 0.95rem; color: #444; }
+    .podcast { background: #fff; border-radius: 16px; padding: 1rem; box-shadow: 0 2px 8px #e0e0e0; display: flex; flex-direction: column; align-items: center; }
+    .podcast-title { font-weight: bold; color: #e57300; margin-bottom: 0.5rem; }
+    .community-btn { margin-top: 2rem; background: #e57300; color: #fff; border: none; border-radius: 24px; padding: 1rem 2rem; font-size: 1.1rem; cursor: pointer; font-weight: bold; transition: background 0.2s;}
+    .community-btn:hover { background: #c95d00; }
+    @media (max-width: 900px) {
+      .main { flex-direction: column; }
+      .tiles { flex-wrap: wrap; }
+      .sidebar { flex-direction: row; gap: 1rem; }
+    }
+    @media (max-width: 600px) {
+      .main { flex-direction: column; padding: 0.5rem;}
+      .tiles { flex-direction: column; gap: 1rem;}
+      .tile { min-width: 90vw; }
+      .sidebar { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="logo-container">
-        <h2>Concept 1: The Ascending Flame</h2>
-        <div class="logo logo-flame">
-            <span class="flamea-f">F</span>lamea
-        </div>
-        <div class="slogan">Flamea: Empowering Men, Strengthening Families.</div>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        FLAMEA
+        <span class="slogan">Empowering Men, Strengthening Families</span>
+      </div>
+      <nav class="nav">
+        <a href="#">Home</a>
+        <a href="#">Tools</a>
+        <a href="#">Resources</a>
+        <a href="#">Books</a>
+        <a href="#">Community</a>
+        <a href="#">Login</a>
+      </nav>
     </div>
-
-    <div class="logo-container">
-        <h2>Concept 2: The Bridge of Support</h2>
-        <div class="logo logo-bridge">
-            Fla<span class="bridge-m">m</span><span class="bridge-arc"></span><span class="bridge-e">e</span>a
+    <div class="main">
+      <div class="tiles">
+        <div class="tile" onclick="alert('Coming soon: Parental Evaluation Tool!')">
+          <div class="tile-icon">👨‍👧‍👦</div>
+          <div class="tile-title">Parental Evaluation Tool</div>
+          <div class="tile-desc">Assess and improve your parenting journey with interactive, culturally-aware tools.</div>
         </div>
-        <div class="slogan">Flamea: Empowering Men, Strengthening Families.</div>
-    </div>
-
-    <div class="logo-container">
-        <h2>Concept 3: The Unified Strength</h2>
-        <div class="logo logo-strength">
-            <span class="unified-fl">FL</span>AMEA
-            <div class="interlocking-lines">
-                <span class="line1"></span><span class="line2"></span><span class="line3"></span>
-            </div>
+        <div class="tile" onclick="alert('Coming soon: Parenting Plan Builder!')">
+          <div class="tile-icon">📋</div>
+          <div class="tile-title">Parenting Plan Builder</div>
+          <div class="tile-desc">Step-by-step wizard for planning from conception to co-parenting, tailored for South Africa.</div>
         </div>
-        <div class="slogan">Flamea: Empowering Men, Strengthening Families.</div>
-    </div>
-
-    <div class="logo-container">
-        <h2>Concept 4: The Nurturing Hearth</h2>
-        <div class="logo logo-hearth">
-            Fl<span class="hearth-a">a</span>mea
+        <div class="tile" onclick="alert('Coming soon: Dispute Tracker!')">
+          <div class="tile-icon">⚖️</div>
+          <div class="tile-title">Dispute Tracker</div>
+          <div class="tile-desc">Track and resolve disputes with guidance rooted in law, culture, and best practices.</div>
         </div>
-        <div class="slogan">Flamea: Empowering Men, Strengthening Families.</div>
-    </div>
-
-    <div class="logo-container">
-        <h2>Concept 5: The Clear Path Forward</h2>
-        <div class="logo logo-path">
-            Flame<span class="path-a">a</span>
+        <div class="tile" onclick="alert('Coming soon: Document Repository!')">
+          <div class="tile-icon">🗄️</div>
+          <div class="tile-title">Document Repository</div>
+          <div class="tile-desc">Securely store, access, and update your parenting documents anytime.</div>
         </div>
-        <div class="slogan">Flamea: Empowering Men, Strengthening Families.</div>
+        <div class="tile" onclick="alert('Coming soon: Knowledge Base!')">
+          <div class="tile-icon">📚</div>
+          <div class="tile-title">Knowledge Base</div>
+          <div class="tile-desc">Read books, research, and guides on parenting, Xhosa and South African traditions.</div>
+        </div>
+        <div class="tile" onclick="alert('Coming soon: Community Chat!')">
+          <div class="tile-icon">💬</div>
+          <div class="tile-title">Community</div>
+          <div class="tile-desc">Join discussions, share experiences, and moderate content with peer voting.</div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="timeline">
+          <div class="timeline-title">Parenting in SA: Timeline</div>
+          <div class="timeline-content">
+            <strong>Precolonial:</strong> Ubuntu, extended family, rites of passage.<br>
+            <strong>Colonial/Modern:</strong> Legal shifts, new roles, evolving fatherhood.<br>
+            <strong>Today:</strong> Equal rights, new tools, community support.<br>
+            <em>Click to explore full interactive timeline.</em>
+          </div>
+        </div>
+        <div class="podcast">
+          <div class="podcast-title">🎧 Flamea Podcast</div>
+          <audio controls style="width:100%;">
+            <source src="your-podcast.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <div style="font-size:0.95rem; color:#666; margin-top:0.5rem;">Listen to real stories, expert advice, and new episodes weekly.</div>
+        </div>
+        <button class="community-btn" onclick="alert('Coming soon: Community Hub!')">Join the Community</button>
+      </div>
     </div>
-
+  </div>
 </body>
 </html>
