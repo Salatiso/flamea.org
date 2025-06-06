@@ -23,10 +23,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 80px 20px 40px; /* Add top padding for fixed header */
+            padding: 80px 20px 20px; /* Adjusted top padding for fixed header, reduced bottom */
             box-sizing: border-box;
-            position: relative; /* For absolute positioned elements if any */
-            overflow-y: auto; /* Allow individual section scroll if content overflows */
+            position: relative; 
+            overflow-y: auto; 
         }
         .full-screen-section.active {
             display: flex;
@@ -38,7 +38,7 @@
             font-weight: 800; 
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        .sazilife-logo-main { font-size: 4rem; } /* Larger for Hero */
+        .sazilife-logo-main { font-size: 4rem; } 
         .sazilife-logo-header { font-size: 1.75rem; }
 
         .sazilife-logo-base .sazi-name { color: #2F855A; /* Dark Green (Aloe Inspired) */ }
@@ -59,10 +59,10 @@
         /* --- End SAZI Logo Style --- */
 
         .hero-section {
+            /* Transkei-inspired gradient with subtle aloe/geometric SVG pattern */
             background: linear-gradient(135deg, rgba(64, 88, 49, 0.85), rgba(47, 133, 90, 0.9)), /* Dark Olive/Aloe to Forest Green */
-                        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4E1D4' fill-opacity='0.08'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z'/%3E%3Cpath d='M0 40h40v40H0zM40 0h40v40H40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"), /* Subtle geometric/traditional pattern */
-                        url('https://placehold.co/1920x1080/8FBC8F/4A3B31?text=Transkei+Inspired+Landscape&font=montserrat') no-repeat center center;
-            background-size: auto, cover;
+                        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='aloe' patternUnits='userSpaceOnUse' width='50' height='50' patternTransform='scale(1) rotate(30)'%3E%3Cpath d='M25 0 L50 25 L25 50 L0 25 Z' fill='%23D4E1D4' fill-opacity='0.06'/%3E%3Cpath d='M12.5 12.5 L37.5 12.5 L25 37.5 Z' fill='%23B2D8B2' fill-opacity='0.05'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23aloe)'/%3E%3C/svg%3E");
+            background-size: auto, auto;
             color: white;
         }
 
@@ -138,14 +138,14 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Push button to bottom */
+            justify-content: space-between; 
         }
         .feature-tile:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 15px 30px rgba(0,0,0,0.12);
         }
         .feature-icon {
-            font-size: 3rem; /* Adjusted */
+            font-size: 3rem; 
             margin-bottom: 1rem;
             color: #556B2F; /* Dark Olive Green (Aloe) */
         }
@@ -165,24 +165,54 @@
             background-color: #F0E68C; color: #4A3B31; padding: 0.25rem 0.75rem; border-radius: 0.375rem; font-size: 0.8rem; font-weight:600; margin-top: 0.5rem; display:inline-block;
         }
 
-
-        .timeline-section-bg { background-color: #D7CCC8; /* Light Brownish Gray */ }
-        .timeline-item { /* For Education Timeline */
-            background-color: rgba(255,255,255,0.85); 
+        .timeline-section-bg { background-color: #EFEBE9; /* Brownish Gray, like Flamea's dark accent but lighter */ }
+        .timeline-item { 
+            background-color: rgba(255,255,255,0.7); /* More opaque for better readability */
             padding: 1.5rem;
             border-radius: 0.75rem;
             margin-bottom: 1.5rem;
-            border-left: 5px solid #2F855A; /* Dark Green */
+            border-left: 5px solid #556B2F; /* Aloe Green for timeline item accents */
             box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+            cursor: pointer; /* Add cursor pointer for all timeline items */
+            transition: background-color 0.3s;
         }
-        .timeline-item h4 { color: #4A3B31; font-weight: 700; font-size: 1.25rem; margin-bottom: 0.5rem; }
-        .timeline-item .date { font-size: 0.8rem; color: #78350F; margin-bottom: 0.5rem; font-style: italic;}
-        .timeline-item p { color: #5D4037; line-height: 1.6; }
-        .timeline-item .expanded-content { display: none; margin-top: 1rem; border-top: 1px dashed #BCAAA4; padding-top: 1rem; }
+        .timeline-item:hover {
+             background-color: rgba(255,255,255,0.9);
+        }
+        .timeline-item h4 { color: #4A3B31; font-weight: 700; font-size: 1.15rem; margin-bottom: 0.25rem; } /* Slightly smaller for a denser timeline */
+        .timeline-item .date { font-size: 0.75rem; color: #78350F; margin-bottom: 0.5rem; font-style: italic;}
+        .timeline-item p { color: #5D4037; line-height: 1.5; font-size: 0.85rem; } /* Slightly smaller line height */
+        .timeline-item .expanded-content { display: none; margin-top: 0.75rem; border-top: 1px dashed #BCAAA4; padding-top: 0.75rem; }
         .timeline-item.expanded .expanded-content { display: block; }
         .timeline-item .read-more-btn {
-            font-size: 0.85rem; color: #2F855A; font-weight: 600; text-decoration: underline; cursor: pointer; margin-top: 0.5rem; display: inline-block;
+            font-size: 0.8rem; color: #2F855A; font-weight: 600; text-decoration: underline; cursor: pointer; margin-top: 0.5rem; display: inline-block;
         }
+        /* Horizontal Carousel Styling (Conceptual for HTML - JS needed for functionality) */
+        .education-timeline-carousel-container {
+            width: 100%;
+            max-width: 1000px; /* Adjust as needed */
+            margin: 2rem auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .education-timeline-track {
+            display: flex;
+            /* transition: transform 0.5s ease-in-out; */ /* For JS animation */
+            /* width: calc(100% * NUMBER_OF_SLIDES); */ /* Set by JS based on items */
+        }
+        .education-timeline-slide {
+            min-width: 80%; /* Show more than one item if space allows, adjust */
+            max-width: 300px; /* Or a fixed width per item */
+            padding: 0.5rem;
+            box-sizing: border-box;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+         .education-timeline-slide .timeline-item {
+            height: 100%; /* Ensure consistent height for carousel items */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+         }
 
 
         .fixed-header {
@@ -190,44 +220,24 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
-            background-color: rgba(240, 253, 244, 0.95); /* Light Aloe Green with opacity */
-            backdrop-filter: blur(8px);
+            z-index: 1000; /* Ensure header is above other content */
+            background-color: rgba(240, 253, 244, 0.97); /* Light Aloe Green with more opacity */
+            backdrop-filter: blur(10px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-        .main-content-wrapper { /* Replaces .main-area to avoid conflict */
-            padding-top: 75px; /* Adjust based on header height */
-            /* No flex-grow here, sections manage their own height */
+        .main-content-wrapper { 
+            padding-top: 75px; 
         }
 
         .clickable-tile-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Slightly smaller min for more items */
+            gap: 1.5rem; /* Adjusted gap */
             width: 100%;
-            max-width: 1200px; /* Max width for content within sections */
+            max-width: 1200px; 
         }
         
-        .carousel-container { /* For Book/Resource Carousel */
-            width: 100%;
-            max-width: 900px;
-            overflow: hidden;
-            position: relative;
-            background: white;
-            padding: 20px;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-        }
-        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
-        .carousel-slide { min-width: 100%; box-sizing: border-box; padding: 1rem; text-align: center; }
-        .carousel-slide img { max-width: 180px; height: auto; border-radius: 0.5rem; margin: 0 auto 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .carousel-slide h4 { color: #4A3B31; font-size: 1.1rem; }
-        .carousel-slide p { font-size: 0.85rem; color: #706156;}
-        .carousel-buttons { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 10px; box-sizing: border-box;}
-        .carousel-buttons button { background-color: rgba(47, 133, 90, 0.7); color: white; border: none; padding: 0.5rem; border-radius: 50%; cursor: pointer; z-index: 10; }
-        .carousel-buttons button i { font-size: 1.2rem; vertical-align: middle;}
-
-        .global-floating-button { /* For Podcast & Chatbot */
+        .global-floating-button { 
             position: fixed;
             bottom: 25px;
             background-color: #D2691E; /* Terracotta */
@@ -250,27 +260,26 @@
         #sazi-chatbot-toggle { right: 95px; background-color: #556B2F; /* Aloe Green */}
         #sazi-chatbot-toggle:hover { background-color: #2F855A; }
 
-         /* Chatbot Window (Styled like Flamea example but with Sazi colors) */
         #sazi-chat-window {
             position: fixed;
             width: 320px;
             max-height: 450px;
-            background-color: #FFF7ED; /* Light cream */
+            background-color: #FFF7ED; 
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            bottom: 90px; /* Above toggle button */
+            bottom: 90px; 
             right: 25px;
             z-index: 999;
             opacity: 0; transform: translateY(10px); pointer-events: none;
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
         #sazi-chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
-        .chat-hidden { display: none !important; } /* For initial state */
+        .chat-hidden { display: none !important; } 
         #sazi-chat-header {
-            background-color: #556B2F; /* Aloe Green */
+            background-color: #556B2F; 
             color: white;
             padding: 10px 15px;
             font-weight: 600;
@@ -279,26 +288,26 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         #sazi-chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
-        #sazi-chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #F5EFE6; /* Light beige/sand */ }
+        #sazi-chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #F5EFE6; }
         #sazi-chat-output p { margin-bottom: 0.8rem; line-height: 1.4; color: #4A3B31;}
-        #sazi-chat-output p strong { color: #2F855A; } /* Dark Green for bot name */
-        #sazi-chat-output p strong.user-name { color: #D2691E; } /* Terracotta for user name */
+        #sazi-chat-output p strong { color: #2F855A; } 
+        #sazi-chat-output p strong.user-name { color: #D2691E; } 
         #sazi-chat-input-container { display: flex; border-top: 1px solid #D7CCC8; padding: 10px; background-color: #FFF7ED; }
         #sazi-chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #D7CCC8; border-radius: 6px; margin-right: 8px; font-family: 'Open Sans', sans-serif; }
         #sazi-chat-send { background-color: #556B2F; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; }
         #sazi-chat-send:hover { background-color: #2F855A; }
          .language-selector-fixed select {
-            background-color: #556B2F; /* Dark Olive Green */
+            background-color: #556B2F; 
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 0.375rem;
             border: none;
-            appearance: none; /* Removes default system appearance */
+            appearance: none; 
             cursor: pointer;
         }
         .language-selector-fixed select:focus {
             outline: none;
-            box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.5); /* Terracotta focus ring */
+            box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.5); 
         }
 
     </style>
@@ -306,16 +315,16 @@
 <body>
 
     <header class="fixed-header">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <a href="#hero" class="sazilife-logo-header" onclick="showSaziSection('hero')">
                 <span class="sazi-name">Saz</span><span class="sazi-dot">i</span><span class="sazi-life">.life</span>
             </a>
-            <nav class="hidden md:flex space-x-5 items-center">
-                <a href="#hero" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold" onclick="showSaziSection('hero')" data-translate="home_nav">Home</a>
-                <a href="#modules" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold" onclick="showSaziSection('modules')" data-translate="modules_nav">Modules</a>
-                <a href="#our-story" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold" onclick="showSaziSection('our-story')" data-translate="timeline_nav">Our Story</a>
-                <a href="#sazi-guide" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold" onclick="showSaziSection('sazi-guide')" data-translate="guide_nav">Sazi Guide</a>
-                <a href="#community" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold" onclick="showSaziSection('community')" data-translate="community_nav">Community</a>
+            <nav class="hidden md:flex space-x-4 items-center">
+                <a href="#hero" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('hero')" data-translate="home_nav">Home</a>
+                <a href="#modules" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('modules')" data-translate="modules_nav">Modules</a>
+                <a href="#our-story" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('our-story')" data-translate="timeline_nav">Our Story</a>
+                <a href="#sazi-guide" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('sazi-guide')" data-translate="guide_nav">Sazi Guide</a>
+                <a href="#community" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('community')" data-translate="community_nav">Community</a>
                  <div class="language-selector-fixed">
                      <select id="language-switcher-desktop-transkei" onchange="changeLanguage(this.value)">
                         <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
@@ -336,7 +345,7 @@
             <a href="#community" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 font-semibold" onclick="showSaziSection('community'); toggleSaziMobileMenu();" data-translate="community_nav">Community</a>
             <div class="px-6 py-3 language-selector-fixed">
                 <select id="language-switcher-mobile-transkei" class="w-full" onchange="changeLanguage(this.value)">
-                    <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
+                     <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
                 </select>
             </div>
             <a href="#" class="block px-6 py-3 text-green-700 hover:bg-gray-100 font-bold" data-translate="register_login_nav">Register/Login</a>
@@ -369,7 +378,7 @@
         <section id="modules" class="full-screen-section bg-light-earth">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="section-title mb-12" data-translate="discover_modules_title">Discover Our Learning Worlds</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 clickable-tile-container">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 clickable-tile-container">
                     <!-- Sazi isiXhosa -->
                     <div class="feature-tile" onclick="toggleSaziTile(this)">
                         <i class="fas fa-comments feature-icon text-blue-600"></i>
@@ -427,64 +436,114 @@
 
         <!-- Our Story / Education Timeline Section -->
         <section id="our-story" class="full-screen-section timeline-section-bg">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-10" data-translate="our_story_timeline_title">Our Story: The Journey of Learning</h2>
-                <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed" data-translate="timeline_intro_text">
-                    Sazi.life is inspired by the enduring human quest for knowledge. From ancient oral traditions to the digital age, education has shaped civilizations. This timeline traces this incredible journey, highlighting how informal learning, formal schooling, and cultural wisdom have evolved globally and within South Africa, influencing our mission to make learning accessible and meaningful for all.
-                </p>
-                <div class="space-y-6 max-w-3xl mx-auto text-left">
-                    <!-- Detailed Timeline Items will go here -->
-                    <div class="timeline-item" onclick="toggleSaziTimelineItem(this)">
-                        <h4 data-translate="timeline_prehistory_title">Ancient Roots: Informal Learning (Prehistory - c. 3000 BCE)</h4>
-                        <p class="date" data-translate="timeline_prehistory_date">Global & Africa</p>
-                        <div class="expanded-content">
-                            <p data-translate="timeline_prehistory_desc">Knowledge passed through oral traditions, storytelling, imitation, and apprenticeship within families and small communities. Khoisan in Southern Africa master survival skills, rock art, and environmental knowledge. Bantu-speaking peoples develop agricultural techniques and iron-working through communal learning during their migrations.</p>
-                            <a href="https://www.britannica.com/topic/education/History-of-education" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="timeline-item" onclick="toggleSaziTimelineItem(this)">
-                        <h4 data-translate="timeline_early_formal_title">Dawn of Formal Education (c. 3000 BCE - 500 CE)</h4>
-                        <p class="date" data-translate="timeline_early_formal_date">Egypt, Mesopotamia, Greece, Rome, India, China</p>
-                        <div class="expanded-content">
-                            <p data-translate="timeline_early_formal_desc">Scribal schools in Egypt and Mesopotamia. Philosophical academies in Greece (Plato, Aristotle). Roman emphasis on rhetoric and law. Gurukuls in India. Early imperial academies in China. Focus on literacy, numeracy, philosophy, and governance for elite classes.</p>
-                            <a href="https://en.wikipedia.org/wiki/History_of_education" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                        </div>
-                    </div>
-                     <div class="timeline-item" onclick="toggleSaziTimelineItem(this)">
-                        <h4 data-translate="timeline_sa_1652_title">Colonial Encounter & Early Formal Schooling in SA (1652 - 1800s)</h4>
-                        <p class="date" data-translate="timeline_sa_1652_date">South Africa</p>
-                        <div class="expanded-content">
-                            <p data-translate="timeline_sa_1652_desc">Arrival of Dutch settlers (1652). First formal school at the Cape primarily for VOC children and enslaved individuals. Missionary societies later establish schools, introducing Western education and Christianity, often clashing with indigenous learning systems. Limited access for indigenous populations.</p>
-                            <a href="https://sahistory.org.za/article/history-education-south-africa" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                        </div>
-                    </div>
-                     <div class="timeline-item" onclick="toggleSaziTimelineItem(this)">
-                        <h4 data-translate="timeline_industrial_title">Industrial Revolution & Mass Schooling (18th - 19th Centuries)</h4>
-                        <p class="date" data-translate="timeline_industrial_date">Global</p>
-                        <div class="expanded-content">
-                            <p data-translate="timeline_industrial_desc">Rise of factories creates demand for a disciplined, literate workforce. Spread of state-sponsored elementary education in Europe and North America. Focus on standardization, discipline, and basic skills. Child labor laws begin to emerge, pushing children into schools.</p>
-                             <a href="https://www.horizoneducational.com/who-invented-school-a-history-of-classroom-education/t1504?currency=usd" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                        </div>
-                    </div>
-                     <div class="timeline-item" onclick="toggleSaziTimelineItem(this)">
-                        <h4 data-translate="timeline_sa_segregation_title">Segregation & Bantu Education (1900s - 1994)</h4>
-                        <p class="date" data-translate="timeline_sa_segregation_date">South Africa</p>
-                        <div class="expanded-content">
-                            <p data-translate="timeline_sa_segregation_desc">Formalization of racially segregated education. The Bantu Education Act (1953) institutionalizes inferior education for Black South Africans, designed to limit opportunities. Resistance from communities and alternative education initiatives (e.g., night schools, community schools) emerge.</p>
-                             <a href="https://sahistory.org.za/article/bantu-education-act-no-47-1953" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="timeline-item" onclick="toggleSaziTimelineItem(this)">
-                        <h4 data-translate="timeline_post_apartheid_title">Post-Apartheid & Digital Age (1994 - Present)</h4>
-                        <p class="date" data-translate="timeline_post_apartheid_date">Global & South Africa</p>
-                        <div class="expanded-content">
-                            <p data-translate="timeline_post_apartheid_desc">SA transitions to democracy, aiming to redress educational imbalances. Global rise of internet and digital technologies transforms access to information. Emergence of online learning, homeschooling movements gain traction. Focus on lifelong learning, skills development, and digital literacy. Sazi.life is born from this context, seeking to bridge gaps and empower through accessible, holistic education.</p>
-                            <a href="https://www.iowapbs.org/iowapathways/mypath/2741/formal-education-system" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                        </div>
-                    </div>
-                    <!-- Add more items based on research -->
+            <div class="container mx-auto px-4 md:px-6 text-center">
+                <h2 class="section-title mb-8" data-translate="our_story_timeline_title">Our Story: The Journey of Learning</h2>
+                <div class="text-left max-w-4xl mx-auto bg-white/80 p-6 rounded-lg shadow-md">
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed" data-translate="our_story_intro_father">
+                        Sazi.life is woven from a father's dream—a dream to provide his son, and indeed all children, with an education that is not only accessible but deeply enriching and empowering. It's a vision to equip the young with the tools to navigate an ever-changing world, while also ensuring that the wisdom of older generations remains vibrant and relevant, allowing them to keep pace and contribute meaningfully. This platform seeks to honor the timeless tradition of informal, family-centered learning, augmented by the best of modern educational approaches.
+                    </p>
+                    <p class="text-md text-gray-600 mb-8 leading-relaxed" data-translate="timeline_intro_text">
+                        From the earliest campfires where stories became lessons, to the vast digital classrooms of today, the human quest for knowledge is a constant. This timeline explores that journey, highlighting how formal and informal education, across diverse cultures and epochs, has shaped our understanding and inspired Sazi.life's mission to make holistic learning a reality for every family.
+                    </p>
                 </div>
-                <p class="mt-8 text-sm text-gray-600" data-translate="timeline_note">(This is a conceptual timeline. The final version will be more detailed and interactive.)</p>
+
+                <!-- Timeline Content (Static for now, to become horizontal carousel) -->
+                <div class="education-timeline-carousel-container mt-8">
+                    <div class="education-timeline-track flex overflow-x-auto space-x-4 pb-4"> {/* Basic scroll for HTML mockup */}
+                        
+                        <div class="education-timeline-slide">
+                            <div class="timeline-item">
+                                <h4 data-translate="timeline_prehistory_title">Ancient Roots: Informal Learning</h4>
+                                <p class="date" data-translate="timeline_prehistory_date">Prehistory - c. 3000 BCE (Global & Africa)</p>
+                                <p data-translate="timeline_prehistory_desc">Knowledge passed via oral traditions, storytelling, imitation within families. Khoisan in Southern Africa master survival skills, rock art. Bantu peoples develop agriculture and iron-working communally.</p>
+                                <div class="expanded-content hidden">
+                                    <p>This era was foundational, with learning deeply embedded in daily life and survival. Elders were the primary keepers and transmitters of knowledge. For instance, Khoisan hunting techniques or Bantu agricultural cycles were passed down generationally, ensuring community survival.</p>
+                                    <a href="https://www.britannica.com/topic/education/History-of-education" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
+                                </div>
+                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Toggle Details</button>
+                            </div>
+                        </div>
+
+                        <div class="education-timeline-slide">
+                            <div class="timeline-item">
+                                <h4 data-translate="timeline_early_formal_title">Dawn of Formal Education</h4>
+                                <p class="date" data-translate="timeline_early_formal_date">c. 3000 BCE - 500 CE (Egypt, Greece, India, China)</p>
+                                <p data-translate="timeline_early_formal_desc">Scribal schools in Egypt/Mesopotamia. Greek academies (Plato). Roman rhetoric. Indian Gurukuls. Chinese imperial academies. Focus on literacy, philosophy for elites.</p>
+                                <div class="expanded-content hidden">
+                                    <p>These early formal systems, while often exclusive, laid the groundwork for structured curricula and specialized knowledge transmission. They focused on developing skills for governance, religious practice, and intellectual pursuits, marking a shift from purely experiential learning.</p>
+                                    <a href="https://en.wikipedia.org/wiki/History_of_education" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
+                                </div>
+                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Toggle Details</button>
+                            </div>
+                        </div>
+
+                        <div class="education-timeline-slide">
+                            <div class="timeline-item">
+                                <h4 data-translate="timeline_sa_indigenous_title">Indigenous SA Education (Pre-1652)</h4>
+                                <p class="date" data-translate="timeline_sa_indigenous_date">Southern Africa</p>
+                                <p data-translate="timeline_sa_indigenous_desc">Khoisan pass down ecological wisdom. Nguni/Sotho-Tswana groups use initiation rites (ulwaluko, bojale) for moral, social, and practical skills training. Knowledge is communal and experiential.</p>
+                                <div class="expanded-content hidden">
+                                    <p>Learning was integrated with life stages and community roles. For example, Xhosa initiation schools taught not just tradition but also leadership, responsibility, and community law, preparing youth for adulthood within their specific cultural context.</p>
+                                    <a href="https://sahistory.org.za/article/education-south-africa-pre-colonial-times" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
+                                </div>
+                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Toggle Details</button>
+                            </div>
+                        </div>
+
+                        <div class="education-timeline-slide">
+                            <div class="timeline-item">
+                                <h4 data-translate="timeline_sa_colonial_title">Colonial Schooling in SA</h4>
+                                <p class="date" data-translate="timeline_sa_colonial_date">1652 - 1800s (South Africa)</p>
+                                <p data-translate="timeline_sa_colonial_desc">Dutch establish first Cape school. Missionary schools introduce Western education, often undermining indigenous systems. Access is limited and unequal.</p>
+                                <div class="expanded-content hidden">
+                                    <p>The focus of early colonial education was often religious conversion and basic literacy for administrative or labor purposes. This period marked a significant disruption to indigenous learning patterns and the beginning of a dual, unequal educational landscape.</p>
+                                    <a href="https://sahistory.org.za/article/history-education-south-africa" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
+                                </div>
+                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Toggle Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="education-timeline-slide">
+                             <div class="timeline-item">
+                                <h4 data-translate="timeline_mass_schooling_title">Rise of Mass Schooling</h4>
+                                <p class="date" data-translate="timeline_mass_schooling_date">19th Century (Global)</p>
+                                <p data-translate="timeline_mass_schooling_desc">Industrial Revolution fuels need for a literate workforce. State-sponsored elementary education spreads in Europe/N. America. Focus on standardization and discipline.</p>
+                                 <div class="expanded-content hidden">
+                                    <p>This era saw the birth of the "factory model" of schooling, designed to produce compliant workers. While it increased literacy, it often devalued individual learning styles and practical, informal knowledge.</p>
+                                    <a href="https://www.horizoneducational.com/who-invented-school-a-history-of-classroom-education/t1504?currency=usd" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
+                                </div>
+                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Toggle Details</button>
+                            </div>
+                        </div>
+
+                        <div class="education-timeline-slide">
+                            <div class="timeline-item">
+                                <h4 data-translate="timeline_bantu_edu_title">Segregation & Bantu Education</h4>
+                                <p class="date" data-translate="timeline_bantu_edu_date">1900s - 1994 (South Africa)</p>
+                                <p data-translate="timeline_bantu_edu_desc">Racially segregated education formalized. Bantu Education Act (1953) creates inferior system for Black South Africans. Community resistance and alternative education efforts grow.</p>
+                                <div class="expanded-content hidden">
+                                    <p>This period represents a dark chapter where education was explicitly used as a tool of oppression and social control, severely limiting opportunities for the majority and deeply impacting generations.</p>
+                                     <a href="https://sahistory.org.za/article/bantu-education-act-no-47-1953" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
+                                </div>
+                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Toggle Details</button>
+                            </div>
+                        </div>
+                         <div class="education-timeline-slide">
+                            <div class="timeline-item">
+                                <h4 data-translate="timeline_digital_age_title">Post-Apartheid & Digital Era</h4>
+                                <p class="date" data-translate="timeline_digital_age_date">1994 - Present (Global & SA)</p>
+                                <p data-translate="timeline_digital_age_desc">SA democratizes, aims to fix educational imbalances. Internet & tech transform information access. Rise of online learning, homeschooling. Sazi.life emerges.</p>
+                                <div class="expanded-content hidden">
+                                    <p>The digital age offers unprecedented opportunities for accessible learning but also presents challenges in bridging the digital divide. Sazi.life's mission is to leverage these tools to empower all learners, honoring both traditional and modern approaches.</p>
+                                     <a href="https://www.iowapbs.org/iowapathways/mypath/2741/formal-education-system" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
+                                </div>
+                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Toggle Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Carousel Buttons if implementing JS carousel later -->
+                </div>
+                <p class="mt-8 text-sm text-gray-600" data-translate="timeline_note">(Content for a horizontal carousel. Full interactivity to be added in React.)</p>
             </div>
         </section>
 
@@ -564,7 +623,7 @@
     </div>
     
     <script>
-        document.getElementById('currentYearTranskei').textContent = new Date().getFullYear();
+        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         
@@ -574,21 +633,21 @@
             });
         }
 
-        function toggleSaziMobileMenu() { // Renamed to avoid conflict
+        function toggleSaziMobileMenu() { 
             if (mobileMenu) mobileMenu.classList.add('hidden');
         }
 
-        const saziSections = document.querySelectorAll('.full-screen-section'); // Renamed
-        const saziNavLinks = document.querySelectorAll('header nav a, #mobile-menu a'); // Renamed
+        const saziSections = document.querySelectorAll('.full-screen-section'); 
+        const saziNavLinks = document.querySelectorAll('header nav a, #mobile-menu a'); 
 
-        function showSaziSection(sectionId) { // Renamed
+        function showSaziSection(sectionId) { 
             saziSections.forEach(section => {
                 section.id === sectionId ? section.classList.add('active') : section.classList.remove('active');
             });
             saziNavLinks.forEach(link => {
-                link.classList.remove('text-aloe-green', 'font-bold', 'bg-green-100'); // Clear active styles
+                link.classList.remove('bg-green-100', 'text-green-700', 'font-bold'); 
                 if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('text-aloe-green', 'font-bold', 'bg-green-100'); // Add active style
+                    link.classList.add('bg-green-100','text-green-700', 'font-bold'); 
                 }
             });
             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
@@ -596,9 +655,9 @@
             }
         }
         
-        showSaziSection('hero'); // Show hero section by default
+        showSaziSection('hero'); 
 
-        saziNavLinks.forEach(link => { // Ensure this uses the renamed variable
+        saziNavLinks.forEach(link => { 
             link.addEventListener('click', function(e) {
                  const targetId = this.getAttribute('href').substring(1);
                  if (document.getElementById(targetId)) {
@@ -608,18 +667,32 @@
             });
         });
 
-        function toggleSaziTile(tileElement) { // Renamed
+        function toggleSaziTile(tileElement) { 
             document.querySelectorAll('.feature-tile.active').forEach(activeTile => {
                 if (activeTile !== tileElement) activeTile.classList.remove('active');
             });
             tileElement.classList.toggle('active');
         }
+        
+        // Simplified for HTML - in React this would be component state
+        function toggleSaziTimelineItem(item) { 
+            const expandedContent = item.querySelector('.expanded-content');
+            const isExpanded = item.classList.contains('expanded');
 
-        function toggleSaziTimelineItem(item) { // Renamed
             document.querySelectorAll('.timeline-item.expanded').forEach(otherItem => {
-                if (otherItem !== item) otherItem.classList.remove('expanded');
+                if (otherItem !== item) {
+                    otherItem.classList.remove('expanded');
+                    otherItem.querySelector('.expanded-content').style.display = 'none';
+                }
             });
-            item.classList.toggle('expanded');
+            
+            if (isExpanded) {
+                item.classList.remove('expanded');
+                expandedContent.style.display = 'none';
+            } else {
+                item.classList.add('expanded');
+                expandedContent.style.display = 'block';
+            }
         }
         
         // Chatbot Functionality (Basic)
@@ -633,11 +706,9 @@
             if (forceOpen === true || isHidden) {
                 chatWindow.classList.remove('chat-hidden');
                 chatWindow.classList.add('chat-expanded');
-                // Update toggle icon if needed
             } else if (forceOpen === false || !isHidden) {
                 chatWindow.classList.add('chat-hidden');
                 chatWindow.classList.remove('chat-expanded');
-                // Update toggle icon if needed
             }
         }
 
@@ -657,28 +728,27 @@
             addSaziChatMessage("You", userMessage, true);
             chatInput.value = '';
             
-            // Simple hardcoded responses for mockup
             let botResponseText = "I'm learning to help with Sazi.life! Ask about our modules or learning paths.";
-            if (userMessage.toLowerCase().includes("xhosa")) {
+             if (userMessage.toLowerCase().includes("xhosa")) {
                 botResponseText = "Sazi isiXhosa is a great place to learn the language and culture! Would you like to know more about its lessons?";
             } else if (userMessage.toLowerCase().includes("code") || userMessage.toLowerCase().includes("tech")) {
                  botResponseText = "Sazi Code & Create can teach you programming, web development, and AI. What are you interested in building?";
-            } else if (userMessage.toLowerCase().includes("hello") || userMessage.toLowerCase().includes("hi")) {
+            } else if (userMessage.toLowerCase().includes("hello") || userMessage.toLowerCase().includes("hi") || userMessage.toLowerCase().includes("molweni")) {
                 botResponseText = "Molweni! Hello! I'm the Sazi AI. How can I help you today?";
             }
 
-            // Simulate API call for Gemini
-            addSaziChatMessage("Sazi AI", "Thinking...", false); // Placeholder for loading
+
+            addSaziChatMessage("Sazi AI", "Thinking...", false); 
             
-            // In a real app, you'd call the Gemini API here.
-            // For this HTML mockup, we'll just use the hardcoded response.
-            setTimeout(() => {
+            // Simulate Gemini API call
+             setTimeout(() => {
                 const thinkingMsg = chatOutput.querySelector("p:last-child");
                 if(thinkingMsg && thinkingMsg.textContent.includes("Thinking...")){
-                    thinkingMsg.innerHTML = `<strong>Sazi AI:</strong> ${botResponseText}`;
+                    thinkingMsg.innerHTML = `<strong data-translate="sazi_ai_name">Sazi AI:</strong> ${botResponseText}`;
                 } else {
                     addSaziChatMessage("Sazi AI", botResponseText, false);
                 }
+                changeLanguage(document.getElementById('language-switcher-desktop-transkei').value); // Re-apply translation
             }, 1000);
         }
 
@@ -686,7 +756,12 @@
             const messageEl = document.createElement('p');
             const senderStrong = document.createElement('strong');
             senderStrong.textContent = `${sender}: `;
-            if(isUser) senderStrong.classList.add('user-name');
+            if(isUser) {
+                senderStrong.classList.add('user-name');
+                senderStrong.setAttribute('data-translate', 'user_chat_name'); // For translation
+            } else {
+                 senderStrong.setAttribute('data-translate', 'sazi_ai_name');
+            }
             
             messageEl.appendChild(senderStrong);
             messageEl.append(document.createTextNode(message));
@@ -694,39 +769,40 @@
             chatOutput.scrollTop = chatOutput.scrollHeight;
         }
 
-
         // --- Basic Translation Functionality ---
         const saziTranslations = {
-             en: { /* All keys from the previous Transkei mockup */
+             en: { 
                 slogan: "Knowledge for Every Generation",
                 home_nav: "Home", modules_nav: "Modules", timeline_nav: "Our Story", guide_nav: "Sazi Guide", community_nav: "Community", register_login_nav: "Register/Login",
                 hero_subtext_main: "Embark on a family learning adventure rooted in wisdom and designed for growth. Explore interactive modules, accessible to all, inspiring every generation.",
                 explore_modules_btn: "Explore Modules", find_your_path_btn: "Find Your Path",
                 discover_modules_title: "Discover Our Learning Worlds",
-                isixhosa_module_title: "Sazi isiXhosa", isixhosa_module_short_desc: "Language, culture, and heritage.", isixhosa_module_long_desc: "Dive into the richness of the isiXhosa language and culture. Interactive lessons, vocabulary builders, cultural insights and engaging activities for all learning levels. Connect with your roots!",
+                isixhosa_module_title: "Sazi isiXhosa", isixhosa_module_short_desc: "Language, culture, and heritage.", isixhosa_module_long_desc: "Master the beautiful isiXhosa language. From vocabulary to cultural nuances, immerse yourself in interactive lessons and activities suitable for all ages. Connect with your roots!",
                 code_create_module_title: "Sazi Code & Create", code_create_module_short_desc: "Tech, AI, and web development.", code_create_module_long_desc: "Unlock the digital universe! Learn coding from scratch, understand Artificial Intelligence with Gemini, build amazing websites with HTML & React, and bring your creative ideas to life.",
                 home_life_module_title: "Sazi Home Life", home_life_module_short_desc: "DIY, cooking, and gardening joy.", home_life_module_long_desc: "Cultivate a thriving home! Explore picture-rich tutorials for delicious cooking, clever cleaning hacks, Salatiso's inspiring YouTube DIY projects, family gardening, and smart home management.",
                 skills_hub_module_title: "Sazi Skills Hub", skills_hub_module_short_desc: "Practical trades, real-world skills.", skills_hub_module_long_desc: "Build your expertise in practical trades. Learn welding, plumbing, advanced DIY from Salatiso's YouTube channel, and mechanics for self-sufficiency and new opportunities.",
                 funda_module_title: "Sazi Funda", funda_module_short_desc: "Online Learning & Homeschooling.", funda_module_long_desc: "A comprehensive K-12 educational journey tailored for effective online learning and homeschooling. Engaging, adaptable curricula to inspire young minds and support families.",
                 coming_soon_badge: "COMING SOON", view_module_btn: "Enter Module", visit_youtube_btn_home: "Explore Home Ideas", visit_youtube_btn_skills: "Learn Trades", view_module_btn_disabled: "Explore Curricula",
                 our_story_timeline_title: "Our Story: The Journey of Learning",
-                timeline_intro_text: "Sazi.life is inspired by the enduring human quest for knowledge. From ancient oral traditions to the digital age, education has shaped civilizations. This timeline traces this incredible journey, highlighting how informal learning, formal schooling, and cultural wisdom have evolved globally and within South Africa, influencing our mission to make learning accessible and meaningful for all.",
-                timeline_prehistory_title: "Ancient Roots: Informal Learning (Prehistory - c. 3000 BCE)", timeline_prehistory_date: "Global & Africa", timeline_prehistory_desc: "Knowledge passed through oral traditions, storytelling, imitation, and apprenticeship within families and small communities. Khoisan in Southern Africa master survival skills, rock art, and environmental knowledge. Bantu-speaking peoples develop agricultural techniques and iron-working through communal learning during their migrations.",
-                timeline_early_formal_title: "Dawn of Formal Education (c. 3000 BCE - 500 CE)", timeline_early_formal_date: "Egypt, Mesopotamia, Greece, Rome, India, China", timeline_early_formal_desc: "Scribal schools in Egypt and Mesopotamia. Philosophical academies in Greece (Plato, Aristotle). Roman emphasis on rhetoric and law. Gurukuls in India. Early imperial academies in China. Focus on literacy, numeracy, philosophy, and governance for elite classes.",
-                timeline_sa_1652_title: "Colonial Encounter & Early Formal Schooling in SA (1652 - 1800s)", timeline_sa_1652_date: "South Africa", timeline_sa_1652_desc: "Arrival of Dutch settlers (1652). First formal school at the Cape primarily for VOC children and enslaved individuals. Missionary societies later establish schools, introducing Western education and Christianity, often clashing with indigenous learning systems. Limited access for indigenous populations.",
-                timeline_industrial_title: "Industrial Revolution & Mass Schooling (18th - 19th Centuries)", timeline_industrial_date: "Global", timeline_industrial_desc: "Rise of factories creates demand for a disciplined, literate workforce. Spread of state-sponsored elementary education in Europe and North America. Focus on standardization, discipline, and basic skills. Child labor laws begin to emerge, pushing children into schools.",
-                timeline_sa_segregation_title: "Segregation & Bantu Education (1900s - 1994)", timeline_sa_segregation_date: "South Africa", timeline_sa_segregation_desc: "Formalization of racially segregated education. The Bantu Education Act (1953) institutionalizes inferior education for Black South Africans, designed to limit opportunities. Resistance from communities and alternative education initiatives (e.g., night schools, community schools) emerge.",
-                timeline_post_apartheid_title: "Post-Apartheid & Digital Age (1994 - Present)", timeline_post_apartheid_date: "Global & South Africa", timeline_post_apartheid_desc: "SA transitions to democracy, aiming to redress educational imbalances. Global rise of internet and digital technologies transforms access to information. Emergence of online learning, homeschooling movements gain traction. Focus on lifelong learning, skills development, and digital literacy. Sazi.life is born from this context, seeking to bridge gaps and empower through accessible, holistic education.",
-                timeline_note: "(This is a conceptual timeline. The final version will be more detailed and interactive.)", learn_more_link: "Learn More",
+                our_story_intro_father: "Sazi.life is woven from a father's dream—a dream to provide his son, and indeed all children, with an education that is not only accessible but deeply enriching and empowering. It's a vision to equip the young with the tools to navigate an ever-changing world, while also ensuring that the wisdom of older generations remains vibrant and relevant, allowing them to keep pace and contribute meaningfully. This platform seeks to honor the timeless tradition of informal, family-centered learning, augmented by the best of modern educational approaches.",
+                timeline_intro_text: "From the earliest campfires where stories became lessons, to the vast digital classrooms of today, the human quest for knowledge is a constant. This timeline explores that journey, highlighting how informal learning, formal schooling, and cultural wisdom have evolved globally and within South Africa, influencing our mission to make learning accessible and meaningful for all.",
+                timeline_prehistory_title: "Ancient Roots: Informal Learning", timeline_prehistory_date: "Prehistory - c. 3000 BCE (Global & Africa)", timeline_prehistory_desc: "Knowledge passed via oral traditions, storytelling, imitation within families. Khoisan in Southern Africa master survival skills, rock art. Bantu peoples develop agriculture and iron-working communally.",
+                timeline_early_formal_title: "Dawn of Formal Education", timeline_early_formal_date: "c. 3000 BCE - 500 CE (Egypt, Greece, India, China)", timeline_early_formal_desc: "Scribal schools in Egypt/Mesopotamia. Greek academies (Plato). Roman rhetoric. Indian Gurukuls. Chinese imperial academies. Focus on literacy, philosophy for elites.",
+                timeline_sa_indigenous_title: "Indigenous SA Education (Pre-1652)", timeline_sa_indigenous_date: "Southern Africa", timeline_sa_indigenous_desc: "Khoisan pass down ecological wisdom. Nguni/Sotho-Tswana groups use initiation rites (ulwaluko, bojale) for moral, social, and practical skills training. Knowledge is communal and experiential.",
+                timeline_sa_colonial_title: "Colonial Schooling in SA", timeline_sa_colonial_date: "1652 - 1800s (South Africa)", timeline_sa_colonial_desc: "Dutch establish first Cape school. Missionary schools introduce Western education, often undermining indigenous systems. Access is limited and unequal.",
+                timeline_mass_schooling_title: "Rise of Mass Schooling", timeline_mass_schooling_date: "19th Century (Global)", timeline_mass_schooling_desc: "Industrial Revolution fuels need for a literate workforce. State-sponsored elementary education spreads in Europe/N. America. Focus on standardization and discipline.",
+                timeline_bantu_edu_title: "Segregation & Bantu Education", timeline_bantu_edu_date: "1900s - 1994 (South Africa)", timeline_bantu_edu_desc: "Racially segregated education formalized. Bantu Education Act (1953) creates inferior system for Black South Africans. Community resistance and alternative education efforts grow.",
+                timeline_digital_age_title: "Post-Apartheid & Digital Era", timeline_digital_age_date: "1994 - Present (Global & SA)", timeline_digital_age_desc: "SA democratizes, aims to fix educational imbalances. Internet & tech transform information access. Rise of online learning, homeschooling. Sazi.life emerges.",
+                timeline_note: "(Content for a horizontal carousel. Full interactivity to be added in React.)", learn_more_link: "Learn More",
                 sazi_guide_section_title: "Let Sazi Guide Your Learning", sazi_guide_section_desc: "Not sure which Sazi.life module is right for you or your family? Answer a few simple questions, and our Sazi Guide will illuminate your path to knowledge!",
                 wizard_interest_q_main: "What are you most excited to learn about?", select_option: "-- Select an Interest --", interest_opt_language: "Language", interest_opt_tech: "Coding/Tech", interest_opt_home: "Home Skills", interest_opt_trades: "Practical Trades",
                 wizard_age_q_main: "Who is this learning journey for?", select_option_age: "-- Select Age Group --", age_opt_child: "Child (4-11)", age_opt_teen: "Teen (12-17)", age_opt_adult: "Adult (18+)", age_opt_family: "Whole Family",
                 find_module_now_btn: "Find My Module!",
                 sazi_community_title: "Be Part of the Sazi Community", community_desc_main: "Sazi.life thrives on shared knowledge and support. Register to connect with fellow learners, share your insights, contribute content, and even become a moderator. Together, we build a richer learning experience for everyone.",
                 join_community_today_btn: "Join Us Today", community_values_footer: "Empowering each other, one lesson at a time.",
-                sazi_ai_chat_title: "Sazi AI Assistant", sazi_ai_greeting: "Molweni! Hello! How can I help you explore Sazi.life today?", sazi_ai_placeholder: "Ask Sazi AI..."
+                sazi_ai_chat_title: "Sazi AI Assistant", sazi_ai_greeting: "Molweni! Hello! How can I help you explore Sazi.life today?", sazi_ai_placeholder: "Ask Sazi AI...", user_chat_name: "You"
             },
-            xh: { /* isiXhosa translations - Very basic, needs proper translation */
+            xh: { 
                 slogan: "Ulwazi Lwezizukulwana Zonke",
                 home_nav: "Ekhaya", modules_nav: "Iimodyuli", timeline_nav: "Ibali Lethu", guide_nav: "Isikhokelo Sazi", community_nav: "Ulwahlulo", register_login_nav: "Bhalisa/Ngena",
                 hero_subtext_main: "Qalisa uhambo lokufunda losapho olusekelwe kubulumko nolwenzelwe ukukhula. Phonononga iimodyuli ezisebenzisanayo, ezifikelelekayo kuye wonke umntu, ezikhuthaza zonke izizukulwana.",
@@ -739,21 +815,23 @@
                 funda_module_title: "Sazi Funda", funda_module_short_desc: "Ukufunda kwi-Intanethi Nokufunda eKhaya.", funda_module_long_desc: "Uhambo lwezemfundo olupheleleyo lweK-12 olulungiselelwe ukufunda okusebenzayo kwi-intanethi nokufunda ekhaya. Ikharityhulam ebandakanyayo, eguquguqukayo ukukhuthaza iingqondo ezisakhulayo kunye nokuxhasa iintsapho.",
                 coming_soon_badge: "KUYEZA KUNGEKUDALA", view_module_btn: "Ngena Kwimodyuli", visit_youtube_btn_home: "Phonononga Izimvo Zasekhaya", visit_youtube_btn_skills: "Funda Imisebenzi Yezandla", view_module_btn_disabled: "Phonononga Ikharityhulam",
                 our_story_timeline_title: "Ibali Lethu: Uhambo Lokufunda",
-                timeline_intro_text: "ISazi.life iphefumlelwe kukusukela okungapheliyo koluntu lolwazi. Ukusuka kwizithethe zomlomo zamandulo ukuya kwixesha ledijithali, imfundo iye yabumba impucuko. Lo mgca wexesha ulanda olu hambo lumangalisayo, uqaqambisa indlela ukufunda okungekho sikweni, imfundo esesikweni, nobulumko benkcubeko obuguquke ngayo kwihlabathi jikelele naphakathi koMzantsi Afrika, ukuphembelela umsebenzi wethu wokwenza ukufunda kufikeleleke kwaye kube nentsingiselo kuye wonke umntu.",
-                timeline_prehistory_title: "Iingcambu Zamandulo: Ukufunda Okungekho Sikweni (Ngaphambi Kwembali - c. 3000 BCE)", timeline_prehistory_date: "Ihlabathi Lonke NeAfrika", timeline_prehistory_desc: "Ulwazi lugqithiswa ngezithethe zomlomo, ukubalisa amabali, ukuxelisa, nokufundela umsebenzi ngaphakathi kweentsapho noluntu oluncinci. AmaKhoisan eMazantsi eAfrika afunda izakhono zokuphila, ubugcisa bamatye, nolwazi lokusingqongileyo. Abantu abathetha isiBantu baphuhlisa iindlela zokulima nokusebenza ngentsimbi ngokufunda ngokubambisana ngexesha lokufuduka kwabo.",
-                timeline_early_formal_title: "Ukuqala Kwemfundo Esesikweni (c. 3000 BCE - 500 CE)", timeline_early_formal_date: "EYiputa, EMesopotamiya, EGrisi, ERoma, EIndiya, ETshayina", timeline_early_formal_desc: "Izikolo zababhali eYiputa naseMesopotamiya. Izikolo zefilosofi eGrisi (Plato, Aristotle). Ugxininiso lwaseRoma kwintetho nomthetho. IiGurukuls eIndiya. Izikolo zobukhosi zakuqala eTshayina. Kugxilwe kulwazi lokufunda nokubhala, ukubala, ifilosofi, nolawulo kwiindidi eziphezulu.",
-                timeline_sa_1652_title: "Ukuhlangana Kwamakholoniyali Nemfundo Yokuqala Esesikweni eMzantsi Afrika (1652 - 1800s)", timeline_sa_1652_date: "EMzantsi Afrika", timeline_sa_1652_desc: "Ukufika kwabahlali bamaDatshi (1652). Isikolo sokuqala esisesikweni eKapa ikakhulu sabantwana beVOC nabantu abakhonziweyo. Imibutho yabavangeli kamva yaseka izikolo, yazisa imfundo yaseNtshona nobuKrestu, isoloko ingquzulana neenkqubo zokufunda zemveli. Ufikelelo olulinganiselweyo lwabemi bomthonyama.",
-                timeline_industrial_title: "Inguquko Yemizi-mveliso Nemfundo Yesininzi (18th - 19th Centuries)", timeline_industrial_date: "Ihlabathi Lonke", timeline_industrial_desc: "Ukukhula kweefektri kudala imfuno yabasebenzi abaqeqeshekileyo, abafundileyo. Ukusasazeka kwemfundo yamabanga aphantsi exhaswa ngurhulumente eYurophu naseMntla Melika. Kugxilwe kumgangatho, uqeqesho, nezakhono ezisisiseko. Imithetho yokusetyenziswa kwabantwana iqala ukuvela, ityhalela abantwana ezikolweni.",
-                timeline_sa_segregation_title: "Ucalucalulo Nemfundo Yabantu Abamnyama (1900s - 1994)", timeline_sa_segregation_date: "EMzantsi Afrika", timeline_sa_segregation_desc: "Ukumiselwa ngokusesikweni kwemfundo eyahlulwe ngokobuhlanga. UMthetho WeMfundo Yabantu Abamnyama (1953) umisela imfundo esemgangathweni ophantsi kubantu abaMnyama baseMzantsi Afrika, eyenzelwe ukunciphisa amathuba. Ukuchaswa okuvela kuluntu kunye namanyathelo emfundo angamanye (umz. izikolo zasebusuku, izikolo zoluntu) kuyavela.",
-                timeline_post_apartheid_title: "Emva Kocalucalulo Nexesha Ledijithali (1994 - Ngoku)", timeline_post_apartheid_date: "Ihlabathi Lonke NeMzantsi Afrika", timeline_post_apartheid_desc: "UMzantsi Afrika utshintshela kwidemokhrasi, ujolise ekulungiseni ukungalingani kwezemfundo. Ukukhula kwehlabathi kwe-intanethi nobuchwepheshe bedijithali kuguqula ufikelelo kulwazi. Ukuvela kokufunda kwi-intanethi, iintshukumo zokufunda ekhaya ziyaqatsela. Kugxilwe ekufundeni ubomi bonke, uphuhliso lwezakhono, nolwazi lwedijithali. ISazi.life yazalwa kulo mxholo, ifuna ukuvala imisantsa nokuxhobisa ngemfundo efikelelekayo, epheleleyo.",
-                timeline_note: "(Lo ngumgca wexesha ocingelwayo. Inguqulelo yokugqibela iya kuba neenkcukacha ngakumbi kwaye isebenzisane.)", learn_more_link: "Funda Ngakumbi",
+                our_story_intro_father: "ISazi.life ilukwe liphupha likatata—iphupha lokubonelela unyana wakhe, kwaye ngokwenene bonke abantwana, ngemfundo engafikelelekiyo kuphela kodwa etyebisa ngokunzulu kwaye ixhobisa. Ngumbono wokuxhobisa abancinci ngezixhobo zokuhamba kwihlabathi elihlala litshintsha, ngelixa uqinisekisa ukuba ubulumko bezizukulwana ezindala buhlala buphilile kwaye bufanelekile, bubavumela ukuba bahambisane kwaye babe negalelo elinentsingiselo. Eli qonga lifuna ukuhlonipha isithethe esingaphelelwa lixesha sokufunda okungekho sikweni, okugxile kusapho, okongezwa kokona kulungileyo kweendlela zanamhlanje zemfundo.",
+                timeline_intro_text: "Ukusuka kwimililo yenkampu yakuqala apho amabali aba zizifundo, ukuya kumagumbi okufundela amakhulu edijithalianamhlanje, ukusukela koluntu lolwazi rhoqo. Lo mgca wexesha ulanda olu hambo lumangalisayo, uqaqambisa indlela ukufunda okungekho sikweni, imfundo esesikweni, nobulumko benkcubeko obuguquke ngayo kwihlabathi jikelele naphakathi koMzantsi Afrika, ukuphembelela umsebenzi wethu wokwenza ukufunda kufikeleleke kwaye kube nentsingiselo kuye wonke umntu.",
+                timeline_prehistory_title: "Iingcambu Zamandulo: Ukufunda Okungekho Sikweni", timeline_prehistory_date: "Ngaphambi Kwembali - c. 3000 BCE (Ihlabathi Lonke NeAfrika)", timeline_prehistory_desc: "Ulwazi lugqithiswa ngezithethe zomlomo, ukubalisa amabali, ukuxelisa ngaphakathi kweentsapho. AmaKhoisan eMazantsi eAfrika afunda izakhono zokuphila, ubugcisa bamatye. Abantu abathetha isiBantu baphuhlisa ukulima nokusebenza ngentsimbi.",
+                timeline_early_formal_title: "Ukuqala Kwemfundo Esesikweni", timeline_early_formal_date: "c. 3000 BCE - 500 CE (EYiputa, EGrisi, EIndiya, ETshayina)", timeline_early_formal_desc: "Izikolo zababhali eYiputa/Mesopotamiya. Izikolo zefilosofi eGrisi (Plato). Intetho yaseRoma. IiGurukuls zaseIndiya. Izikolo zobukhosi eTshayina. Kugxilwe kulwazi lokufunda, ifilosofi kwabakumgangatho ophezulu.",
+                timeline_sa_indigenous_title: "Imfundo Yemveli eMzantsi Afrika (Ngaphambi ko-1652)", timeline_sa_indigenous_date: "EMazantsi eAfrika", timeline_sa_indigenous_desc: "AmaKhoisan adlulisa ubulumko bendalo. AmaNguni/Sotho-Tswana asebenzisa izithethe zokwaluka (ulwaluko, bojale) kuqeqesho lwesimilo, lwentlalo nolwezakhono. Ulwazi luloluntu kwaye lusekelwe kumava.",
+                timeline_sa_colonial_title: "Izikolo Zamakholoniyali eMzantsi Afrika", timeline_sa_colonial_date: "1652 - 1800s (EMzantsi Afrika)", timeline_sa_colonial_desc: "AmaDatshi aseka isikolo sokuqala eKapa. Izikolo zabavangeli zazisa imfundo yaseNtshona, zihlala zingquzulana neenkqubo zemveli. Ufikelelo lunqongophele kwaye alulingani.",
+                timeline_mass_schooling_title: "Ukwanda Kwezikolo Zesininzi", timeline_mass_schooling_date: "19th Century (Ihlabathi Lonke)", timeline_mass_schooling_desc: "Inguquko yemizi-mveliso ifuna abasebenzi abafundileyo. Izikolo zikarhulumente ziyanda eYurophu/N. Melika. Kugxilwe kumgangatho noqeqesho.",
+                timeline_bantu_edu_title: "Ucalucalulo Nemfundo Yabantu Abamnyama", timeline_bantu_edu_date: "1900s - 1994 (EMzantsi Afrika)", timeline_bantu_edu_desc: "Imfundo eyahlulwe ngokobuhlanga iyamiselwa. UMthetho weMfundo yaBantu (1953) udala inkqubo esemgangathweni ophantsi. Uluntu luyachasa.",
+                timeline_digital_age_title: "Emva Kocalucalulo Nexesha Ledijithali", timeline_digital_age_date: "1994 - Ngoku (Ihlabathi Lonke NeMzantsi Afrika)", timeline_digital_age_desc: "UMzantsi Afrika uya kwidemokhrasi, ujolise ekulungiseni ukungalingani kwezemfundo. I-Intanethi iguqula ufikelelo lolwazi. Ukufunda kwi-intanethi nokufunda ekhaya kuyanda. ISazi.life iyavela.",
+                timeline_note: "(Lo ngumgca wexesha ocingelwayo. Inguqulelo yokugqibela iya kuba neenkcukacha.)", learn_more_link: "Funda Ngakumbi",
                 sazi_guide_section_title: "Vumela iSazi Ikhokele Ukufunda Kwakho", sazi_guide_section_desc: "Awuqinisekanga ukuba yeyiphi imodyuli yeSazi.life ekulungeleyo wena okanye usapho lwakho? Phendula imibuzo embalwa elula, kwaye iSazi Guide yethu iya kukhanyisa indlela yakho eya elwazini!",
-                wizard_interest_q_main: "Yintoni ekutsala umdla kakhulu?", select_option: "-- Khetha Umdla --", interest_opt_language: "Ulwimi Nenkcubeko", interest_opt_tech: "Ukuqhoda/ITeknoloji", interest_opt_home: "Izakhono Zasekhaya", interest_opt_trades: "Imisebenzi Yezandla",
+                wizard_interest_q_main: "Yintoni ekutsala umdla kakhulu?", select_option: "-- Khetha Umdla --", interest_opt_language: "Ulwimi", interest_opt_tech: "Ukuqhoda/ITeknoloji", interest_opt_home: "Izakhono Zasekhaya", interest_opt_trades: "Imisebenzi Yezandla",
                 wizard_age_q_main: "Olu hambo lokufunda lolwabani?", select_option_age: "-- Khetha Iqela Leminyaka --", age_opt_child: "Umntwana (4-11)", age_opt_teen: "Okwishumi Elivisayo (12-17)", age_opt_adult: "Omdala (18+)", age_opt_family: "Usapho Lonke",
                 find_module_now_btn: "Fumana Imodyuli Yam!",
                 sazi_community_title: "Yiba Lilonxalenye YoLuntu LweSazi", community_desc_main: "ISazi.life ichuma kulwazi olwabelwanayo nenkxaso. Bhalisa ukuze uqhagamshelane nabanye abafundi, wabelane ngeengcinga zakho, ufake isandla kumxholo, kwaye ube ngumongameli. Kunye, sakha amava okufunda atyebileyo kuye wonke umntu.",
                 join_community_today_btn: "Sijoyine Namhlanje", community_values_footer: "Ukuxhobisana, isifundo esinye ngexesha.",
-                sazi_ai_chat_title: "Umncedisi weSazi AI", sazi_ai_greeting: "Molweni! Ndingakunceda njani ukuba uphonononge iSazi.life namhlanje?", sazi_ai_placeholder: "Buza kwiSazi AI..."
+                sazi_ai_chat_title: "Umncedisi weSazi AI", sazi_ai_greeting: "Molweni! Ndingakunceda njani ukuba uphonononge iSazi.life namhlanje?", sazi_ai_placeholder: "Buza kwiSazi AI...", user_chat_name: "Wena"
             }
             // Add other languages here
         };
@@ -780,3 +858,5 @@
     </script>
 </body>
 </html>
+``` 
+I love this, thank you, Mhlekazi. I am getting more confident about the project. Your ideas are aligned with my overall plan, this is a good start. I am going to do some revisions on my side, based on the code provided, then I will provide more feedback for the next revisi
