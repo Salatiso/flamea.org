@@ -3,623 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sazi.life - Vibrant Modern Tech</title>
+    <title>FLAMEA - Variation 2: The Dashboard Layout</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: #E0E0E0; /* Light gray for text on dark backgrounds */
-            margin: 0;
-            background-color: #1A202C; /* Tailwind gray-900 */
-            overflow-x: hidden; 
-        }
-        .full-screen-section {
-            min-height: 100vh;
+        body { font-family: 'Open Sans', sans-serif; }
+        .main-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            height: 100vh;
             width: 100vw;
-            display: none; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            position: relative;
-            overflow: hidden;
         }
-        .full-screen-section.active {
-            display: flex;
+        .content-panel { display: none; animation: slideIn 0.6s forwards; }
+        .content-panel.active { display: flex; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-
-        /* --- SAZI Logo Style --- */
-        .sazilife-logo-base { 
-            font-family: 'Roboto', sans-serif;
-            font-weight: 800;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-        .sazilife-logo-main { font-size: 3.5rem; }
-        .sazilife-logo-header { font-size: 1.8rem; }
-
-        .sazilife-logo-base .sazi-name { color: #63B3ED; /* Blue-400 for "Sazi" */ }
-        .sazilife-logo-base .sazi-dot { color: #F6E05E; /* Yellow-300 for "i" dot */ }
-        .sazilife-logo-base .sazi-life { color: #90CDF4; /* Blue-300 for ".life" */ font-weight: 700;}
-        
-        .sazilife-logo-header .sazi-name { color: #63B3ED; } /* Blue-400 */
-        .sazilife-logo-header .sazi-life { color: #BEE3F8; } /* Blue-200 */
-
-
-        .slogan-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1.5rem;
-            color: #CBD5E0; /* Gray-400 */
-        }
-        /* --- End SAZI Logo Style --- */
-
-        .hero-section {
-            background: linear-gradient(135deg, rgba(19, 78, 120, 0.85), rgba(31, 41, 55, 0.9)), /* Shades of dark blue/gray */
-                        url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E"), /* Subtle tech pattern */
-                        url('https://placehold.co/1920x1080/2D3748/E2E8F0?text=Digital+Abstract&font=montserrat') no-repeat center center;
-            background-size: auto, cover;
-        }
-
-        .btn {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            padding: 0.8rem 1.7rem;
-            border-radius: 0.5rem;
+        .sidebar-link {
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Slightly stronger shadow for dark bg */
-            text-decoration: none;
+            transform: translateX(0);
         }
-        .btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }
-        .btn-primary-tech { 
-            background-color: #4299E1; /* Blue-500 */
+        .sidebar-link.active, .sidebar-link:hover {
+            background-color: #2563EB; /* blue-600 */
             color: white;
+            transform: translateX(10px);
         }
-        .btn-primary-tech:hover {
-            background-color: #3182CE; /* Blue-600 */
-        }
-        .btn-secondary-hero-tech { 
-            background-color: transparent;
-            color: #A0AEC0; /* Gray-500 */
-            border: 2px solid #A0AEC0;
-        }
-        .btn-secondary-hero-tech:hover {
-            background-color: #A0AEC0;
-            color: #1A202C; /* Gray-900 */
-        }
-         .btn-secondary-tech {
-             background-color: transparent;
-            color: #63B3ED; /* Blue-400 */
-            border: 2px solid #63B3ED;
-        }
-        .btn-secondary-tech:hover {
-            background-color: #63B3ED;
-            color: #1A202C; /* Gray-900 */
-        }
-
-
-        .section-title {
-            font-size: 2.25rem;
-            color: #63B3ED; /* Blue-400 */
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 3px;
-            background-color: #4299E1; /* Blue-500 */
-            border-radius: 2px;
-        }
-        
-        .feature-tile-tech {
-            background-color: #2D3748; /* Gray-800 */
-            border-radius: 1rem;
-            border-top: 5px solid #4299E1; /* Blue-500 top border */
-            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .feature-tile-tech:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.35);
-        }
-        .feature-icon-tech {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #63B3ED; /* Blue-400 for icons */
-        }
-        .feature-tile-tech h3 {
-            font-size: 1.4rem;
-            color: #E2E8F0; /* Gray-200 */
-            margin-bottom: 0.75rem;
-        }
-        .feature-tile-tech p { color: #A0AEC0; /* Gray-500 */ }
-        .feature-tile-tech .tile-content { display: none; margin-top: 1rem; text-align: left; font-size: 0.9rem;}
-        .feature-tile-tech.active .tile-content { display: block; }
-        
-        .timeline-tech { 
-            background-color: #2D3748; /* Gray-800 */
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-        }
-        .timeline-item-tech {
-            background-color: rgba(74, 85, 104, 0.5); /* Gray-700 with opacity */
-            padding: 1rem;
-            margin-bottom: 1.25rem;
-            border-radius: 0.5rem;
-            border-left: 4px solid #4299E1; /* Blue-500 accent */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .timeline-item-tech:hover {
-            background-color: rgba(74, 85, 104, 0.7);
-        }
-        .timeline-item-tech h4 { color: #E2E8F0; font-weight: 600;} /* Gray-200 */
-        .timeline-item-tech p { color: #A0AEC0; font-size: 0.9rem; } /* Gray-500 */
-        .timeline-item-tech .expanded-content { display: none; margin-top: 0.75rem; border-top: 1px dashed #4A5568; padding-top: 0.75rem; } /* Gray-700 */
-        .timeline-item-tech.expanded .expanded-content { display: block; }
-
-        .fixed-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            background-color: rgba(26, 32, 44, 0.9); /* Gray-900 with opacity */
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
-        .main-area { 
-            padding-top: 80px; 
-            flex-grow: 1;
-        }
-         .language-selector-fixed select {
-            background-color: #4A5568; /* Gray-700 */
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            border: none;
-            appearance: none;
-            cursor: pointer;
-        }
-        .coming-soon-badge-tech {
-            background-color: #F6E05E; /* Yellow-300 */
-            color: #2D3748; /* Gray-800 */
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
     </style>
 </head>
-<body>
-
-    <header class="fixed-header">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#hero" class="sazilife-logo-header" onclick="showSectionTech('hero')">
-                <span class="sazi-name">Saz</span><span class="sazi-dot">i</span><span class="sazi-life">.life</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 items-center">
-                <a href="#hero" class="text-gray-300 hover:text-blue-400 transition duration-300 font-semibold" onclick="showSectionTech('hero')" data-translate="home_nav">Home</a>
-                <a href="#modules" class="text-gray-300 hover:text-blue-400 transition duration-300 font-semibold" onclick="showSectionTech('modules')" data-translate="modules_nav">Modules</a>
-                <a href="#about" class="text-gray-300 hover:text-blue-400 transition duration-300 font-semibold" onclick="showSectionTech('about')" data-translate="about_nav">About</a>
-                <a href="#guide" class="text-gray-300 hover:text-blue-400 transition duration-300 font-semibold" onclick="showSectionTech('guide')" data-translate="guide_nav">Sazi Guide</a>
-                <a href="#community" class="text-gray-300 hover:text-blue-400 transition duration-300 font-semibold" onclick="showSectionTech('community')" data-translate="community_nav">Community</a>
+<body class="bg-gray-800 text-white">
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <aside class="bg-gray-900 p-6 flex flex-col">
+            <h1 class="text-3xl font-black font-roboto mb-12 text-center">FLAME<span class="text-green-400">A</span></h1>
+            <nav id="main-nav" class="flex flex-col space-y-4">
+                <a href="#home" class="sidebar-link active flex items-center p-4 rounded-lg" data-target="home">
+                    <i class="fas fa-home w-6 text-center mr-4"></i> Home
+                </a>
+                <a href="#mission" class="sidebar-link flex items-center p-4 rounded-lg" data-target="mission">
+                    <i class="fas fa-bullseye w-6 text-center mr-4"></i> Our Mission
+                </a>
+                <a href="#tools" class="sidebar-link flex items-center p-4 rounded-lg" data-target="tools">
+                    <i class="fas fa-tools w-6 text-center mr-4"></i> Our Tools
+                </a>
+                <a href="#community" class="sidebar-link flex items-center p-4 rounded-lg" data-target="community">
+                    <i class="fas fa-users w-6 text-center mr-4"></i> Community
+                </a>
             </nav>
-             <div class="language-selector-fixed hidden md:block">
-                 <select id="language-switcher-desktop-tech" onchange="changeLanguage(this.value)">
-                    <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
-                </select>
-            </div>
-            <button id="mobile-menu-button-tech" class="md:hidden text-gray-300 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-        <div id="mobile-menu-tech" class="md:hidden hidden bg-gray-800 shadow-lg py-2">
-            <a href="#hero" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 font-semibold" onclick="showSectionTech('hero'); toggleMobileMenuTech();" data-translate="home_nav">Home</a>
-            <a href="#modules" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 font-semibold" onclick="showSectionTech('modules'); toggleMobileMenuTech();" data-translate="modules_nav">Modules</a>
-            <a href="#about" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 font-semibold" onclick="showSectionTech('about'); toggleMobileMenuTech();" data-translate="about_nav">About</a>
-            <a href="#guide" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 font-semibold" onclick="showSectionTech('guide'); toggleMobileMenuTech();" data-translate="guide_nav">Sazi Guide</a>
-            <a href="#community" class="block px-6 py-3 text-gray-300 hover:bg-gray-700 font-semibold" onclick="showSectionTech('community'); toggleMobileMenuTech();" data-translate="community_nav">Community</a>
-             <div class="language-selector-fixed px-6 py-3">
-                <select id="language-switcher-mobile-tech" class="w-full" onchange="changeLanguage(this.value)">
-                    <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
-                </select>
-            </div>
-            <a href="#" class="block px-6 py-3 text-blue-400 hover:bg-gray-700 font-bold" data-translate="login_nav">Login/Register</a>
-        </div>
-    </header>
-
-    <main class="main-area">
-        <section id="hero" class="full-screen-section hero-section text-center active">
-            <div>
-                <div class="sazilife-logo-main mb-4">
-                    <span class="sazi-name">Saz</span><span class="sazi-dot">i</span><span class="sazi-life">.life</span>
+            <div class="mt-auto text-center">
+                <div id="auth-links-desktop" class="mb-4">
+                    <a href="login.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors block">
+                        Login / Register
+                    </a>
                 </div>
-                <p class="slogan-text text-2xl md:text-3xl mb-8" data-translate="slogan">Knowledge for Every Generation</p>
-                <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-gray-300" data-translate="hero_subtext_tech">
-                    Navigate the digital age with Sazi.life. Cutting-edge tech education, from coding basics to AI mastery, for the whole family.
-                </p>
-                <div class="space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
-                    <button class="btn btn-primary-tech text-lg" onclick="showSectionTech('modules')">
-                        <i class="fas fa-atom"></i> <span data-translate="explore_innovations_btn">Explore Innovations</span>
-                    </button>
-                    <button class="btn btn-secondary-hero-tech text-lg" onclick="showSectionTech('guide')">
-                        <i class="fas fa-route"></i> <span data-translate="chart_your_course_btn">Chart Your Course</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="modules" class="full-screen-section bg-gray-800">
-             <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-12" data-translate="learning_matrix_title">The Sazi Learning Matrix</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 clickable-tile-container">
-                    <div class="feature-tile-tech" onclick="toggleTileTech(this)">
-                        <i class="fas fa-comments feature-icon-tech text-sky-400"></i>
-                        <h3 data-translate="isixhosa_title_tech">Sazi isiXhosa</h3>
-                        <p data-translate="isixhosa_desc_short_tech">Cultural code, linguistic links.</p>
-                        <div class="tile-content">
-                            <p data-translate="isixhosa_desc_long_tech">Connect with heritage through interactive isiXhosa lessons. Explore language structures, cultural nuances, and engage with AI-powered pronunciation guides.</p>
-                            <button class="btn btn-secondary-tech btn-sm mt-3 text-sm" data-translate="discover_language_btn">Discover Language</button>
-                        </div>
-                    </div>
-                    <div class="feature-tile-tech" onclick="toggleTileTech(this)">
-                        <i class="fas fa-brain feature-icon-tech text-emerald-400"></i>
-                        <h3 data-translate="code_create_title_tech">Sazi Code & Create</h3>
-                        <p data-translate="code_create_desc_short_tech">AI, Web Dev, Digital Futures.</p>
-                         <div class="tile-content">
-                            <p data-translate="code_create_desc_long_tech">Master the digital realm. From HTML basics to advanced React and Firebase integration. Explore AI with Gemini API and build tomorrow's solutions today.</p>
-                            <button class="btn btn-secondary-tech btn-sm mt-3 text-sm" data-translate="enter_matrix_btn">Enter the Matrix</button>
-                        </div>
-                    </div>
-                    <div class="feature-tile-tech" onclick="toggleTileTech(this)">
-                        <i class="fas fa-solar-panel feature-icon-tech text-fuchsia-400"></i>
-                        <h3 data-translate="home_life_title_tech">Sazi Home Life</h3>
-                        <p data-translate="home_life_desc_short_tech">Smart homes, sustainable living.</p>
-                         <div class="tile-content">
-                            <p data-translate="home_life_desc_long_tech">Innovate your living space. Explore smart home automation, sustainable energy solutions for your home, modern culinary techniques, and efficient home management powered by Salatiso's insights.</p>
-                            <a href="https://www.youtube.com/@Salatiso" target="_blank" class="btn btn-secondary-tech btn-sm mt-3 text-sm" data-translate="upgrade_home_btn">Upgrade Your Home</a>
-                        </div>
-                    </div>
-                     <div class="feature-tile-tech" onclick="toggleTileTech(this)">
-                        <i class="fas fa-hard-hat feature-icon-tech text-rose-400"></i>
-                        <h3 data-translate="skills_hub_title_tech">Sazi Skills Hub</h3>
-                        <p data-translate="skills_hub_desc_short_tech">Future-proof your practical skills.</p>
-                        <div class="tile-content">
-                            <p data-translate="skills_hub_desc_long_tech">Acquire in-demand trades with a modern twist. Learn advanced DIY techniques, understand the mechanics of sustainable systems, and gain skills for a rapidly evolving world, guided by Salatiso's expertise.</p>
-                             <a href="https://www.youtube.com/@Salatiso" target="_blank" class="btn btn-secondary-tech btn-sm mt-3 text-sm" data-translate="build_skills_btn">Build Your Skills</a>
-                        </div>
-                    </div>
-                     <div class="feature-tile-tech relative" onclick="toggleTileTech(this)">
-                        <i class="fas fa-satellite-dish feature-icon-tech text-amber-400"></i>
-                        <h3 data-translate="funda_title_tech">Sazi Funda</h3>
-                        <p data-translate="funda_desc_short_tech">Next-gen online & homeschool.</p>
-                        <span class="coming-soon-badge-tech" data-translate="coming_soon_badge">COMING SOON</span>
-                        <div class="tile-content">
-                             <p data-translate="funda_desc_long_tech">Revolutionizing K-12 education with AI-assisted learning paths, virtual labs, and global collaboration projects. Preparing students for a future we can only imagine.</p>
-                            <button class="btn btn-secondary-tech btn-sm mt-3 text-sm opacity-50 cursor-not-allowed" data-translate="view_module_btn_disabled">View Module</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="full-screen-section bg-gray-900">
-             <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-10" data-translate="about_sazi_vision_title">The Sazi.life Vision</h2>
-                <div class="max-w-3xl mx-auto text-left">
-                    <img src="https://placehold.co/600x300/4A5568/BEE3F8?text=Future+of+Learning&font=montserrat" alt="Futuristic learning concept" class="rounded-lg shadow-xl w-full mb-6 h-48 object-cover">
-                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-translate="about_para_tech1">
-                        Sazi.life is where timeless wisdom meets tomorrow's technology. Founded by Salatiso, our platform is engineered to empower every individual with the knowledge and skills to thrive in an ever-evolving world. We believe in learning that is accessible, engaging, and deeply connected to our roots while embracing the future.
-                    </p>
-                    <p class="text-lg text-gray-300 leading-relaxed" data-translate="about_para_tech2">
-                        From the rich cultural heritage of isiXhosa to the dynamic landscapes of coding and artificial intelligence, Sazi.life offers pathways for discovery and creation. We're not just teaching subjects; we're fostering critical thinking, innovation, and a global community of lifelong learners. Join us in building a more knowledgeable and empowered tomorrow.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="guide" class="full-screen-section bg-gray-800">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-10" data-translate="sazi_ai_guide_title">Sazi AI Pathfinder</h2>
-                <i class="fas fa-cogs text-6xl text-blue-400 mb-6 animate-spin_slow"></i>
-                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8" data-translate="sazi_ai_guide_desc">
-                    Ready to explore but not sure where to begin? Our Sazi AI Pathfinder uses intelligent guidance to suggest the perfect learning modules based on your age, interests, and learning goals.
-                </p>
-                <div class="bg-gray-700 p-8 rounded-lg shadow-xl max-w-md mx-auto">
-                    {/* Conceptual: This would be interactive with JS */}
-                    <p class="text-yellow-300 mb-4" data-translate="wizard_ai_prompt">What do you want to achieve today?</p>
-                    <input type="text" placeholder="e.g., 'Learn to build a website', 'Understand isiXhosa greetings'" class="w-full p-3 rounded-md bg-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 border-transparent mb-4">
-                    <button class="btn btn-primary-tech w-full" data-translate="find_my_modules_ai_btn">
-                        <i class="fas fa-rocket"></i> Find My Modules
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="community" class="full-screen-section bg-gray-900 text-center">
-             <div>
-                <i class="fas fa-satellite-dish text-7xl text-blue-300 mb-6"></i>
-                <h2 class="section-title text-white mb-6" data-translate="connect_collaborate_title">Connect & Collaborate</h2>
-                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-300" data-translate="community_desc_tech">
-                    Join the Sazi.life global network. Engage in forums, contribute your expertise, moderate discussions, and be part of a self-sustaining learning ecosystem.
-                </p>
-                <div id="register-login-community-tech">
-                    <button class="btn btn-primary-tech text-lg"> 
-                        <i class="fas fa-globe-americas"></i> <span data-translate="join_global_network_btn">Join the Global Network</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Timeline Sidebar -->
-         <aside class="fixed top-0 right-0 h-full w-1/4 bg-gray-800 p-4 overflow-y-auto shadow-lg hidden md:block timeline-tech" style="padding-top: 80px;">
-            <h3 class="text-xl font-semibold text-blue-300 mb-4 text-center" data-translate="sazi_evolution_title">Sazi.life Evolution</h3>
-            <div class="timeline-items-container">
-                <div class="timeline-item-tech" onclick="toggleTimelineItemContentTech(this)">
-                    <h4 data-translate="timeline_item_tech1_title">Concept Genesis</h4>
-                    <p data-translate="timeline_item_tech1_date">Digital Dawn</p>
-                    <div class="expanded-content">
-                        <p data-translate="timeline_item_tech1_desc">Sazi.life conceptualized: accessible, tech-driven education for all generations.</p>
-                         <a href="#" class="text-xs text-sky-400 hover:underline" data-translate="read_more_link">Details...</a>
-                    </div>
-                </div>
-                 <div class="timeline-item-tech" onclick="toggleTimelineItemContentTech(this)">
-                    <h4 data-translate="timeline_item_tech2_title">Module Rollout</h4>
-                     <p data-translate="timeline_item_tech2_date">Code & Culture</p>
-                    <div class="expanded-content">
-                        <p data-translate="timeline_item_tech2_desc">Launch of Sazi isiXhosa and Sazi Code & Create, merging heritage with future skills.</p>
-                        <a href="#" class="text-xs text-sky-400 hover:underline" data-translate="read_more_link">Details...</a>
-                    </div>
-                </div>
-                  <div class="timeline-item-tech" onclick="toggleTimelineItemContentTech(this)">
-                    <h4 data-translate="timeline_item_tech3_title">AI Integration</h4>
-                    <p data-translate="timeline_item_tech3_date">Smart Learning</p>
-                    <div class="expanded-content">
-                        <p data-translate="timeline_item_tech3_desc">Gemini API powers Sazi Chatbot and personalized learning pathfinders.</p>
-                         <a href="#" class="text-xs text-sky-400 hover:underline" data-translate="read_more_link">Details...</a>
-                    </div>
-                </div>
-                 <div class="timeline-item-tech" onclick="toggleTimelineItemContentTech(this)">
-                    <h4 data-translate="timeline_item_tech4_title">Expanding Universe</h4>
-                    <p data-translate="timeline_item_tech4_date">Global Reach</p>
-                    <div class="expanded-content">
-                        <p data-translate="timeline_item_tech4_desc">Sazi Home Life & Skills Hub enrich practical knowledge. Community features foster collaboration.</p>
-                         <a href="#" class="text-xs text-sky-400 hover:underline" data-translate="read_more_link">Details...</a>
-                    </div>
-                </div>
+                <p class="text-xs text-gray-500">&copy; <span id="currentYear"></span> Flamea.org</p>
             </div>
         </aside>
-    </main>
-    
-    <footer class="bg-gray-900 text-gray-500 py-6 text-center">
-        <div class="container mx-auto px-6">
-             <div class="mb-3">
-                 <a href="#hero" class="sazilife-logo-header text-2xl" style="color: #63B3ED;" onclick="showSectionTech('hero')">
-                    <span class="sazi-name">Saz</span><span class="sazi-dot" style="color: #F6E05E;">i</span><span class="sazi-life" style="color: #90CDF4;">.life</span>
-                </a>
-                <p class="mt-1 text-sm text-gray-400" data-translate="slogan">Knowledge for Every Generation.</p>
+
+        <!-- Main Content Area -->
+        <main class="bg-gray-800 bg-cover bg-center" style="background-image: linear-gradient(rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.8)), url('https://images.unsplash.com/photo-1594541337994-399a5e3a890b?q=80&w=2070');">
+            <!-- Home Panel -->
+            <div id="home" class="content-panel active w-full h-full flex-col justify-center items-center p-12 text-center">
+                <h2 class="text-5xl md:text-7xl font-bold font-roboto mb-4">Take Your Stand.</h2>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-2xl">A platform for fathers demanding equal rights and building a better future for their children.</p>
             </div>
-            <p class="text-sm">&copy; <span id="currentYearTech"></span> Sazi.life by Salatiso. All rights reserved.</p>
-        </div>
-    </footer>
+            
+            <!-- Mission Panel -->
+            <div id="mission" class="content-panel w-full h-full flex-col justify-center items-center p-12 text-center">
+                <i class="fas fa-bullseye text-6xl text-green-400 mb-6"></i>
+                <h2 class="text-5xl font-bold font-roboto mb-4">Our Mission</h2>
+                <p class="text-xl text-gray-300 max-w-3xl leading-relaxed">
+                    FLAMEA challenges every discriminatory practice that marginalizes fathers. We fight for equality before the law, ensuring that fathers and mothers are judged on their merits as parents, not their gender.
+                </p>
+            </div>
+            
+            <!-- Tools Panel -->
+            <div id="tools" class="content-panel w-full h-full flex-col justify-center items-center p-12 text-center">
+                <i class="fas fa-tools text-6xl text-blue-400 mb-6"></i>
+                <h2 class="text-5xl font-bold font-roboto mb-4">Empowerment Tools</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mb-8 leading-relaxed">
+                    From our Parenting Plan Builder to the Dispute Tracker, our tools are designed to give you the confidence and resources to navigate family law.
+                </p>
+                <a href="tools.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105">
+                    Explore All Tools
+                </a>
+            </div>
 
+            <!-- Community Panel -->
+            <div id="community" class="content-panel w-full h-full flex-col justify-center items-center p-12 text-center">
+                <i class="fas fa-users text-6xl text-yellow-400 mb-6"></i>
+                <h2 class="text-5xl font-bold font-roboto mb-4">Join the Movement</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mb-8 leading-relaxed">
+                    You are not alone. Connect with a brotherhood of fathers who understand the fight. Share your story, find support, and stand together.
+                </p>
+                <a href="community.html" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105">
+                    Visit the Forum
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
     <script>
-        document.getElementById('currentYearTech').textContent = new Date().getFullYear();
-        const mobileMenuButtonTech = document.getElementById('mobile-menu-button-tech');
-        const mobileMenuTech = document.getElementById('mobile-menu-tech');
-        
-        if (mobileMenuButtonTech && mobileMenuTech) {
-            mobileMenuButtonTech.addEventListener('click', () => {
-                mobileMenuTech.classList.toggle('hidden');
-            });
-        }
-        function toggleMobileMenuTech() {
-            if (mobileMenuTech) mobileMenuTech.classList.add('hidden');
-        }
+        document.getElementById('main-nav').addEventListener('click', function(e) {
+            const link = e.target.closest('.sidebar-link');
+            if (link) {
+                e.preventDefault();
+                const targetId = link.dataset.target;
 
-        const sectionsTech = document.querySelectorAll('.full-screen-section');
-        const navLinksFixedTech = document.querySelectorAll('header nav a, #mobile-menu-tech a');
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
 
-        function showSectionTech(sectionId) {
-            sectionsTech.forEach(section => {
-                if (section.id === sectionId) {
-                    section.classList.add('active');
-                } else {
-                    section.classList.remove('active');
-                }
-            });
-            navLinksFixedTech.forEach(link => {
-                link.classList.remove('text-blue-400', 'font-bold');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('text-blue-400', 'font-bold');
-                }
-            });
-             if (mobileMenuTech && !mobileMenuTech.classList.contains('hidden')) {
-                 toggleMobileMenuTech();
+                document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
+                document.getElementById(targetId).classList.add('active');
             }
-        }
-        
-        showSectionTech('hero'); 
-
-        navLinksFixedTech.forEach(link => {
-            link.addEventListener('click', function(e) {
-                 const targetId = this.getAttribute('href').substring(1);
-                if (document.getElementById(targetId)) {
-                    e.preventDefault();
-                    showSectionTech(targetId);
-                }
-            });
         });
-        
-        function toggleTileTech(tileElement) {
-            document.querySelectorAll('.feature-tile-tech.active').forEach(activeTile => {
-                if (activeTile !== tileElement) {
-                    activeTile.classList.remove('active');
-                }
-            });
-            tileElement.classList.toggle('active');
-        }
-
-         function toggleTimelineItemContentTech(item) {
-            document.querySelectorAll('.timeline-item-tech.expanded').forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('expanded');
-                }
-            });
-            item.classList.toggle('expanded');
-        }
-        // Placeholder for translations - use the same `translations` object from the previous mockup or create a new one.
-        const translationsTech = {
-            en: {
-                slogan: "Knowledge for Every Generation",
-                home_nav: "Home", modules_nav: "Modules", about_nav: "About", guide_nav: "Sazi Guide", community_nav: "Community", login_nav: "Login/Register",
-                hero_subtext_tech: "Navigate the digital age with Sazi.life. Cutting-edge tech education, from coding basics to AI mastery, for the whole family.",
-                explore_innovations_btn: "Explore Innovations",
-                chart_your_course_btn: "Chart Your Course",
-                learning_matrix_title: "The Sazi Learning Matrix",
-                isixhosa_title_tech: "Sazi isiXhosa",
-                isixhosa_desc_short_tech: "Cultural code, linguistic links.",
-                isixhosa_desc_long_tech: "Connect with heritage through interactive isiXhosa lessons. Explore language structures, cultural nuances, and engage with AI-powered pronunciation guides.",
-                discover_language_btn: "Discover Language",
-                code_create_title_tech: "Sazi Code & Create",
-                code_create_desc_short_tech: "AI, Web Dev, Digital Futures.",
-                code_create_desc_long_tech: "Master the digital realm. From HTML basics to advanced React and Firebase integration. Explore AI with Gemini API and build tomorrow's solutions today.",
-                enter_matrix_btn: "Enter the Matrix",
-                home_life_title_tech: "Sazi Home Life",
-                home_life_desc_short_tech: "Smart homes, sustainable living.",
-                home_life_desc_long_tech: "Innovate your living space. Explore smart home automation, sustainable energy solutions for your home, modern culinary techniques, and efficient home management powered by Salatiso's insights.",
-                upgrade_home_btn: "Upgrade Your Home",
-                skills_hub_title_tech: "Sazi Skills Hub",
-                skills_hub_desc_short_tech: "Future-proof your practical skills.",
-                skills_hub_desc_long_tech: "Acquire in-demand trades with a modern twist. Learn advanced DIY techniques, understand the mechanics of sustainable systems, and gain skills for a rapidly evolving world, guided by Salatiso's expertise.",
-                build_skills_btn: "Build Your Skills",
-                funda_title_tech: "Sazi Funda",
-                funda_desc_short_tech: "Next-gen online & homeschool.",
-                funda_desc_long_tech: "Revolutionizing K-12 education with AI-assisted learning paths, virtual labs, and global collaboration projects. Preparing students for a future we can only imagine.",
-                coming_soon_badge: "COMING SOON",
-                view_module_btn_disabled: "View Module",
-                about_sazi_vision_title: "The Sazi.life Vision",
-                about_para_tech1: "Sazi.life is where timeless wisdom meets tomorrow's technology. Founded by Salatiso, our platform is engineered to empower every individual with the knowledge and skills to thrive in an ever-evolving world. We believe in learning that is accessible, engaging, and deeply connected to our roots while embracing the future.",
-                about_para_tech2: "From the rich cultural heritage of isiXhosa to the dynamic landscapes of coding and artificial intelligence, Sazi.life offers pathways for discovery and creation. We're not just teaching subjects; we're fostering critical thinking, innovation, and a global community of lifelong learners. Join us in building a more knowledgeable and empowered tomorrow.",
-                sazi_ai_guide_title: "Sazi AI Pathfinder",
-                sazi_ai_guide_desc: "Ready to explore but not sure where to begin? Our Sazi AI Pathfinder uses intelligent guidance to suggest the perfect learning modules based on your age, interests, and learning goals.",
-                wizard_ai_prompt: "What do you want to achieve today?",
-                find_my_modules_ai_btn: "Find My Modules",
-                connect_collaborate_title: "Connect & Collaborate",
-                community_desc_tech: "Join the Sazi.life global network. Engage in forums, contribute your expertise, moderate discussions, and be part of a self-sustaining learning ecosystem.",
-                join_global_network_btn: "Join the Global Network",
-                sazi_evolution_title: "Sazi.life Evolution",
-                timeline_item_tech1_title: "Concept Genesis",
-                timeline_item_tech1_date: "Digital Dawn",
-                timeline_item_tech1_desc: "Sazi.life conceptualized: accessible, tech-driven education for all generations.",
-                timeline_item_tech2_title: "Module Rollout",
-                timeline_item_tech2_date: "Code & Culture",
-                timeline_item_tech2_desc: "Launch of Sazi isiXhosa and Sazi Code & Create, merging heritage with future skills.",
-                timeline_item_tech3_title: "AI Integration",
-                timeline_item_tech3_date: "Smart Learning",
-                timeline_item_tech3_desc: "Gemini API powers Sazi Chatbot and personalized learning pathfinders.",
-                timeline_item_tech4_title: "Expanding Universe",
-                timeline_item_tech4_date: "Global Reach",
-                timeline_item_tech4_desc: "Sazi Home Life & Skills Hub enrich practical knowledge. Community features foster collaboration.",
-                read_more_link: "Details...",
-            },
-             xh: { // Placeholder - Needs accurate translations
-                slogan: "Ulwazi Lwezizukulwana Zonke",
-                home_nav: "Ekhaya", modules_nav: "Iimodyuli", about_nav: "Nathi", guide_nav: "Isikhokelo Sazi", community_nav: "Ulwahlulo", login_nav: "Ngena/Bhalisa",
-                hero_subtext_tech: "Hlola ixesha ledijithali ngeSazi.life. Imfundo yobuchwepheshe obuphambili, ukusuka kwiziseko zokuqhopha ukuya kubuchule be-AI, yosapho lonke.",
-                explore_innovations_btn: "Phonononga Izinto Ezintsha",
-                chart_your_course_btn: "Yila Indlela Yakho",
-                learning_matrix_title: "IMatriki Yokufunda yeSazi",
-                isixhosa_title_tech: "Sazi isiXhosa",
-                isixhosa_desc_short_tech: "Ikhowudi yenkcubeko, amakhonkco olwimi.",
-                isixhosa_desc_long_tech: "Qhagamshelana nelifa lemveli ngezifundo zesiXhosa ezisebenzisanayo. Phonononga izakhiwo zolwimi, iinkcukacha zenkcubeko, kwaye uzibandakanye nezikhokelo zokubiza amagama ezinikwa amandla yi-AI.",
-                discover_language_btn: "Fumana Ulwimi",
-                code_create_title_tech: "Sazi Qhoda Udale",
-                code_create_desc_short_tech: "I-AI, Uphuhliso Lwewebhu, Ikamva Ledijithali.",
-                code_create_desc_long_tech: "Lawula umhlaba wedijithali. Ukusuka kwiziseko ze-HTML ukuya kuphuhliso oluphezulu lwe-React kunye nokudityaniswa kweFirebase. Phonononga i-AI ngeGemini API kwaye wakhe izisombululo zangomso namhlanje.",
-                enter_matrix_btn: "Ngena kwiMatriki",
-                home_life_title_tech: "Sazi Ubomi Basekhaya",
-                home_life_desc_short_tech: "Amakhaya akrelekrele, ukuphila okuzinzileyo.",
-                home_life_desc_long_tech: "Yenza indawo yakho yokuhlala ibe yintsha. Phonononga i-automation yasekhaya ekrelekrele, izisombululo zamandla azinzileyo ekhaya lakho, iindlela zokupheka zanamhlanje, kunye nolawulo olusebenzayo lwekhaya olunikwa amandla ziingcebiso zikaSalatiso.",
-                upgrade_home_btn: "Phucula Ikhaya Lakho",
-                skills_hub_title_tech: "Sazi Izakhono",
-                skills_hub_desc_short_tech: "Qinisekisa izakhono zakho ezisebenzayo ngekamva.",
-                skills_hub_desc_long_tech: "Fumana imisebenzi yezandla efunwayo enento entsha yanamhlanje. Funda iindlela eziphucukileyo ze-DIY, qonda oomatshini beenkqubo ezizinzileyo, kwaye ufumane izakhono zehlabathi eliguquka ngokukhawuleza, ukhokelwa bubuchule bukaSalatiso.",
-                build_skills_btn: "Yakha Izakhono Zakho",
-                funda_title_tech: "Sazi Funda",
-                funda_desc_short_tech: "Isizukulwana esilandelayo se-intanethi nokufunda ekhaya.",
-                funda_desc_long_tech: "Ukuguqula imfundo ye-K-12 ngeendlela zokufunda ezincediswa yi-AI, iilabhoratri ezibonakalayo, kunye neeprojekthi zentsebenziswano zehlabathi. Ukulungiselela abafundi ikamva esinokulicinga kuphela.",
-                coming_soon_badge: "KUYEZA KUNGEKUDALA",
-                view_module_btn_disabled: "Jonga Imodyuli",
-                about_sazi_vision_title: "Umbono weSazi.life",
-                about_para_tech1: "ISazi.life kulapho ubulumko obungaphelelwa lixesha budibana netekhnoloji yangomso. Yasekwa nguSalatiso, iqonga lethu lenzelwe ukuxhobisa wonke umntu ngolwazi nezakhono zokuphumelela kwihlabathi elihlala liguquka. Sikholelwa ekufundeni okufikelelekayo, okubandakanyayo, nokunxibelelene ngokunzulu neengcambu zethu ngelixa samkela ikamva.",
-                about_para_tech2: "Ukusuka kwilifa elityebileyo lenkcubeko yesiXhosa ukuya kwimihlaba enamandla yokuqhopha kunye nobuhlakani bokwenziwa, iSazi.life inika iindlela zokufumana nokudala. Asifundisi nje izifundo; sikhuthaza ukucinga okunzulu, ukuqamba izinto ezintsha, kunye noluntu lwehlabathi lwabafundi bobomi bonke. Joyina nathi ekwakheni ikamva elinolwazi noluxhotyisiweyo ngakumbi.",
-                sazi_ai_guide_title: "UMkhangeli Wendlela weSazi AI",
-                sazi_ai_guide_desc: "Ukulungele ukuphonononga kodwa awuqinisekanga apho uqala khona? UMkhangeli wethu Wendlela weSazi AI usebenzisa isikhokelo esikrelekrele ukucebisa iimodyuli zokufunda ezigqibeleleyo ezisekelwe kwiminyaka yakho, izinto onomdla kuzo, kunye neenjongo zokufunda.",
-                wizard_ai_prompt: "Yintoni ofuna ukuyiphumeza namhlanje?",
-                find_my_modules_ai_btn: "Fumana Iimodyuli Zam",
-                connect_collaborate_title: "Qhagamshela Uze Usebenzisane",
-                community_desc_tech: "Joyina inethiwekhi yehlabathi yeSazi.life. Zibandakanye kwiiforam, ufake isandla kubuchule bakho, lawula iingxoxo, kwaye ube yinxalenye yenkqubo yendalo yokufunda ezizimeleyo.",
-                join_global_network_btn: "Joyina Inethiwekhi Yehlabathi",
-                sazi_evolution_title: "Inguquko yeSazi.life",
-                timeline_item_tech1_title: "Ukuqala Kombono",
-                timeline_item_tech1_date: "Ukusa Kwedijithali",
-                timeline_item_tech1_desc: "ISazi.life icingelwe: imfundo efikelelekayo, eqhutywa yitekhnoloji kuzo zonke izizukulwana.",
-                timeline_item_tech2_title: "Ukuqaliswa Kweemodyuli",
-                timeline_item_tech2_date: "Ikhowudi Nenkcubeko",
-                timeline_item_tech2_desc: "Ukuqaliswa kweSazi isiXhosa neSazi Code & Create, kudityaniswa ilifa lemveli nezakhono zekamva.",
-                timeline_item_tech3_title: "Ukudityaniswa Kwe-AI",
-                timeline_item_tech3_date: "Ukufunda Okukrelekrele",
-                timeline_item_tech3_desc: "IGemini API inika amandla iSazi Chatbot kunye neendlela zokufunda ezenzelwe umntu.",
-                timeline_item_tech4_title: "Ukwanda Kwendalo Yonke",
-                timeline_item_tech4_date: "Ukufikelela Kwehlabathi",
-                timeline_item_tech4_desc: "ISazi Home Life & Skills Hub zityebisa ulwazi olusebenzayo. Iimpawu zoluntu zikhuthaza intsebenziswano.",
-                read_more_link: "Iinkcukacha...",
-            }
-        };
-        function changeLanguage(lang) {
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translationsTech[lang] && translationsTech[lang][key]) {
-                    el.textContent = translationsTech[lang][key];
-                } else if (translationsTech['en'] && translationsTech['en'][key]) {
-                    el.textContent = translationsTech['en'][key]; 
-                }
-            });
-            document.getElementById('language-switcher-desktop-tech').value = lang;
-            document.getElementById('language-switcher-mobile-tech').value = lang;
-        }
-        const initialLangTech = navigator.language.split('-')[0] || 'en';
-        if (translationsTech[initialLangTech]) {
-            changeLanguage(initialLangTech);
-        } else {
-            changeLanguage('en');
-        }
-
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/chatbot.js"></script>
 </body>
 </html>
+
