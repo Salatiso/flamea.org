@@ -3,627 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sazi.life - Warm Community Focus</title>
+    <title>FLAMEA - Variation 3: The Immersive Layout</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: #432818; /* Dark Warm Brown */
-            margin: 0;
-            background-color: #FFF7ED; /* Very Light Orange/Cream */
-            overflow-x: hidden;
+        body { font-family: 'Montserrat', sans-serif; overflow: hidden; }
+        .video-bg {
+            position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+            object-fit: cover; z-index: -2;
         }
-        .full-screen-section {
-            min-height: 100vh;
-            width: 100vw;
-            display: none; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            position: relative;
-            overflow: hidden;
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%);
+            z-index: -1;
         }
-        .full-screen-section.active {
-            display: flex;
-        }
-
-        /* --- SAZI Logo Style --- */
-        .sazilife-logo-base { 
-            font-family: 'Roboto', sans-serif;
-            font-weight: 800;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        .sazilife-logo-main { font-size: 3.5rem; }
-        .sazilife-logo-header { font-size: 1.8rem; }
-
-        .sazilife-logo-base .sazi-name { color: #C05621; /* Burnt Orange for "Sazi" */ }
-        .sazilife-logo-base .sazi-dot { color: #FBBF24; /* Amber-400 for "i" dot */ }
-        .sazilife-logo-base .sazi-life { color: #7B341E; /* Darker Brown for ".life" */ font-weight: 700; }
-        
-        .sazilife-logo-header .sazi-name { color: #C05621; } /* Burnt Orange */
-        .sazilife-logo-header .sazi-life { color: #FEEBC8; } /* Peach/Light Orange for header .life */
-
-        .slogan-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1.5rem;
-            color: #FED7AA; /* Lighter Peach */
-        }
-        /* --- End SAZI Logo Style --- */
-
-        .hero-section {
-            background: linear-gradient(135deg, rgba(192, 86, 33, 0.85), rgba(123, 52, 30, 0.9)), /* Shades of orange/brown */
-                        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFDAB9' fill-opacity='0.1'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h20v20H40V0zm0 20h20v20H40V20zM20 0h20v20H20V0zm0 20h20v20H20V20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"), /* Subtle community/geometric pattern */
-                        url('https://placehold.co/1920x1080/D2B48C/432818?text=Warm+Community+Sunset&font=montserrat') no-repeat center center;
-            background-size: auto, cover;
-            color: white;
-        }
-
-        .btn {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            padding: 0.8rem 1.7rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-decoration: none;
-        }
-        .btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .btn-primary-warm { 
-            background-color: #DD6B20; /* Orange-600 */
-            color: white;
-        }
-        .btn-primary-warm:hover {
-            background-color: #C05621; /* Orange-700 */
-        }
-        .btn-secondary-hero-warm { 
-            background-color: transparent;
-            color: #FED7AA; /* Peach */
-            border: 2px solid #FED7AA;
-        }
-        .btn-secondary-hero-warm:hover {
-            background-color: #FED7AA;
-            color: #7B341E; /* Darker Brown */
-        }
-         .btn-secondary-warm {
-            background-color: transparent;
-            color: #C05621; /* Orange-700 */
-            border: 2px solid #C05621;
-        }
-        .btn-secondary-warm:hover {
-            background-color: #C05621;
-            color: white;
-        }
-
-        .section-title {
-            font-size: 2.25rem;
-            color: #9A3412; /* Orange-800 */
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 3px;
-            background-color: #DD6B20; /* Orange-600 */
-            border-radius: 2px;
-        }
-        
-        .feature-tile-warm {
-            background-color: #FEF3C7; /* Yellow-100 / Cream */
-            border-radius: 1rem;
-            border-left: 5px solid #F59E0B; /* Amber-500 */
-            box-shadow: 0 8px 16px rgba(123, 52, 30, 0.1); /* Brownish shadow */
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .feature-tile-warm:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(123, 52, 30, 0.15);
-        }
-        .feature-icon-warm {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #DD6B20; /* Orange-600 for icons */
-        }
-        .feature-tile-warm h3 {
-            font-size: 1.4rem;
-            color: #9A3412; /* Orange-800 */
-            margin-bottom: 0.75rem;
-        }
-        .feature-tile-warm p { color: #78350F; } /* Earthy Brown */
-        .feature-tile-warm .tile-content { display: none; margin-top: 1rem; text-align: left; font-size: 0.9rem;}
-        .feature-tile-warm.active .tile-content { display: block; }
-        
-        .timeline-warm { 
-            background-color: #FEEBC8; /* Peach / Light Orange */
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-        }
-        .timeline-item-warm {
-            background-color: rgba(255, 250, 240, 0.8); /* Floral white with opacity */
-            padding: 1rem;
-            margin-bottom: 1.25rem;
-            border-radius: 0.5rem;
-            border-left: 4px solid #DD6B20; /* Orange-600 accent */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .timeline-item-warm:hover {
-            background-color: rgba(255, 250, 240, 1);
-        }
-        .timeline-item-warm h4 { color: #9A3412; font-weight: 600;} /* Orange-800 */
-        .timeline-item-warm p { color: #78350F; font-size: 0.9rem; } /* Earthy Brown */
-        .timeline-item-warm .expanded-content { display: none; margin-top: 0.75rem; border-top: 1px dashed #FBD38D; padding-top: 0.75rem; } /* Amber-300 */
-        .timeline-item-warm.expanded .expanded-content { display: block; }
-
-        .fixed-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            background-color: rgba(255, 247, 237, 0.95); /* Very Light Orange/Cream with opacity */
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .main-area { 
-            padding-top: 80px;
-            flex-grow: 1;
-        }
-         .language-selector-fixed select {
-            background-color: #C05621; /* Burnt Orange */
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            border: none;
-            appearance: none;
-            cursor: pointer;
-        }
-         .coming-soon-badge-warm {
-            background-color: #FBBF24; /* Amber-400 */
-            color: #78350F; /* Dark Brown */
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
+        .main-container { height: 100vh; width: 100vw; display: flex; flex-direction: column; }
+        .nav-item { transition: transform 0.3s ease; }
+        .nav-item:hover { transform: scale(1.1); }
+        .carousel-container { display: flex; transition: transform 0.5s ease-in-out; }
+        .carousel-slide { min-width: 100%; box-sizing: border-box; }
     </style>
 </head>
-<body>
+<body class="bg-black text-white">
+    <!-- Background Video -->
+    <video playsinline autoplay muted loop class="video-bg">
+        <!-- Replace with your desired video -->
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-father-and-son-walking-on-a-beach-at-sunset-41489-large.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
 
-    <header class="fixed-header">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-             <a href="#hero" class="sazilife-logo-header" onclick="showSectionWarm('hero')">
-                <span class="sazi-name">Saz</span><span class="sazi-dot">i</span><span class="sazi-life">.life</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 items-center">
-                <a href="#hero" class="text-amber-700 hover:text-orange-600 transition duration-300 font-semibold" onclick="showSectionWarm('hero')" data-translate="home_nav">Home</a>
-                <a href="#modules" class="text-amber-700 hover:text-orange-600 transition duration-300 font-semibold" onclick="showSectionWarm('modules')" data-translate="modules_nav">Modules</a>
-                <a href="#about" class="text-amber-700 hover:text-orange-600 transition duration-300 font-semibold" onclick="showSectionWarm('about')" data-translate="about_nav">About</a>
-                <a href="#guide" class="text-amber-700 hover:text-orange-600 transition duration-300 font-semibold" onclick="showSectionWarm('guide')" data-translate="guide_nav">Sazi Guide</a>
-                <a href="#community" class="text-amber-700 hover:text-orange-600 transition duration-300 font-semibold" onclick="showSectionWarm('community')" data-translate="community_nav">Community</a>
-            </nav>
-             <div class="language-selector-fixed hidden md:block">
-                 <select id="language-switcher-desktop-warm" onchange="changeLanguage(this.value)">
-                    <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
-                </select>
+    <div class="main-container">
+        <!-- Header -->
+        <header class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-10">
+            <a href="#" class="text-4xl font-bold font-roboto">FLAME<span class="text-green-400">A</span></a>
+            <div id="auth-links-desktop">
+                <a href="login.html" class="border border-white hover:bg-white hover:text-black font-bold py-2 px-6 rounded-lg transition-colors text-lg">Login</a>
             </div>
-            <button id="mobile-menu-button-warm" class="md:hidden text-amber-700 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-        <div id="mobile-menu-warm" class="md:hidden hidden bg-white shadow-lg py-2">
-            <a href="#hero" class="block px-6 py-3 text-amber-700 hover:bg-amber-50 font-semibold" onclick="showSectionWarm('hero'); toggleMobileMenuWarm();" data-translate="home_nav">Home</a>
-            <a href="#modules" class="block px-6 py-3 text-amber-700 hover:bg-amber-50 font-semibold" onclick="showSectionWarm('modules'); toggleMobileMenuWarm();" data-translate="modules_nav">Modules</a>
-            <a href="#about" class="block px-6 py-3 text-amber-700 hover:bg-amber-50 font-semibold" onclick="showSectionWarm('about'); toggleMobileMenuWarm();" data-translate="about_nav">About</a>
-            <a href="#guide" class="block px-6 py-3 text-amber-700 hover:bg-amber-50 font-semibold" onclick="showSectionWarm('guide'); toggleMobileMenuWarm();" data-translate="guide_nav">Sazi Guide</a>
-            <a href="#community" class="block px-6 py-3 text-amber-700 hover:bg-amber-50 font-semibold" onclick="showSectionWarm('community'); toggleMobileMenuWarm();" data-translate="community_nav">Community</a>
-             <div class="language-selector-fixed px-6 py-3">
-                 <select id="language-switcher-mobile-warm" class="w-full" onchange="changeLanguage(this.value)">
-                    <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
-                </select>
-            </div>
-            <a href="#" class="block px-6 py-3 text-orange-600 hover:bg-amber-50 font-bold" data-translate="login_nav">Login/Register</a>
-        </div>
-    </header>
+        </header>
 
-    <main class="main-area">
-        <section id="hero" class="full-screen-section hero-section text-center active">
-            <div>
-                <div class="sazilife-logo-main mb-4">
-                    <span class="sazi-name">Saz</span><span class="sazi-dot">i</span><span class="sazi-life">.life</span>
+        <!-- Carousel Area -->
+        <main class="flex-grow flex flex-col justify-end overflow-hidden">
+            <div id="carousel" class="carousel-container">
+                <!-- Slide 1: Home -->
+                <div class="carousel-slide flex flex-col justify-center items-center text-center p-8">
+                    <h1 class="text-6xl md:text-8xl font-bold font-teko uppercase tracking-wider">FATHERS. LEADERS. LEGACY.</h1>
+                    <p class="text-2xl text-gray-300 mt-2">Empowering South African fathers to reclaim their role.</p>
                 </div>
-                <p class="slogan-text text-2xl md:text-3xl mb-8" data-translate="slogan">Knowledge for Every Generation</p>
-                <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-yellow-50" data-translate="hero_subtext_warm">
-                    A warm welcome to Sazi.life, where learning blossoms for every member of the family. Explore, connect, and grow with us.
-                </p>
-                <div class="space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
-                    <button class="btn btn-primary-warm text-lg" onclick="showSectionWarm('modules')">
-                        <i class="fas fa-heart"></i> <span data-translate="explore_with_love_btn">Explore with Love</span>
-                    </button>
-                    <button class="btn btn-secondary-hero-warm text-lg" onclick="showSectionWarm('guide')">
-                       <i class="fas fa-hand-holding-heart"></i> <span data-translate="find_family_path_btn">Find Your Family's Path</span>
-                    </button>
+                <!-- Slide 2: Mission -->
+                <div class="carousel-slide flex flex-col justify-center items-center text-center p-8">
+                    <h1 class="text-6xl md:text-8xl font-bold font-teko uppercase tracking-wider">OUR STAND</h1>
+                    <p class="text-2xl text-gray-300 mt-2 max-w-4xl">We fight for equality before the law, ensuring children have the right to both parents. No more second-class fathers.</p>
+                </div>
+                 <!-- Slide 3: Tools -->
+                 <div class="carousel-slide flex flex-col justify-center items-center text-center p-8">
+                    <h1 class="text-6xl md:text-8xl font-bold font-teko uppercase tracking-wider">TOOLS FOR THE FIGHT</h1>
+                    <p class="text-2xl text-gray-300 mt-2 max-w-4xl">Parenting plans, dispute trackers, and legal navigation to equip you for success.</p>
+                    <a href="tools.html" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg text-xl transition-transform hover:scale-105">
+                        ACCESS TOOLS
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <section id="modules" class="full-screen-section bg-orange-50">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-12" data-translate="modules_for_everyone_title">Modules for Everyone in the Family</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 clickable-tile-container">
-                    <div class="feature-tile-warm" onclick="toggleTileWarm(this)">
-                        <i class="fas fa-comments feature-icon-warm text-blue-500"></i>
-                        <h3 data-translate="isixhosa_title_warm">Sazi isiXhosa</h3>
-                        <p data-translate="isixhosa_desc_short_warm">Embrace language, share culture.</p>
-                         <div class="tile-content">
-                            <p data-translate="isixhosa_desc_long_warm">Journey into the heart of isiXhosa. Our interactive lessons make learning language and traditions a joyful experience for all ages. Strengthen family bonds through shared cultural discovery.</p>
-                            <button class="btn btn-secondary-warm btn-sm mt-3 text-sm" data-translate="start_learning_btn">Start Learning</button>
-                        </div>
-                    </div>
-                    <div class="feature-tile-warm" onclick="toggleTileWarm(this)">
-                        <i class="fas fa-lightbulb feature-icon-warm text-green-500"></i>
-                        <h3 data-translate="code_create_title_warm">Sazi Code & Create</h3>
-                        <p data-translate="code_create_desc_short_warm">Innovate, build, understand tech.</p>
-                         <div class="tile-content">
-                            <p data-translate="code_create_desc_long_warm">Empower your family with digital literacy. From foundational coding concepts to exploring AI with Gemini, we make technology accessible and exciting for curious minds of all ages.</p>
-                            <button class="btn btn-secondary-warm btn-sm mt-3 text-sm" data-translate="start_creating_btn">Start Creating</button>
-                        </div>
-                    </div>
-                    <div class="feature-tile-warm" onclick="toggleTileWarm(this)">
-                        <i class="fas fa-seedling feature-icon-warm text-purple-500"></i>
-                        <h3 data-translate="home_life_title_warm">Sazi Home Life</h3>
-                        <p data-translate="home_life_desc_short_warm">Nurture your home, together.</p>
-                         <div class="tile-content">
-                            <p data-translate="home_life_desc_long_warm">Transform your home into a haven of learning and joy. Discover delightful recipes, practical DIY projects from Salatiso's channel, gardening tips for the whole family, and efficient home management strategies.</p>
-                            <a href="https://www.youtube.com/@Salatiso" target="_blank" class="btn btn-secondary-warm btn-sm mt-3 text-sm" data-translate="view_channel_btn">View Channel</a>
-                        </div>
-                    </div>
-                     <div class="feature-tile-warm" onclick="toggleTileWarm(this)">
-                        <i class="fas fa-users-cog feature-icon-warm text-red-500"></i>
-                        <h3 data-translate="skills_hub_title_warm">Sazi Skills Hub</h3>
-                        <p data-translate="skills_hub_desc_short_warm">Hands-on skills, family projects.</p>
-                        <div class="tile-content">
-                            <p data-translate="skills_hub_desc_long_warm">Build practical skills as a family! Explore welding, plumbing, and advanced DIY with guidance from Salatiso's tutorials. Create, repair, and learn valuable trades together.</p>
-                            <a href="https://www.youtube.com/@Salatiso" target="_blank" class="btn btn-secondary-warm btn-sm mt-3 text-sm" data-translate="view_channel_btn">View Channel</a>
-                        </div>
-                    </div>
-                    <div class="feature-tile-warm relative" onclick="toggleTileWarm(this)">
-                        <i class="fas fa-book-reader feature-icon-warm text-teal-500"></i>
-                        <h3 data-translate="funda_title_warm">Sazi Funda</h3>
-                        <p data-translate="funda_desc_short_warm">Academic learning, family style.</p>
-                        <span class="coming-soon-badge-warm" data-translate="coming_soon_badge">COMING SOON</span>
-                         <div class="tile-content">
-                             <p data-translate="funda_desc_long_warm">Embark on a comprehensive K-12 educational adventure tailored for homeschooling and online learning. Our engaging curricula are designed to foster a love for knowledge in every child, supported by family involvement.</p>
-                            <button class="btn btn-secondary-warm btn-sm mt-3 text-sm opacity-50 cursor-not-allowed" data-translate="view_module_btn_disabled">View Module</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="full-screen-section bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-10" data-translate="sazi_family_story_title">The Sazi.life Family Story</h2>
-                <div class="max-w-3xl mx-auto text-left">
-                    <img src="https://placehold.co/600x350/FED7AA/7B341E?text=Family+Learning+Together&font=montserrat" alt="Warm illustration of a family learning together" class="rounded-lg shadow-xl w-full mb-6 h-48 object-cover">
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4" data-translate="about_para_warm1">
-                        Sazi.life is a heartfelt initiative by Salatiso, inspired by the enduring bonds of family and the shared joy of discovery. "Sazi" – "we know," "we understand" – reflects our belief that the strongest learning happens when generations connect, share wisdom, and explore the world together.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed" data-translate="about_para_warm2">
-                        We are creating a warm, inviting space where every family member, from the youngest child to the wisest grandparent, can find something to ignite their curiosity and passion. Whether it's delving into isiXhosa, creating with code, or mastering home skills, Sazi.life is about growing together.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="guide" class="full-screen-section bg-orange-50">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-10" data-translate="sazi_family_guide_title">Your Family's Sazi Guide</h2>
-                <i class="fas fa-hands-helping text-6xl text-orange-600 mb-6"></i>
-                <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-8" data-translate="sazi_family_guide_desc">
-                    Let's find the perfect learning adventures for your whole family! Our friendly Sazi Guide will ask a few questions to help you discover modules that everyone will love.
-                </p>
-                 <div class="bg-white p-8 rounded-lg shadow-xl max-w-md mx-auto">
-                    {/* Conceptual Wizard: Interactive elements would be JS driven */}
-                    <p class="text-orange-700 font-semibold mb-4" data-translate="wizard_warm_prompt">What kind of learning fun are you looking for?</p>
-                    <div class="space-y-3">
-                        <button class="w-full py-3 px-4 bg-amber-100 text-amber-800 rounded-md hover:bg-amber-200 transition duration-300" data-translate="wizard_btn_lang">Learning a New Language Together</button>
-                        <button class="w-full py-3 px-4 bg-amber-100 text-amber-800 rounded-md hover:bg-amber-200 transition duration-300" data-translate="wizard_btn_tech">Exploring Technology & Making Cool Stuff</button>
-                        <button class="w-full py-3 px-4 bg-amber-100 text-amber-800 rounded-md hover:bg-amber-200 transition duration-300" data-translate="wizard_btn_home">Fun Home Projects & Skills</button>
-                        <button class="w-full py-3 px-4 bg-amber-100 text-amber-800 rounded-md hover:bg-amber-200 transition duration-300" data-translate="wizard_btn_trades">Learning Practical Trades</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </main>
         
-        <section id="community" class="full-screen-section bg-[#78350F] text-white text-center"> <!-- Dark Brown -->
-             <div>
-                <i class="fas fa-users text-7xl text-amber-300 mb-6"></i>
-                <h2 class="section-title text-white mb-6" data-translate="our_sazi_family_title">Our Sazi Family</h2>
-                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-200" data-translate="community_desc_warm">
-                    You're invited! Join the Sazi.life family to share your learning experiences, support fellow members, and help us grow our community. Free registration opens up a world of connection.
-                </p>
-                <div id="register-login-community-warm">
-                    <button class="btn bg-amber-400 hover:bg-amber-500 text-gray-900 text-lg"> 
-                        <i class="fas fa-heart"></i> <span data-translate="join_our_family_btn">Join Our Family</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Timeline Sidebar -->
-        <aside class="fixed top-0 right-0 h-full w-1/4 bg-orange-100 p-4 overflow-y-auto shadow-lg hidden md:block timeline-warm" style="padding-top: 80px;">
-            <h3 class="text-xl font-semibold text-orange-800 mb-4 text-center" data-translate="sazi_story_unfolds_title">The Sazi Story Unfolds</h3>
-            <div class="timeline-items-container">
-                <div class="timeline-item-warm" onclick="toggleTimelineItemContentWarm(this)">
-                    <h4 data-translate="timeline_item_warm1_title">A Dream for Family</h4>
-                    <p data-translate="timeline_item_warm1_date">Heartfelt Beginnings</p>
-                    <div class="expanded-content">
-                        <p data-translate="timeline_item_warm1_desc">Salatiso's idea: a platform where families learn and grow together, inspired by community.</p>
-                        <a href="#" class="text-xs text-blue-600 hover:underline" data-translate="read_more_link">More...</a>
-                    </div>
-                </div>
-                 <div class="timeline-item-warm" onclick="toggleTimelineItemContentWarm(this)">
-                    <h4 data-translate="timeline_item_warm2_title">isiXhosa Celebrations</h4>
-                    <p data-translate="timeline_item_warm2_date">Sharing Heritage</p>
-                    <div class="expanded-content">
-                        <p data-translate="timeline_item_warm2_desc">Sazi isiXhosa brings cultural richness and language learning to our community.</p>
-                         <a href="#" class="text-xs text-blue-600 hover:underline" data-translate="read_more_link">More...</a>
-                    </div>
-                </div>
-                 <div class="timeline-item-warm" onclick="toggleTimelineItemContentWarm(this)">
-                    <h4 data-translate="timeline_item_warm3_title">Creative Tech Hub</h4>
-                    <p data-translate="timeline_item_warm3_date">Digital Discovery</p>
-                    <div class="expanded-content">
-                        <p data-translate="timeline_item_warm3_desc">Sazi Code & Create opens a world of tech exploration and innovation for all.</p>
-                        <a href="#" class="text-xs text-blue-600 hover:underline" data-translate="read_more_link">More...</a>
-                    </div>
-                </div>
-                 <div class="timeline-item-warm" onclick="toggleTimelineItemContentWarm(this)">
-                    <h4 data-translate="timeline_item_warm4_title">Expanding Together</h4>
-                    <p data-translate="timeline_item_warm4_date">Our Growing Family</p>
-                    <div class="expanded-content">
-                        <p data-translate="timeline_item_warm4_desc">With Sazi Home Life & Skills Hub, our learning family grows stronger and more skilled every day.</p>
-                        <a href="#" class="text-xs text-blue-600 hover:underline" data-translate="read_more_link">More...</a>
-                    </div>
-                </div>
-            </div>
-        </aside>
-    </main>
-    
-    <footer class="bg-[#432818] text-gray-300 py-6 text-center"> <!-- Dark Warm Brown footer -->
-        <div class="container mx-auto px-6">
-             <div class="mb-3">
-                <a href="#hero" class="sazilife-logo-header text-2xl" style="color: #FED7AA;" onclick="showSectionWarm('hero')"> <!-- Peach for footer logo -->
-                    <span class="sazi-name" style="color: #FEEBC8;">Saz</span><span class="sazi-dot" style="color: #FBBF24;">i</span><span class="sazi-life" style="color: #FED7AA;">.life</span>
+        <!-- Navigation Footer -->
+        <footer class="p-6">
+            <nav id="main-nav" class="flex justify-center items-center space-x-12">
+                <a href="#" class="nav-item text-center text-gray-300 hover:text-white" data-slide="0">
+                    <i class="fas fa-home text-4xl"></i><span class="block text-sm uppercase mt-1">Home</span>
                 </a>
-                <p class="mt-1 text-sm" data-translate="slogan">Knowledge for Every Generation.</p>
-            </div>
-            <p class="text-sm">&copy; <span id="currentYearWarm"></span> Sazi.life by Salatiso. All rights reserved.</p>
-        </div>
-    </footer>
-
+                <a href="#" class="nav-item text-center text-gray-300 hover:text-white" data-slide="1">
+                    <i class="fas fa-bullseye text-4xl"></i><span class="block text-sm uppercase mt-1">Mission</span>
+                </a>
+                 <a href="#" class="nav-item text-center text-gray-300 hover:text-white" data-slide="2">
+                    <i class="fas fa-tools text-4xl"></i><span class="block text-sm uppercase mt-1">Tools</span>
+                </a>
+                <a href="community.html" class="nav-item text-center text-gray-300 hover:text-white">
+                    <i class="fas fa-users text-4xl"></i><span class="block text-sm uppercase mt-1">Community</span>
+                </a>
+            </nav>
+        </footer>
+    </div>
+    
+    <!-- Scripts -->
     <script>
-        document.getElementById('currentYearWarm').textContent = new Date().getFullYear();
-        const mobileMenuButtonWarm = document.getElementById('mobile-menu-button-warm');
-        const mobileMenuWarm = document.getElementById('mobile-menu-warm');
+        const carousel = document.getElementById('carousel');
+        const nav = document.getElementById('main-nav');
+        let currentSlide = 0;
         
-        if (mobileMenuButtonWarm && mobileMenuWarm) {
-            mobileMenuButtonWarm.addEventListener('click', () => {
-                mobileMenuWarm.classList.toggle('hidden');
-            });
-        }
-        function toggleMobileMenuWarm() {
-            if (mobileMenuWarm) mobileMenuWarm.classList.add('hidden');
-        }
-
-        const sectionsWarm = document.querySelectorAll('.full-screen-section');
-        const navLinksFixedWarm = document.querySelectorAll('header nav a, #mobile-menu-warm a');
-
-        function showSectionWarm(sectionId) {
-            sectionsWarm.forEach(section => {
-                if (section.id === sectionId) {
-                    section.classList.add('active');
-                } else {
-                    section.classList.remove('active');
-                }
-            });
-             navLinksFixedWarm.forEach(link => {
-                link.classList.remove('text-orange-600', 'font-bold');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('text-orange-600', 'font-bold');
-                }
-            });
-            if (mobileMenuWarm && !mobileMenuWarm.classList.contains('hidden')) {
-                 toggleMobileMenuWarm();
+        nav.addEventListener('click', function(e) {
+            const navItem = e.target.closest('.nav-item');
+            if (navItem && navItem.dataset.slide) {
+                e.preventDefault();
+                currentSlide = parseInt(navItem.dataset.slide);
+                updateCarousel();
             }
-        }
-        
-        showSectionWarm('hero'); 
-
-        navLinksFixedWarm.forEach(link => {
-            link.addEventListener('click', function(e) {
-                 const targetId = this.getAttribute('href').substring(1);
-                 if (document.getElementById(targetId)) {
-                    e.preventDefault();
-                    showSectionWarm(targetId);
-                }
-            });
         });
 
-        function toggleTileWarm(tileElement) {
-            document.querySelectorAll('.feature-tile-warm.active').forEach(activeTile => {
-                if (activeTile !== tileElement) {
-                    activeTile.classList.remove('active');
-                }
-            });
-            tileElement.classList.toggle('active');
-        }
-        function toggleTimelineItemContentWarm(item) {
-            document.querySelectorAll('.timeline-item-warm.expanded').forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('expanded');
-                }
-            });
-            item.classList.toggle('expanded');
-        }
-
-        // Placeholder for translations - use the same `translations` object or create a new one for this theme
-        const translationsWarm = {
-             en: {
-                slogan: "Knowledge for Every Generation",
-                home_nav: "Home", modules_nav: "Modules", about_nav: "About", guide_nav: "Sazi Guide", community_nav: "Community", login_nav: "Login/Register",
-                hero_subtext_warm: "A warm welcome to Sazi.life, where learning blossoms for every member of the family. Explore, connect, and grow with us.",
-                explore_with_love_btn: "Explore with Love",
-                find_family_path_btn: "Find Your Family's Path",
-                modules_for_everyone_title: "Modules for Everyone in the Family",
-                isixhosa_title_warm: "Sazi isiXhosa",
-                isixhosa_desc_short_warm: "Embrace language, share culture.",
-                isixhosa_desc_long_warm: "Journey into the heart of isiXhosa. Our interactive lessons make learning language and traditions a joyful experience for all ages. Strengthen family bonds through shared cultural discovery.",
-                start_learning_btn: "Start Learning",
-                code_create_title_warm: "Sazi Code & Create",
-                code_create_desc_short_warm: "Innovate, build, understand tech.",
-                code_create_desc_long_warm: "Empower your family with digital literacy. From foundational coding concepts to exploring AI with Gemini, we make technology accessible and exciting for curious minds of all ages.",
-                start_creating_btn: "Start Creating",
-                home_life_title_warm: "Sazi Home Life",
-                home_life_desc_short_warm: "Nurture your home, together.",
-                home_life_desc_long_warm: "Transform your home into a haven of learning and joy. Discover delightful recipes, practical DIY projects from Salatiso's channel, gardening tips for the whole family, and efficient home management strategies.",
-                visit_channel_btn: "View Channel",
-                skills_hub_title_warm: "Sazi Skills Hub",
-                skills_hub_desc_short_warm: "Hands-on skills, family projects.",
-                skills_hub_desc_long_warm: "Build practical skills as a family! Explore welding, plumbing, and advanced DIY with guidance from Salatiso's tutorials. Create, repair, and learn valuable trades together.",
-                funda_title_warm: "Sazi Funda",
-                funda_desc_short_warm: "Academic learning, family style.",
-                funda_desc_long_warm: "Embark on a comprehensive K-12 educational adventure tailored for homeschooling and online learning. Our engaging curricula are designed to foster a love for knowledge in every child, supported by family involvement.",
-                coming_soon_badge: "COMING SOON",
-                view_module_btn_disabled: "View Module",
-                sazi_family_story_title: "The Sazi.life Family Story",
-                about_para_warm1: "Sazi.life is a heartfelt initiative by Salatiso, inspired by the enduring bonds of family and the shared joy of discovery. \"Sazi\" – \"we know,\" \"we understand\" – reflects our belief that the strongest learning happens when generations connect, share wisdom, and explore the world together.",
-                about_para_warm2: "We are creating a warm, inviting space where every family member, from the youngest child to the wisest grandparent, can find something to ignite their curiosity and passion. Whether it's delving into isiXhosa, creating with code, or mastering home skills, Sazi.life is about growing together.",
-                sazi_family_guide_title: "Your Family's Sazi Guide",
-                sazi_family_guide_desc: "Let's find the perfect learning adventures for your whole family! Our friendly Sazi Guide will ask a few questions to help you discover modules that everyone will love.",
-                wizard_warm_prompt: "What kind of learning fun are you looking for?",
-                wizard_btn_lang: "Learning a New Language Together",
-                wizard_btn_tech: "Exploring Technology & Making Cool Stuff",
-                wizard_btn_home: "Fun Home Projects & Skills",
-                wizard_btn_trades: "Learning Practical Trades",
-                our_sazi_family_title: "Our Sazi Family",
-                community_desc_warm: "You're invited! Join the Sazi.life family to share your learning experiences, support fellow members, and help us grow our community. Free registration opens up a world of connection.",
-                join_our_family_btn: "Join Our Family",
-                sazi_story_unfolds_title: "The Sazi Story Unfolds",
-                timeline_item_warm1_title: "A Dream for Family",
-                timeline_item_warm1_date: "Heartfelt Beginnings",
-                timeline_item_warm1_desc: "Salatiso's idea: a platform where families learn and grow together, inspired by community.",
-                timeline_item_warm2_title: "isiXhosa Celebrations",
-                timeline_item_warm2_date: "Sharing Heritage",
-                timeline_item_warm2_desc: "Sazi isiXhosa brings cultural richness and language learning to our community.",
-                timeline_item_warm3_title: "Creative Tech Hub",
-                timeline_item_warm3_date: "Digital Discovery",
-                timeline_item_warm3_desc: "Sazi Code & Create opens a world of tech exploration and innovation for all.",
-                timeline_item_warm4_title: "Expanding Together",
-                timeline_item_warm4_date: "Our Growing Family",
-                timeline_item_warm4_desc: "With Sazi Home Life & Skills Hub, our learning family grows stronger and more skilled every day.",
-                read_more_link: "More...",
-            },
-             xh: { // Placeholder - Needs accurate translations
-                slogan: "Ulwazi Lwezizukulwana Zonke",
-                home_nav: "Ekhaya", modules_nav: "Iimodyuli", about_nav: "Nathi", guide_nav: "Isikhokelo Sazi", community_nav: "Ulwahlulo", login_nav: "Ngena/Bhalisa",
-                hero_subtext_warm: "Wamkelekile ngokufudumeleyo eSazi.life, apho ukufunda kuchuma kuye wonke ilungu losapho. Phonononga, qhagamshelana, kwaye ukhule nathi.",
-                explore_with_love_btn: "Phonononga Ngothando",
-                find_family_path_btn: "Fumana Indlela Yosapho Lwakho",
-                modules_for_everyone_title: "Iimodyuli Zomntu Wonke Ekhaya",
-                isixhosa_title_warm: "Sazi isiXhosa",
-                isixhosa_desc_short_warm: "Yamkela ulwimi, yabelana ngenkcubeko.",
-                isixhosa_desc_long_warm: "Ngena entliziyweni yesiXhosa. Izifundo zethu ezisebenzisanayo zenza ukufunda ulwimi nezithethe kube ngamava achulumancisayo kuyo yonke iminyaka. Qinisa amaqhina osapho ngokufumanisa inkcubeko ekwabelwana ngayo.",
-                start_learning_btn: "Qala Ukufunda",
-                code_create_title_warm: "Sazi Qhoda Udale",
-                code_create_desc_short_warm: "Yenza izinto ezintsha, yakha, qonda itekhnoloji.",
-                code_create_desc_long_warm: "Xhobisa usapho lwakho ngolwazi lwedijithali. Ukusuka kwiikhonsepthi ezisisiseko zokuqhopha ukuya ekufundeni nge-AI ngeGemini, senza itekhnoloji ifikeleleke kwaye ichulumancise kwiingqondo ezinomdla zayo yonke iminyaka.",
-                start_creating_btn: "Qala Ukudala",
-                home_life_title_warm: "Sazi Ubomi Basekhaya",
-                home_life_desc_short_warm: "Khulisa ikhaya lakho, kunye.",
-                home_life_desc_long_warm: "Guqula ikhaya lakho libe yindawo yokufunda nolonwabo. Fumana iiresiphi ezimnandi, iiprojekthi ze-DIY ezisebenzayo ezivela kwijelo likaSalatiso, iingcebiso zokulima igadi yosapho lonke, kunye neendlela ezisebenzayo zolawulo lwekhaya.",
-                visit_channel_btn: "Tyelela Ijelo",
-                skills_hub_title_warm: "Sazi Izakhono",
-                skills_hub_desc_short_warm: "Izakhono ezisebenzayo, iiprojekthi zosapho.",
-                skills_hub_desc_long_warm: "Yakha izakhono ezisebenzayo njengosapho! Phonononga ukuwelda, ukuplamba, kunye ne-DIY ephezulu ngezikhokelo ezivela kwizifundo zikaSalatiso. Dala, lungisa, kwaye ufunde imisebenzi yezandla exabisekileyo kunye.",
-                funda_title_warm: "Sazi Funda",
-                funda_desc_short_warm: "Ukufunda kwezemfundo, isimbo sosapho.",
-                funda_desc_long_warm: "Qalisa uhambo lwezemfundo olupheleleyo lwe-K-12 olulungiselelwe ukufunda ekhaya nokufunda kwi-intanethi. Ikharityhulam yethu ebandakanyayo yenzelwe ukukhulisa uthando lolwazi kuye wonke umntwana, ixhaswa kukubandakanyeka kosapho.",
-                coming_soon_badge: "KUYEZA KUNGEKUDALA",
-                view_module_btn_disabled: "Jonga Imodyuli",
-                sazi_family_story_title: "Ibali Losapho LweSazi.life",
-                about_para_warm1: "ISazi.life linyathelo elisuka entliziyweni likaSalatiso, eliphefumlelwe ngamaqhina angunaphakade osapho kunye nolonwabo olwabelwana ngalo lokufumana. \"Sazi\" – \"siyazi,\" \"siyaqonda\" – libonisa inkolelo yethu yokuba ukufunda okuqine kakhulu kwenzeka xa izizukulwana ziqhagamshelana, zabelana ngobulumko, kwaye ziphonononga ilizwe kunye.",
-                about_para_warm2: "Sakha indawo efudumeleyo, ememayo apho lonke ilungu losapho, ukusuka komncinci umntwana ukuya kowona makhulu ulumkileyo, linokufumana into yokuvuselela umdla nothando lwalo. Nokuba kungena kwisiXhosa, ukudala ngekhowudi, okanye ukufunda izakhono zasekhaya, iSazi.life imalunga nokukhula kunye.",
-                sazi_family_guide_title: "Isikhokelo Sakho Sosapho Sazi",
-                sazi_family_guide_desc: "Masifumane ezona nkathazo zokufunda zigqibeleleyo kulo lonke usapho lwakho! Isikhokelo sethu esinobuhlobo seSazi siza kubuza imibuzo embalwa ukukunceda ufumane iimodyuli eniya kuzithanda nonke.",
-                wizard_warm_prompt: "Loluphi uhlobo lolonwabo lokufunda olufunayo?",
-                wizard_btn_lang: "Ukufunda Ulwimi Olutsha Kunye",
-                wizard_btn_tech: "Ukuphonononga ITekhnoloji Nokwenza Izinto Ezipholileyo",
-                wizard_btn_home: "Iiprojekthi Zasekhaya Ezimnandi Nezakhono",
-                wizard_btn_trades: "Ukufunda Imisebenzi Yezandla Esebenzayo",
-                our_sazi_family_title: "Usapho Lwethu LweSazi",
-                community_desc_warm: "Uyamenywa! Joyina usapho lweSazi.life ukuze wabelane ngamava akho okufunda, uxhase amanye amalungu, kwaye usincede sikhulise uluntu lwethu. Ubhaliso lwasimahla luvula ilizwe lonxibelelwano.",
-                join_our_family_btn: "Joyina Usapho Lwethu",
-                sazi_story_unfolds_title: "Ibali leSazi Liyazityhila",
-                timeline_item_warm1_title: "Iphupha Losapho",
-                timeline_item_warm1_date: "Iziqalo Ezisuka Entliziyweni",
-                timeline_item_warm1_desc: "Umbono kaSalatiso: iqonga apho iintsapho zifunda kwaye zikhula kunye, liphefumlelwe luluntu.",
-                timeline_item_warm2_title: "Imibhiyozo yesiXhosa",
-                timeline_item_warm2_date: "Ukwabelana Ngelifa Lemveli",
-                timeline_item_warm2_desc: "ISazi isiXhosa izisa ubutyebi benkcubeko nokufunda ulwimi kuluntu lwethu.",
-                timeline_item_warm3_title: "IZiko LeTekhnoloji Elidala Izinto",
-                timeline_item_warm3_date: "Ukufunyanwa Kwedijithali",
-                timeline_item_warm3_desc: "ISazi Code & Create ivula ilizwe lokuphononongwa kwetekhnoloji kunye nokuqamba izinto ezintsha kuye wonke umntu.",
-                timeline_item_warm4_title: "Ukukhula Kunye",
-                timeline_item_warm4_date: "Usapho Lwethu Olukhulayo",
-                timeline_item_warm4_desc: "NgeSazi Home Life & Skills Hub, usapho lwethu lokufunda lukhula lomelele kwaye lube nezakhono ngakumbi yonke imihla.",
-                read_more_link: "Okungakumbi...",
-            }
-        };
-        function changeLanguage(lang) {
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translationsWarm[lang] && translationsWarm[lang][key]) {
-                    el.textContent = translationsWarm[lang][key];
-                } else if (translationsWarm['en'] && translationsWarm['en'][key]) {
-                    el.textContent = translationsWarm['en'][key]; 
-                }
-            });
-            document.getElementById('language-switcher-desktop-warm').value = lang;
-            document.getElementById('language-switcher-mobile-warm').value = lang;
-        }
-        const initialLangWarm = navigator.language.split('-')[0] || 'en';
-        if (translationsWarm[initialLangWarm]) {
-            changeLanguage(initialLangWarm);
-        } else {
-            changeLanguage('en');
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
     </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/chatbot.js"></script>
 </body>
 </html>
