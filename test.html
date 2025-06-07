@@ -3,916 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sazi.life - Knowledge for Every Generation</title>
+    <title>FLAMEA - Variation 5: The Split Screen</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: #4A3B31; /* Dark Earthy Brown for base text */
-            margin: 0;
-            overflow: hidden; 
-            background-color: #F0FDF4; /* Light Aloe Green background for body */
-        }
-        .full-screen-section {
-            min-height: 100vh;
-            width: 100vw;
-            display: none; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 20px 20px; 
-            box-sizing: border-box;
-            position: relative; 
-            overflow-y: auto; 
-        }
-        .full-screen-section.active {
-            display: flex;
-        }
-
-        /* --- SAZI Logo Style (Variation 2 Adaptation) --- */
-        .sazilife-logo-base {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 800; 
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        .sazilife-logo-main { font-size: 4rem; } 
-        .sazilife-logo-header { font-size: 1.75rem; }
-
-        .sazilife-logo-base .sazi-name { color: #2F855A; /* Dark Green (Aloe Inspired) */ }
-        .sazilife-logo-base .sazi-dot { color: #F59E0B; /* Amber-500 (Vibrant Yellow/Orange) */ }
-        .sazilife-logo-base .sazi-life { color: #78350F; /* Earthy Brown */ font-weight: 700; }
-        
-        .sazilife-logo-header .sazi-name { color: #2F855A; }
-        .sazilife-logo-header .sazi-dot { color: #F59E0B; }
-        .sazilife-logo-header .sazi-life { color: #A0522D; } /* Sienna Brown */
-
-        .slogan-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1.65rem; 
-            color: #FFF8DC; /* Cornsilk - for contrast on hero */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-        /* --- End SAZI Logo Style --- */
-
-        .hero-section {
-            /* Transkei-inspired gradient with subtle aloe/geometric SVG pattern */
-            background: linear-gradient(135deg, rgba(64, 88, 49, 0.88), rgba(47, 133, 90, 0.92)), /* Dark Olive/Aloe to Forest Green */
-                        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='aloe_pattern' patternUnits='userSpaceOnUse' width='60' height='60' patternTransform='scale(1.2) rotate(25)'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z' fill='%23FFFFFF' fill-opacity='0.04'/%3E%3Cpath d='M15 15 L45 15 L30 45 Z' fill='%23FFFFFF' fill-opacity='0.03'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%23FFFFFF' fill-opacity='0.05'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23aloe_pattern)'/%3E%3C/svg%3E");
-            background-size: auto, auto;
-            color: white;
-        }
-
-        .btn {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            padding: 0.85rem 1.8rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-decoration: none;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .btn-primary-sazi { 
-            background-color: #D2691E; /* Terracotta */
-            color: #FFF8DC; /* Cornsilk */
-        }
-        .btn-primary-sazi:hover { background-color: #A0522D; /* Sienna */ }
-
-        .btn-secondary-sazi-hero { 
-            background-color: transparent;
-            color: #FFF8DC; /* Cornsilk */
-            border: 2px solid #FFF8DC;
-        }
-        .btn-secondary-sazi-hero:hover { background-color: #FFF8DC; color: #5D4037; /* Darker Brown */ }
-
-        .btn-secondary-sazi {
-            background-color: transparent;
-            color: #2F855A; /* Dark Green */
-            border: 2px solid #2F855A;
-        }
-        .btn-secondary-sazi:hover { background-color: #2F855A; color: white; }
-
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: #4A3B31; /* Dark Earthy Brown */
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        .section-title-light { color: #FFF8DC; } /* For dark backgrounds */
-        .section-title::after {
+        body { font-family: 'Montserrat', sans-serif; overflow: hidden; }
+        .split-container { display: flex; height: 100vh; width: 100vw; }
+        .left-panel { width: 45%; background-color: #000; color: white; display: flex; flex-direction: column; justify-content: space-between; padding: 3rem;}
+        .right-panel { width: 55%; position: relative; }
+        .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out; }
+        .slide.active { opacity: 1; }
+        .slide .overlay { position: absolute; inset: 0; background: linear-gradient(to right, #000 0%, transparent 100%); }
+        .nav-link { position: relative; transition: color 0.3s; }
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: #F59E0B; /* Sazi Dot Yellow/Amber */
-            border-radius: 2px;
-        }
-        .section-title-light::after { background-color: #F59E0B; }
-        
-        .bg-light-earth { background-color: #FDFBF5; } /* Lighter beige/sand, almost off-white */
-        .bg-deep-green { background-color: #276749; color: white; } /* Forest Green */
-
-        .feature-tile { 
-            background-color: white;
-            border-radius: 1rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.07); /* Softer shadow */
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; 
-        }
-        .feature-tile:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        .feature-icon {
-            font-size: 2.8rem; /* Slightly smaller */
-            margin-bottom: 1rem;
-            color: #556B2F; 
-        }
-        .feature-tile h3 {
-            font-size: 1.4rem;
-            color: #4A3B31; 
-            margin-bottom: 0.75rem;
-        }
-        .feature-tile p.short-desc { color: #706156; font-size: 0.9rem; flex-grow: 1; margin-bottom:1rem;}
-        .feature-tile .tile-content { display: none; margin-top: 1rem; text-align: left; font-size: 0.85rem; color: #4A3B31; line-height: 1.5;}
-        .feature-tile.active .tile-content { display: block; }
-        .feature-tile .btn-sazi-module {
-            background-color: #556B2F; color: white; padding: 0.6rem 1.2rem; font-size: 0.9rem;
-        }
-         .feature-tile .btn-sazi-module:hover { background-color: #2F855A; }
-         .feature-tile .coming-soon-badge {
-            background-color: #F0E68C; color: #4A3B31; padding: 0.25rem 0.75rem; border-radius: 0.375rem; font-size: 0.8rem; font-weight:600; margin-top: 0.5rem; display:inline-block;
-        }
-
-        .timeline-section-bg { background-color: #F5EFE6; } /* Light beige/sand for Our Story section */
-        .timeline-item { 
-            background-color: rgba(255,255,255,0.9); 
-            padding: 1.25rem; /* Slightly adjusted */
-            border-radius: 0.75rem;
-            margin-bottom: 0; /* Removed bottom margin as slides manage spacing */
-            border-left: 5px solid #556B2F; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Softer shadow */
-            height: 100%; /* For carousel consistency */
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .timeline-item h4 { color: #4A3B31; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem; } 
-        .timeline-item .date { font-size: 0.7rem; color: #78350F; margin-bottom: 0.5rem; font-style: italic;}
-        .timeline-item p.desc-preview { color: #5D4037; line-height: 1.4; font-size: 0.8rem; margin-bottom: 0.5rem; flex-grow: 1; } /* Preview text */
-        .timeline-item .expanded-content { display: none; margin-top: 0.75rem; border-top: 1px dashed #BCAAA4; padding-top: 0.75rem; font-size:0.8rem; color: #5D4037;}
-        .timeline-item.expanded .expanded-content { display: block; }
-        .timeline-item .read-more-btn {
-            font-size: 0.8rem; color: #2F855A; font-weight: 600; text-decoration: underline; cursor: pointer; margin-top: auto; /* Push to bottom */ display: inline-block;
-        }
-        
-        .education-timeline-carousel-container {
-            width: 100%;
-            max-width: 1100px; /* Wider for more content visibility */
-            margin: 1.5rem auto; /* Adjusted margin */
-            overflow: hidden;
-            position: relative;
-        }
-        .education-timeline-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out; 
-        }
-        .education-timeline-slide {
-            min-width: calc(100% / 3 - 1rem); /* Show approx 3 slides, adjust gap */
-            max-width: 350px; 
-            padding: 0 0.5rem; /* Spacing between slides */
-            box-sizing: border-box;
-            flex-shrink: 0; 
-        }
-         .carousel-nav-buttons {
-            text-align: center;
-            margin-top: 1rem;
-        }
-        .carousel-nav-buttons button {
-            background-color: #A0522D; /* Sienna */
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            margin: 0 0.25rem;
-            font-size: 1.2rem;
-        }
-        .carousel-nav-buttons button:hover { background-color: #78350F; }
-
-
-        .fixed-header {
-            position: fixed;
-            top: 0;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
             left: 0;
-            width: 100%;
-            z-index: 1000; 
-            background-color: rgba(240, 253, 244, 0.97); 
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            background-color: #34D399; /* emerald-400 */
+            transition: width 0.4s ease;
         }
-        .main-content-wrapper { 
-            padding-top: 75px; 
-        }
-
-        .clickable-tile-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-            gap: 1.5rem; 
-            width: 100%;
-            max-width: 1200px; 
-        }
-        
-        .global-floating-button { 
-            position: fixed;
-            bottom: 25px;
-            background-color: #D2691E; 
-            color: white;
-            padding: 12px;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            z-index: 1000;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease, background-color 0.3s;
-            width: 55px;
-            height: 55px;
-        }
-        .global-floating-button:hover { transform: scale(1.1); background-color: #A0522D; }
-        .global-floating-button i { font-size: 1.5rem; }
-        #sazi-podcast-player { right: 25px; }
-        #sazi-chatbot-toggle { right: 95px; background-color: #556B2F; }
-        #sazi-chatbot-toggle:hover { background-color: #2F855A; }
-
-        #sazi-chat-window {
-            position: fixed;
-            width: 320px;
-            max-height: 450px;
-            background-color: #FFF7ED; 
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            bottom: 90px; 
-            right: 25px;
-            z-index: 999;
-            opacity: 0; transform: translateY(10px); pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        #sazi-chat-window.chat-expanded { opacity: 1; transform: translateY(0); pointer-events: auto; }
-        .chat-hidden { display: none !important; } 
-        #sazi-chat-header {
-            background-color: #556B2F; 
-            color: white;
-            padding: 10px 15px;
-            font-weight: 600;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        #sazi-chat-header .close-chat-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
-        #sazi-chat-output { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background-color: #F5EFE6; }
-        #sazi-chat-output p { margin-bottom: 0.8rem; line-height: 1.4; color: #4A3B31;}
-        #sazi-chat-output p strong { color: #2F855A; } 
-        #sazi-chat-output p strong.user-name { color: #D2691E; } 
-        #sazi-chat-input-container { display: flex; border-top: 1px solid #D7CCC8; padding: 10px; background-color: #FFF7ED; }
-        #sazi-chat-input { flex-grow: 1; padding: 0.7rem; border: 1px solid #D7CCC8; border-radius: 6px; margin-right: 8px; font-family: 'Open Sans', sans-serif; }
-        #sazi-chat-send { background-color: #556B2F; color: white; padding: 0.7rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; }
-        #sazi-chat-send:hover { background-color: #2F855A; }
-         .language-selector-fixed select {
-            background-color: #556B2F; 
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            border: none;
-            appearance: none; 
-            cursor: pointer;
-        }
-        .language-selector-fixed select:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.5); 
-        }
-
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .slide-content { position: relative; z-index: 1; }
     </style>
 </head>
 <body>
-
-    <header class="fixed-header">
-        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <a href="#hero" class="sazilife-logo-header" onclick="showSaziSection('hero')">
-                <span class="sazi-name">Saz</span><span class="sazi-dot">i</span><span class="sazi-life">.life</span>
-            </a>
-            <nav class="hidden md:flex space-x-4 items-center">
-                <a href="#hero" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('hero')" data-translate="home_nav">Home</a>
-                <a href="#modules" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('modules')" data-translate="modules_nav">Modules</a>
-                <a href="#our-story" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('our-story')" data-translate="timeline_nav">Our Story</a>
-                <a href="#sazi-guide" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('sazi-guide')" data-translate="guide_nav">Sazi Guide</a>
-                <a href="#community" class="text-gray-700 hover:text-aloe-green transition duration-300 font-semibold px-3 py-2 rounded-md" onclick="showSaziSection('community')" data-translate="community_nav">Community</a>
-                 <div class="language-selector-fixed">
-                     <select id="language-switcher-desktop-transkei" onchange="changeLanguage(this.value)">
-                        <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
-                    </select>
-                </div>
-                <a href="#" class="btn btn-secondary-sazi text-sm"><i class="fas fa-user-plus mr-1"></i> <span data-translate="register_login_nav">Register/Login</span></a>
+    <div class="split-container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <div>
+                <a href="#" class="text-5xl font-black">FLAME<span class="text-green-400">A</span></a>
+                <p class="text-lg text-gray-400 mt-2">Fathers' Legal Advocacy Movement</p>
+            </div>
+            <nav id="main-nav" class="flex flex-col space-y-6 text-3xl font-bold">
+                <a href="#" class="nav-link active" data-slide="0">HOME</a>
+                <a href="#" class="nav-link" data-slide="1">OUR MISSION</a>
+                <a href="tools.html" class="nav-link">OUR TOOLS</a>
+                <a href="community.html" class="nav-link">COMMUNITY</a>
             </nav>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg py-2">
-            <a href="#hero" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 font-semibold" onclick="showSaziSection('hero'); toggleSaziMobileMenu();" data-translate="home_nav">Home</a>
-            <a href="#modules" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 font-semibold" onclick="showSaziSection('modules'); toggleSaziMobileMenu();" data-translate="modules_nav">Modules</a>
-            <a href="#our-story" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 font-semibold" onclick="showSaziSection('our-story'); toggleSaziMobileMenu();" data-translate="timeline_nav">Our Story</a>
-            <a href="#sazi-guide" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 font-semibold" onclick="showSaziSection('sazi-guide'); toggleSaziMobileMenu();" data-translate="guide_nav">Sazi Guide</a>
-            <a href="#community" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 font-semibold" onclick="showSaziSection('community'); toggleSaziMobileMenu();" data-translate="community_nav">Community</a>
-            <div class="px-6 py-3 language-selector-fixed">
-                <select id="language-switcher-mobile-transkei" class="w-full" onchange="changeLanguage(this.value)">
-                     <option value="en">English</option><option value="xh">isiXhosa</option><option value="zu">isiZulu</option><option value="af">Afrikaans</option><option value="st">Sesotho</option><option value="ts">Xitsonga</option><option value="ve">Tshivenḓa</option><option value="ss">siSwati</option><option value="nr">isiNdebele</option><option value="fr">Français</option><option value="pt">Português</option><option value="es">Español</option><option value="sw">Kiswahili</option><option value="sn">chiShona</option><option value="ja">日本語</option><option value="zh">中文</option>
-                </select>
-            </div>
-            <a href="#" class="block px-6 py-3 text-green-700 hover:bg-gray-100 font-bold" data-translate="register_login_nav">Register/Login</a>
-        </div>
-    </header>
-
-    <main class="main-content-wrapper">
-        <!-- Hero Section -->
-        <section id="hero" class="full-screen-section hero-section text-center active">
             <div>
-                <div class="sazilife-logo-main mb-4">
-                    <span class="sazi-name">Saz</span><span class="sazi-dot">i</span><span class="sazi-life">.life</span>
+                <div id="auth-links-desktop" class="mb-4">
+                     <a href="login.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">Login</a>
                 </div>
-                <p class="slogan-text text-2xl md:text-3xl mb-8" data-translate="slogan">Knowledge for Every Generation</p>
-                <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-gray-200" data-translate="hero_subtext_main">
-                    Embark on a family learning adventure rooted in wisdom and designed for growth. Explore interactive modules, accessible to all, inspiring every generation.
-                </p>
-                <div class="space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
-                    <button class="btn btn-primary-sazi text-lg" onclick="showSaziSection('modules')">
-                        <i class="fas fa-cubes"></i> <span data-translate="explore_modules_btn">Explore Modules</span>
-                    </button>
-                    <button class="btn btn-secondary-sazi-hero text-lg" onclick="showSaziSection('sazi-guide')">
-                        <i class="fas fa-route"></i> <span data-translate="find_your_path_btn">Find Your Path</span>
-                    </button>
-                </div>
+                <p class="text-xs text-gray-600">&copy; <span id="currentYear"></span> Flamea.org</p>
             </div>
-        </section>
-
-        <!-- Modules Section -->
-        <section id="modules" class="full-screen-section bg-light-earth">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-12" data-translate="discover_modules_title">Discover Our Learning Worlds</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 clickable-tile-container">
-                    <!-- Sazi isiXhosa -->
-                    <div class="feature-tile" onclick="toggleSaziTile(this)">
-                        <i class="fas fa-comments feature-icon text-blue-600"></i>
-                        <h3 data-translate="isixhosa_module_title">Sazi isiXhosa</h3>
-                        <p class="short-desc" data-translate="isixhosa_module_short_desc">Language, culture, and heritage.</p>
-                        <div class="tile-content">
-                            <p data-translate="isixhosa_module_long_desc">Master the beautiful isiXhosa language. From vocabulary to cultural nuances, immerse yourself in interactive lessons and activities suitable for all ages. Connect with your roots!</p>
-                        </div>
-                        <button class="btn btn-secondary-sazi btn-sazi-module btn-sm mt-3 text-sm" data-translate="view_module_btn">Enter isiXhosa World</button>
-                    </div>
-                    <!-- Sazi Code & Create -->
-                    <div class="feature-tile" onclick="toggleSaziTile(this)">
-                        <i class="fas fa-laptop-code feature-icon text-green-600"></i>
-                        <h3 data-translate="code_create_module_title">Sazi Code & Create</h3>
-                        <p class="short-desc" data-translate="code_create_module_short_desc">Tech, AI, and web development.</p>
-                        <div class="tile-content">
-                            <p data-translate="code_create_module_long_desc">Unlock the digital universe! Learn coding from scratch, understand Artificial Intelligence with Gemini, build amazing websites with HTML & React, and bring your creative ideas to life.</p>
-                        </div>
-                        <button class="btn btn-secondary-sazi btn-sazi-module btn-sm mt-3 text-sm" data-translate="view_module_btn">Start Creating</button>
-                    </div>
-                    <!-- Sazi Home Life -->
-                    <div class="feature-tile" onclick="toggleSaziTile(this)">
-                        <i class="fas fa-leaf feature-icon text-purple-600"></i>
-                        <h3 data-translate="home_life_module_title">Sazi Home Life</h3>
-                        <p class="short-desc" data-translate="home_life_module_short_desc">DIY, cooking, and gardening joy.</p>
-                        <div class="tile-content">
-                            <p data-translate="home_life_module_long_desc">Cultivate a thriving home! Explore picture-rich tutorials for delicious cooking, clever cleaning hacks, Salatiso's inspiring YouTube DIY projects, family gardening, and smart home management.</p>
-                        </div>
-                        <a href="https://www.youtube.com/@Salatiso" target="_blank" class="btn btn-secondary-sazi btn-sazi-module btn-sm mt-3 text-sm" data-translate="visit_youtube_btn_home">Explore Home Skills</a>
-                    </div>
-                     <!-- Sazi Skills Hub -->
-                    <div class="feature-tile" onclick="toggleSaziTile(this)">
-                        <i class="fas fa-tools feature-icon text-red-600"></i>
-                        <h3 data-translate="skills_hub_module_title">Sazi Skills Hub</h3>
-                        <p class="short-desc" data-translate="skills_hub_module_short_desc">Practical trades, real-world skills.</p>
-                        <div class="tile-content">
-                            <p data-translate="skills_hub_module_long_desc">Build your expertise in practical trades. Learn welding, plumbing, advanced DIY from Salatiso's YouTube channel, and mechanics for self-sufficiency and new opportunities.</p>
-                        </div>
-                        <a href="https://www.youtube.com/@Salatiso" target="_blank" class="btn btn-secondary-sazi btn-sazi-module btn-sm mt-3 text-sm" data-translate="visit_youtube_btn_skills">Explore Trades</a>
-                    </div>
-                    <!-- Sazi Funda -->
-                    <div class="feature-tile relative" onclick="toggleSaziTile(this)">
-                        <i class="fas fa-user-graduate feature-icon text-orange-500"></i>
-                        <h3 data-translate="funda_module_title">Sazi Funda</h3>
-                        <p class="short-desc" data-translate="funda_module_short_desc">Online Learning & Homeschooling.</p>
-                        <div class="tile-content">
-                             <p data-translate="funda_module_long_desc">A comprehensive K-12 educational journey tailored for effective online learning and homeschooling. Engaging, adaptable curricula to inspire young minds and support families.</p>
-                        </div>
-                        <span class="coming-soon-badge-transkei mt-auto" data-translate="coming_soon_badge">COMING SOON</span>
-                        <!-- <button class="btn btn-secondary-sazi btn-sazi-module btn-sm mt-3 text-sm opacity-50 cursor-not-allowed" data-translate="view_module_btn_disabled">Explore Curricula</button> -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Our Story / Education Timeline Section -->
-        <section id="our-story" class="full-screen-section timeline-section-bg">
-            <div class="container mx-auto px-4 md:px-6 text-center w-full">
-                <h2 class="section-title mb-6" data-translate="our_story_timeline_title">Our Story: The Journey of Learning</h2>
-                <div class="text-left max-w-4xl mx-auto bg-white/80 p-4 sm:p-6 rounded-lg shadow-md mb-8">
-                    <p class="text-md sm:text-lg text-gray-700 mb-4 leading-relaxed" data-translate="our_story_intro_father">
-                        Sazi.life springs from a father's profound wish: to craft an educational haven for his son, Sazi, his three nephews, two nieces, three younger sisters, and indeed, all families. It's about bridging generations – equipping the young with the foresight of technology and progress, while ensuring the invaluable, unwritten wisdom of elders is cherished, codified, and passed on. This platform is a commitment to making quality learning accessible, to prepare the young for tomorrow and to empower older generations to stay connected and continue their growth, all within a vibrant tapestry of shared knowledge.
-                    </p>
-                    <p class="text-sm sm:text-md text-gray-600 leading-relaxed" data-translate="timeline_intro_text">
-                        From ancient campfires to today's digital classrooms, the quest for knowledge shapes us. This timeline explores this evolution, highlighting formal and informal learning across cultures, and how these diverse streams inspire Sazi.life's mission for holistic, accessible education.
-                    </p>
-                </div>
-
-                <!-- Horizontal Timeline Carousel -->
-                <div class="education-timeline-carousel-container">
-                    <div class="education-timeline-track">
-                        <!-- Slide 1 -->
-                        <div class="education-timeline-slide">
-                            <div class="timeline-item">
-                                <h4 data-translate="timeline_prehistory_title">Ancient Roots: Informal Learning</h4>
-                                <p class="date" data-translate="timeline_prehistory_date">Prehistory - c. 3000 BCE (Global & Africa)</p>
-                                <p class="desc-preview" data-translate="timeline_prehistory_desc">Oral traditions, storytelling, imitation. Khoisan survival skills, rock art. Bantu agriculture & iron-working.</p>
-                                <div class="expanded-content">
-                                    <p>Learning was embedded in daily life. Elders transmitted knowledge for survival and community cohesion. Khoisan hunting techniques and Bantu agricultural cycles were vital generational teachings.</p>
-                                    <a href="https://www.britannica.com/topic/education/History-of-education" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                                </div>
-                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Details</button>
-                            </div>
-                        </div>
-                        <!-- Slide 2 -->
-                        <div class="education-timeline-slide">
-                            <div class="timeline-item">
-                                <h4 data-translate="timeline_early_formal_title">Dawn of Formal Education</h4>
-                                <p class="date" data-translate="timeline_early_formal_date">c. 3000 BCE - 500 CE (Egypt, Greece, India, China)</p>
-                                <p class="desc-preview" data-translate="timeline_early_formal_desc">Scribal schools in Egypt. Greek academies. Roman rhetoric. Indian Gurukuls. Chinese imperial academies. Literacy for elites.</p>
-                                <div class="expanded-content">
-                                    <p>Early formal systems, often exclusive, laid groundwork for structured curricula. Focused on governance, religion, philosophy.</p>
-                                    <a href="https://en.wikipedia.org/wiki/History_of_education" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                                </div>
-                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Details</button>
-                            </div>
-                        </div>
-                        <!-- Slide 3 -->
-                        <div class="education-timeline-slide">
-                            <div class="timeline-item">
-                                <h4 data-translate="timeline_sa_indigenous_title">Indigenous SA Education (Pre-1652)</h4>
-                                <p class="date" data-translate="timeline_sa_indigenous_date">Southern Africa</p>
-                                <p class="desc-preview" data-translate="timeline_sa_indigenous_desc">Khoisan ecological wisdom. Nguni/Sotho-Tswana initiation rites (ulwaluko, bojale) for moral, social, practical skills. Communal, experiential.</p>
-                                <div class="expanded-content">
-                                    <p>Xhosa initiation taught tradition, leadership, responsibility, community law, preparing youth for adulthood within their cultural context.</p>
-                                    <a href="https://sahistory.org.za/article/education-south-africa-pre-colonial-times" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                                </div>
-                               <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Details</button>
-                            </div>
-                        </div>
-                        <!-- Slide 4 -->
-                        <div class="education-timeline-slide">
-                            <div class="timeline-item">
-                                <h4 data-translate="timeline_sa_colonial_title">Colonial Schooling in SA</h4>
-                                <p class="date" data-translate="timeline_sa_colonial_date">1652 - 1800s (South Africa)</p>
-                                <p class="desc-preview" data-translate="timeline_sa_colonial_desc">Dutch Cape school. Missionary schools introduce Western education, often clashing with indigenous systems. Unequal access.</p>
-                                <div class="expanded-content">
-                                    <p>Colonial education focused on conversion and basic literacy for labor, disrupting indigenous learning and creating an unequal landscape.</p>
-                                    <a href="https://sahistory.org.za/article/history-education-south-africa" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                                </div>
-                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Details</button>
-                            </div>
-                        </div>
-                        <!-- Slide 5 -->
-                         <div class="education-timeline-slide">
-                             <div class="timeline-item">
-                                <h4 data-translate="timeline_mass_schooling_title">Rise of Mass Schooling</h4>
-                                <p class="date" data-translate="timeline_mass_schooling_date">19th Century (Global)</p>
-                                <p class="desc-preview" data-translate="timeline_mass_schooling_desc">Industrial Revolution needs literate workers. State schools spread in Europe/N. America. Standardization, discipline focus.</p>
-                                 <div class="expanded-content">
-                                    <p>"Factory model" schooling increased literacy but often devalued individual styles and informal knowledge.</p>
-                                    <a href="https://www.horizoneducational.com/who-invented-school-a-history-of-classroom-education/t1504?currency=usd" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                                </div>
-                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Details</button>
-                            </div>
-                        </div>
-                        <!-- Slide 6 -->
-                        <div class="education-timeline-slide">
-                            <div class="timeline-item">
-                                <h4 data-translate="timeline_bantu_edu_title">Segregation & Bantu Education</h4>
-                                <p class="date" data-translate="timeline_bantu_edu_date">1900s - 1994 (South Africa)</p>
-                                <p class="desc-preview" data-translate="timeline_bantu_edu_desc">Bantu Education Act (1953) creates inferior system for Black South Africans. Resistance, alternative education grows.</p>
-                                <div class="expanded-content">
-                                    <p>Education explicitly used for oppression, limiting opportunities and impacting generations.</p>
-                                     <a href="https://sahistory.org.za/article/bantu-education-act-no-47-1953" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                                </div>
-                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Details</button>
-                            </div>
-                        </div>
-                        <!-- Slide 7 -->
-                         <div class="education-timeline-slide">
-                            <div class="timeline-item">
-                                <h4 data-translate="timeline_digital_age_title">Post-Apartheid & Digital Era</h4>
-                                <p class="date" data-translate="timeline_digital_age_date">1994 - Present (Global & SA)</p>
-                                <p class="desc-preview" data-translate="timeline_digital_age_desc">SA democratizes. Internet & tech transform access. Online learning, homeschooling rise. Sazi.life emerges.</p>
-                                <div class="expanded-content">
-                                    <p>Digital age offers new learning opportunities but challenges digital divide. Sazi.life aims to empower all, blending tradition and modern methods.</p>
-                                     <a href="https://www.iowapbs.org/iowapathways/mypath/2741/formal-education-system" target="_blank" class="read-more-btn" data-translate="learn_more_link">Learn More</a>
-                                </div>
-                                <button onclick="toggleSaziTimelineItem(this.parentElement)" class="read-more-btn">Details</button>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="carousel-nav-buttons">
-                        <button onclick="prevTimelineSlide()"><i class="fas fa-chevron-left"></i></button>
-                        <button onclick="nextTimelineSlide()"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
-                <p class="mt-6 text-xs text-gray-500" data-translate="timeline_note_carousel">(Interactive horizontal timeline. Click items for details. Navigate with buttons.)</p>
-            </div>
-        </section>
-
-        <section id="sazi-guide" class="full-screen-section bg-white">
-             <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title mb-10" data-translate="sazi_guide_section_title">Let Sazi Guide Your Learning</h2>
-                <i class="fas fa-hands-helping text-6xl text-orange-600 mb-6"></i>
-                <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-8" data-translate="sazi_guide_section_desc">
-                    Not sure which Sazi.life module is right for you or your family? Answer a few simple questions, and our Sazi Guide will illuminate your path to knowledge!
-                </p>
-                <div class="bg-light-earth p-8 rounded-lg shadow-xl max-w-lg mx-auto">
-                    <div class="mb-6">
-                        <label class="block text-md font-semibold text-earthy-brown mb-2" data-translate="wizard_interest_q_main">What are you most excited to learn about?</label>
-                        <div class="flex flex-wrap justify-center gap-3">
-                            <button class="btn btn-secondary-sazi text-sm" data-value="language"><i class="fas fa-comment-dots mr-2"></i><span data-translate="interest_opt_language">Language</span></button>
-                            <button class="btn btn-secondary-sazi text-sm" data-value="tech"><i class="fas fa-code mr-2"></i><span data-translate="interest_opt_tech">Coding/Tech</span></button>
-                            <button class="btn btn-secondary-sazi text-sm" data-value="home"><i class="fas fa-home mr-2"></i><span data-translate="interest_opt_home">Home Skills</span></button>
-                            <button class="btn btn-secondary-sazi text-sm" data-value="trades"><i class="fas fa-hard-hat mr-2"></i><span data-translate="interest_opt_trades">Practical Trades</span></button>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <label class="block text-md font-semibold text-earthy-brown mb-2" data-translate="wizard_age_q_main">Who is this learning journey for?</label>
-                         <div class="flex flex-wrap justify-center gap-3">
-                            <button class="btn btn-secondary-sazi text-sm" data-value="child"><i class="fas fa-child mr-2"></i><span data-translate="age_opt_child">Child (4-11)</span></button>
-                            <button class="btn btn-secondary-sazi text-sm" data-value="teen"><i class="fas fa-user-graduate mr-2"></i><span data-translate="age_opt_teen">Teen (12-17)</span></button>
-                            <button class="btn btn-secondary-sazi text-sm" data-value="adult"><i class="fas fa-user mr-2"></i><span data-translate="age_opt_adult">Adult (18+)</span></button>
-                             <button class="btn btn-secondary-sazi text-sm" data-value="family"><i class="fas fa-users mr-2"></i><span data-translate="age_opt_family">Whole Family</span></button>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary-sazi w-full text-lg" data-translate="find_module_now_btn">
-                        <i class="fas fa-search-location"></i> Find My Module!
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="community" class="full-screen-section bg-deep-green text-white text-center">
-            <div>
-                <i class="fas fa-people-carry text-7xl text-yellow-300 mb-6"></i>
-                <h2 class="section-title section-title-light mb-6" data-translate="sazi_community_title">Be Part of the Sazi Community</h2>
-                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-200" data-translate="community_desc_main">
-                    Sazi.life thrives on shared knowledge and support. Register to connect with fellow learners, share your insights, contribute content, and even become a moderator. Together, we build a richer learning experience for everyone.
-                </p>
-                <div id="register-login-community-main">
-                    <button class="btn bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-lg"> 
-                        <i class="fas fa-handshake"></i> <span data-translate="join_community_today_btn">Join Us Today</span>
-                    </button>
-                </div>
-                 <p class="mt-6 text-gray-300 text-sm" data-translate="community_values_footer">Empowering each other, one lesson at a time.</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- Global Podcast Player Icon -->
-    <div id="sazi-podcast-player" class="global-floating-button" onclick="alert('Sazi.life Podcast Player - Coming Soon!')" title="Sazi.life Podcast">
-        <i class="fas fa-podcast"></i>
-    </div>
-
-    <!-- Sazi AI Chatbot Toggle -->
-    <div id="sazi-chatbot-toggle" class="global-floating-button" onclick="toggleSaziChatbot()" title="Chat with Sazi AI">
-        <i class="fas fa-comments"></i>
-    </div>
-
-    <!-- Sazi AI Chatbot Window -->
-    <div id="sazi-chat-window" class="chat-hidden">
-        <div id="sazi-chat-header">
-            <span data-translate="sazi_ai_chat_title">Sazi AI Assistant</span>
-            <button class="close-chat-btn" onclick="toggleSaziChatbot(false)">&times;</button>
         </div>
-        <div id="sazi-chat-output">
-            <p><strong data-translate="sazi_ai_name">Sazi AI:</strong> <span data-translate="sazi_ai_greeting">Molweni! Hello! How can I help you explore Sazi.life today?</span></p>
-        </div>
-        <div id="sazi-chat-input-container">
-            <input id="sazi-chat-input" type="text" placeholder="Ask Sazi AI..." data-translate="sazi_ai_placeholder">
-            <button id="sazi-chat-send"><i class="fas fa-paper-plane"></i></button>
+
+        <!-- Right Panel (Image Carousel) -->
+        <div class="right-panel">
+            <!-- Slide 1 -->
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1615792003024-065d6a541654?q=80&w=1974');">
+                <div class="overlay"></div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1455390587440-4c3c139ea474?q=80&w=2070');">
+                <div class="overlay"></div>
+            </div>
         </div>
     </div>
-    
+
+    <!-- Scripts -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
+        const slides = document.querySelectorAll('.slide');
+        const navLinks = document.querySelectorAll('.nav-link');
+        let currentSlide = 0;
+        let slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
 
-        function toggleSaziMobileMenu() { 
-            if (mobileMenu) mobileMenu.classList.add('hidden');
-        }
-
-        const saziSections = document.querySelectorAll('.full-screen-section'); 
-        const saziNavLinks = document.querySelectorAll('header nav a, #mobile-menu a'); 
-
-        function showSaziSection(sectionId) { 
-            saziSections.forEach(section => {
-                section.id === sectionId ? section.classList.add('active') : section.classList.remove('active');
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            navLinks.forEach(link => {
+                if(link.dataset.slide == currentSlide) link.classList.remove('active');
             });
-            // Update active link styling
-            saziNavLinks.forEach(link => {
-                link.classList.remove('bg-green-100', 'text-green-700', 'font-bold'); 
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('bg-green-100','text-green-700', 'font-bold'); 
-                }
+
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            navLinks.forEach(link => {
+                if(link.dataset.slide == currentSlide) link.classList.add('active');
             });
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                 toggleSaziMobileMenu();
-            }
-             // Scroll the activated section to the top if it was previously scrolled down
-            const activeSection = document.getElementById(sectionId);
-            if (activeSection) {
-                activeSection.scrollTop = 0;
-            }
         }
         
-        showSaziSection('hero'); 
+        document.getElementById('main-nav').addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.dataset.slide) {
+                e.preventDefault();
+                clearInterval(slideInterval); // Stop auto-play on manual navigation
+                
+                slides[currentSlide].classList.remove('active');
+                navLinks.forEach(link => link.classList.remove('active'));
 
-        saziNavLinks.forEach(link => { 
-            link.addEventListener('click', function(e) {
-                 const targetId = this.getAttribute('href').substring(1);
-                 if (document.getElementById(targetId)) {
-                    e.preventDefault();
-                    showSaziSection(targetId);
-                }
-            });
+                currentSlide = parseInt(e.target.dataset.slide);
+
+                slides[currentSlide].classList.add('active');
+                e.target.classList.add('active');
+            }
         });
-
-        function toggleSaziTile(tileElement) { 
-            document.querySelectorAll('.feature-tile.active').forEach(activeTile => {
-                if (activeTile !== tileElement) activeTile.classList.remove('active');
-            });
-            tileElement.classList.toggle('active');
-        }
-        
-        function toggleSaziTimelineItem(item) { 
-            const expandedContent = item.querySelector('.expanded-content');
-            const isExpanded = item.classList.contains('expanded');
-
-            // Close all other expanded items within the same carousel/timeline
-            item.closest('.education-timeline-track').querySelectorAll('.timeline-item.expanded').forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('expanded');
-                    otherItem.querySelector('.expanded-content').style.display = 'none';
-                }
-            });
-            
-            if (isExpanded) {
-                item.classList.remove('expanded');
-                expandedContent.style.display = 'none';
-            } else {
-                item.classList.add('expanded');
-                expandedContent.style.display = 'block';
-            }
-        }
-
-        // Horizontal Timeline Carousel Logic (Basic for HTML Mockup)
-        const timelineTrack = document.querySelector('.education-timeline-track');
-        const timelineSlides = document.querySelectorAll('.education-timeline-slide');
-        let currentTimelineSlide = 0;
-        const totalTimelineSlides = timelineSlides.length;
-        const slidesPerPage = 3; // Approximate number of slides visible
-
-        function updateTimelineCarousel() {
-            if (timelineTrack && totalTimelineSlides > 0) {
-                const slideWidth = timelineSlides[0].offsetWidth + (0.5 * 16 * 2); // slide width + gap (0.5rem on each side = 1rem total)
-                const movePercentage = currentTimelineSlide * (100 / slidesPerPage);
-                // timelineTrack.style.transform = `translateX(-${currentTimelineSlide * slideWidth}px)`;
-                // For percentage based movement, assumes slides will adjust
-                timelineTrack.style.transform = `translateX(-${movePercentage}%)`;
-
-
-            }
-        }
-        
-        function nextTimelineSlide() {
-            if (totalTimelineSlides === 0) return;
-            // Only advance if not showing the last set of slides
-            if (currentTimelineSlide < totalTimelineSlides - slidesPerPage) {
-                 currentTimelineSlide++;
-            } else {
-                currentTimelineSlide = 0; // Loop back to start
-            }
-            updateTimelineCarousel();
-        }
-
-        function prevTimelineSlide() {
-            if (totalTimelineSlides === 0) return;
-            if (currentTimelineSlide > 0) {
-                currentTimelineSlide--;
-            } else {
-                currentTimelineSlide = Math.max(0, totalTimelineSlides - slidesPerPage); // Go to last possible set
-            }
-            updateTimelineCarousel();
-        }
-        
-        // Initialize carousel position (optional, if not starting at 0)
-        // updateTimelineCarousel();
-
-
-        // Chatbot Functionality (Basic)
-        const chatWindow = document.getElementById('sazi-chat-window');
-        const chatInput = document.getElementById('sazi-chat-input');
-        const chatSend = document.getElementById('sazi-chat-send');
-        const chatOutput = document.getElementById('sazi-chat-output');
-
-        function toggleSaziChatbot(forceOpen) {
-            const isHidden = chatWindow.classList.contains('chat-hidden');
-            if (forceOpen === true || isHidden) {
-                chatWindow.classList.remove('chat-hidden');
-                chatWindow.classList.add('chat-expanded');
-            } else if (forceOpen === false || !isHidden) {
-                chatWindow.classList.add('chat-hidden');
-                chatWindow.classList.remove('chat-expanded');
-            }
-        }
-
-        if (chatSend) {
-            chatSend.addEventListener('click', handleSaziChatSend);
-        }
-        if (chatInput) {
-            chatInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') handleSaziChatSend();
-            });
-        }
-
-        async function handleSaziChatSend() {
-            const userMessage = chatInput.value.trim();
-            if (!userMessage) return;
-
-            addSaziChatMessage("You", userMessage, true);
-            chatInput.value = '';
-            
-            let botResponseText = "I'm learning to help with Sazi.life! Ask about our modules or learning paths.";
-             if (userMessage.toLowerCase().includes("xhosa")) {
-                botResponseText = "Sazi isiXhosa is a great place to learn the language and culture! Would you like to know more about its lessons?";
-            } else if (userMessage.toLowerCase().includes("code") || userMessage.toLowerCase().includes("tech")) {
-                 botResponseText = "Sazi Code & Create can teach you programming, web development, and AI. What are you interested in building?";
-            } else if (userMessage.toLowerCase().includes("hello") || userMessage.toLowerCase().includes("hi") || userMessage.toLowerCase().includes("molweni")) {
-                botResponseText = "Molweni! Hello! I'm the Sazi AI. How can I help you today?";
-            }
-
-            addSaziChatMessage("Sazi AI", "Thinking...", false); 
-            
-             setTimeout(() => {
-                const thinkingMsg = chatOutput.querySelector("p:last-child");
-                if(thinkingMsg && thinkingMsg.textContent.includes("Thinking...")){
-                    thinkingMsg.innerHTML = `<strong data-translate="sazi_ai_name">Sazi AI:</strong> ${botResponseText}`;
-                } else {
-                    addSaziChatMessage("Sazi AI", botResponseText, false);
-                }
-                changeLanguage(document.getElementById('language-switcher-desktop-transkei').value); 
-            }, 1000);
-        }
-
-        function addSaziChatMessage(sender, message, isUser) {
-            const messageEl = document.createElement('p');
-            const senderStrong = document.createElement('strong');
-            senderStrong.textContent = `${sender}: `;
-            if(isUser) {
-                senderStrong.classList.add('user-name');
-                senderStrong.setAttribute('data-translate', 'user_chat_name'); 
-            } else {
-                 senderStrong.setAttribute('data-translate', 'sazi_ai_name');
-            }
-            
-            messageEl.appendChild(senderStrong);
-            messageEl.append(document.createTextNode(message));
-            chatOutput.appendChild(messageEl);
-            chatOutput.scrollTop = chatOutput.scrollHeight;
-        }
-
-        // --- Basic Translation Functionality ---
-        const saziTranslations = {
-             en: { 
-                slogan: "Knowledge for Every Generation",
-                home_nav: "Home", modules_nav: "Modules", timeline_nav: "Our Story", guide_nav: "Sazi Guide", community_nav: "Community", register_login_nav: "Register/Login",
-                hero_subtext_main: "Embark on a family learning adventure rooted in wisdom and designed for growth. Explore interactive modules, accessible to all, inspiring every generation.",
-                explore_modules_btn: "Explore Modules", find_your_path_btn: "Find Your Path",
-                discover_modules_title: "Discover Our Learning Worlds",
-                isixhosa_module_title: "Sazi isiXhosa", isixhosa_module_short_desc: "Language, culture, and heritage.", isixhosa_module_long_desc: "Master the beautiful isiXhosa language. From vocabulary to cultural nuances, immerse yourself in interactive lessons and activities suitable for all ages. Connect with your roots!",
-                code_create_module_title: "Sazi Code & Create", code_create_module_short_desc: "Tech, AI, and web development.", code_create_module_long_desc: "Unlock the digital universe! Learn coding from scratch, understand Artificial Intelligence with Gemini, build amazing websites with HTML & React, and bring your creative ideas to life.",
-                home_life_module_title: "Sazi Home Life", home_life_module_short_desc: "DIY, cooking, and gardening joy.", home_life_module_long_desc: "Cultivate a thriving home! Explore picture-rich tutorials for delicious cooking, clever cleaning hacks, Salatiso's inspiring YouTube DIY projects, family gardening, and smart home management.",
-                skills_hub_module_title: "Sazi Skills Hub", skills_hub_module_short_desc: "Practical trades, real-world skills.", skills_hub_module_long_desc: "Build your expertise in practical trades. Learn welding, plumbing, advanced DIY from Salatiso's YouTube channel, and mechanics for self-sufficiency and new opportunities.",
-                funda_module_title: "Sazi Funda", funda_module_short_desc: "Online Learning & Homeschooling.", funda_module_long_desc: "A comprehensive K-12 educational journey tailored for effective online learning and homeschooling. Engaging, adaptable curricula to inspire young minds and support families.",
-                coming_soon_badge: "COMING SOON", view_module_btn: "Enter Module", visit_youtube_btn_home: "Explore Home Ideas", visit_youtube_btn_skills: "Learn Trades", view_module_btn_disabled: "Explore Curricula",
-                our_story_timeline_title: "Our Story: The Journey of Learning",
-                our_story_intro_father: "Sazi.life is woven from a father's dream—a dream to provide his son, Sazi, his three nephews, two nieces, three younger sisters, and indeed all children, with an education that is not only accessible but deeply enriching and empowering. It's a vision to equip the young with the tools to navigate an ever-changing world, while also ensuring that the wisdom of older generations remains vibrant and relevant, allowing them to keep pace and contribute meaningfully. This platform seeks to honor the timeless tradition of informal, family-centered learning, augmented by the best of modern educational approaches.",
-                timeline_intro_text: "From the earliest campfires where stories became lessons, to the vast digital classrooms of today, the human quest for knowledge is a constant. This timeline explores that journey, highlighting how informal learning, formal schooling, and cultural wisdom have evolved globally and within South Africa, influencing our mission to make learning accessible and meaningful for all.",
-                timeline_prehistory_title: "Ancient Roots: Informal Learning", timeline_prehistory_date: "Prehistory - c. 3000 BCE (Global & Africa)", timeline_prehistory_desc: "Oral traditions, storytelling, imitation. Khoisan survival skills, rock art. Bantu agriculture & iron-working.",
-                timeline_early_formal_title: "Dawn of Formal Education", timeline_early_formal_date: "c. 3000 BCE - 500 CE (Egypt, Greece, India, China)", timeline_early_formal_desc: "Scribal schools in Egypt. Greek academies. Roman rhetoric. Indian Gurukuls. Chinese imperial academies. Literacy for elites.",
-                timeline_sa_indigenous_title: "Indigenous SA Education (Pre-1652)", timeline_sa_indigenous_date: "Southern Africa", timeline_sa_indigenous_desc: "Khoisan ecological wisdom. Nguni/Sotho-Tswana initiation rites (ulwaluko, bojale). Communal, experiential.",
-                timeline_sa_colonial_title: "Colonial Schooling in SA", timeline_sa_colonial_date: "1652 - 1800s (South Africa)", timeline_sa_colonial_desc: "Dutch Cape school. Missionary schools introduce Western education, often clashing with indigenous systems. Unequal access.",
-                timeline_mass_schooling_title: "Rise of Mass Schooling", timeline_mass_schooling_date: "19th Century (Global)", timeline_mass_schooling_desc: "Industrial Revolution needs literate workers. State schools spread in Europe/N. America. Standardization, discipline focus.",
-                timeline_bantu_edu_title: "Segregation & Bantu Education", timeline_bantu_edu_date: "1900s - 1994 (South Africa)", timeline_bantu_edu_desc: "Bantu Education Act (1953) creates inferior system for Black South Africans. Resistance, alternative education grows.",
-                timeline_digital_age_title: "Post-Apartheid & Digital Era", timeline_digital_age_date: "1994 - Present (Global & SA)", timeline_digital_age_desc: "SA democratizes. Internet & tech transform access. Online learning, homeschooling rise. Sazi.life emerges.",
-                timeline_note_carousel: "(Interactive horizontal timeline. Click items for details. Navigate with buttons.)", learn_more_link: "Learn More",
-                sazi_guide_section_title: "Let Sazi Guide Your Learning", sazi_guide_section_desc: "Not sure which Sazi.life module is right for you or your family? Answer a few simple questions, and our Sazi Guide will illuminate your path to knowledge!",
-                wizard_interest_q_main: "What are you most excited to learn about?", select_option: "-- Select an Interest --", interest_opt_language: "Language", interest_opt_tech: "Coding/Tech", interest_opt_home: "Home Skills", interest_opt_trades: "Practical Trades",
-                wizard_age_q_main: "Who is this learning journey for?", select_option_age: "-- Select Age Group --", age_opt_child: "Child (4-11)", age_opt_teen: "Teen (12-17)", age_opt_adult: "Adult (18+)", age_opt_family: "Whole Family",
-                find_module_now_btn: "Find My Module!",
-                sazi_community_title: "Be Part of the Sazi Community", community_desc_main: "Sazi.life thrives on shared knowledge and support. Register to connect with fellow learners, share your insights, contribute content, and even become a moderator. Together, we build a richer learning experience for everyone.",
-                join_community_today_btn: "Join Us Today", community_values_footer: "Empowering each other, one lesson at a time.",
-                sazi_ai_chat_title: "Sazi AI Assistant", sazi_ai_greeting: "Molweni! Hello! How can I help you explore Sazi.life today?", sazi_ai_placeholder: "Ask Sazi AI...", user_chat_name: "You"
-            },
-            xh: { 
-                slogan: "Ulwazi Lwezizukulwana Zonke",
-                home_nav: "Ekhaya", modules_nav: "Iimodyuli", timeline_nav: "Ibali Lethu", guide_nav: "Isikhokelo Sazi", community_nav: "Ulwahlulo", register_login_nav: "Bhalisa/Ngena",
-                hero_subtext_main: "Qalisa uhambo lokufunda losapho olusekelwe kubulumko nolwenzelwe ukukhula. Phonononga iimodyuli ezisebenzisanayo, ezifikelelekayo kuye wonke umntu, ezikhuthaza zonke izizukulwana.",
-                explore_modules_btn: "Phonononga Iimodyuli", find_your_path_btn: "Fumana Indlela Yakho",
-                discover_modules_title: "Fumana Amazwe Ethu Okufunda",
-                isixhosa_module_title: "Sazi isiXhosa", isixhosa_module_short_desc: "Ulwimi, inkcubeko, kunye nelifa.", isixhosa_module_long_desc: "Ngena kubutyebi bolwimi lwesiXhosa nenkcubeko. Izifundo ezisebenzisanayo, izakhi-magama, iinkcazelo zenkcubeko kunye nemisebenzi ebandakanyayo kuwo onke amanqanaba okufunda. Qhagamshelana neengcambu zakho!",
-                code_create_module_title: "Sazi Qhoda Udale", code_create_module_short_desc: "ITeknoloji, i-AI, nophuhliso lwewebhu.", code_create_module_long_desc: "Vula indalo yedijithali! Funda ukuqhopha ukusuka ekuqaleni, qonda iArtificial Intelligence ngeGemini, wakhe iiwebhusayithi ezimangalisayo ngeHTML & React, kwaye wenze iingcinga zakho zokudala ziphile.",
-                home_life_module_title: "Sazi Ubomi Basekhaya", home_life_module_short_desc: "I-DIY, ukupheka, nolonwabo lokulima igadi.", home_life_module_long_desc: "Khulisa ikhaya elichumayo! Phonononga izifundo ezinemifanekiso zokupheka okumnandi, iindlela zokucoca ezikrelekrele, iiprojekthi zeDIY ezikhuthazayo ezivela kwijelo likaSalatiso, iingcebiso zokulima igadi yosapho lonke, kunye neendlela zokulawula ikhaya ezisebenzayo.",
-                skills_hub_module_title: "Sazi Izakhono", skills_hub_module_short_desc: "Imisebenzi yezandla, izakhono zehlabathi lokwenyani.", skills_hub_module_long_desc: "Yakha ubuchule bakho kwimisebenzi yezandla. Funda ukuwelda, ukuplamba, iDIY ephucukileyo kwijelo likaSalatiso leYouTube, kunye noomatshini bokuzimela kunye namathuba amatsha.",
-                funda_module_title: "Sazi Funda", funda_module_short_desc: "Ukufunda kwi-Intanethi Nokufunda eKhaya.", funda_module_long_desc: "Uhambo lwezemfundo olupheleleyo lweK-12 olulungiselelwe ukufunda okusebenzayo kwi-intanethi nokufunda ekhaya. Ikharityhulam ebandakanyayo, eguquguqukayo ukukhuthaza iingqondo ezisakhulayo kunye nokuxhasa iintsapho.",
-                coming_soon_badge: "KUYEZA KUNGEKUDALA", view_module_btn: "Ngena Kwimodyuli", visit_youtube_btn_home: "Phonononga Izimvo Zasekhaya", visit_youtube_btn_skills: "Funda Imisebenzi Yezandla", view_module_btn_disabled: "Phonononga Ikharityhulam",
-                our_story_timeline_title: "Ibali Lethu: Uhambo Lokufunda",
-                our_story_intro_father: "ISazi.life ilukwe liphupha likatata—iphupha lokubonelela unyana wakhe, uSazi, abatshana bakhe abathathu, iintombi zakhe ezimbini, oodadewabo abathathu abancinci, kwaye ngokwenene bonke abantwana, ngemfundo engafikelelekiyo kuphela kodwa etyebisa ngokunzulu kwaye ixhobisa. Ngumbono wokuxhobisa abancinci ngezixhobo zokuhamba kwihlabathi elihlala litshintsha, ngelixa uqinisekisa ukuba ubulumko bezizukulwana ezindala buhlala buphilile kwaye bufanelekile, bubavumela ukuba bahambisane kwaye babe negalelo elinentsingiselo. Eli qonga lifuna ukuhlonipha isithethe esingaphelelwa lixesha sokufunda okungekho sikweni, okugxile kusapho, okongezwa kokona kulungileyo kweendlela zanamhlanje zemfundo.",
-                timeline_intro_text: "Ukusuka kwimililo yenkampu yakuqala apho amabali aba zizifundo, ukuya kumagumbi okufundela amakhulu edijithalianamhlanje, ukusukela koluntu lolwazi rhoqo. Lo mgca wexesha ulanda olu hambo lumangalisayo, uqaqambisa indlela ukufunda okungekho sikweni, imfundo esesikweni, nobulumko benkcubeko obuguquke ngayo kwihlabathi jikelele naphakathi koMzantsi Afrika, ukuphembelela umsebenzi wethu wokwenza ukufunda kufikeleleke kwaye kube nentsingiselo kuye wonke umntu.",
-                timeline_prehistory_title: "Iingcambu Zamandulo: Ukufunda Okungekho Sikweni", timeline_prehistory_date: "Ngaphambi Kwembali - c. 3000 BCE (Ihlabathi Lonke NeAfrika)", timeline_prehistory_desc: "Ulwazi lugqithiswa ngezithethe zomlomo, amabali. AmaKhoisan bafunda ukuphila. Abantu abathetha isiBantu baphuhlisa ukulima.",
-                timeline_early_formal_title: "Ukuqala Kwemfundo Esesikweni", timeline_early_formal_date: "c. 3000 BCE - 500 CE (EYiputa, EGrisi, EIndiya, ETshayina)", timeline_early_formal_desc: "Izikolo zababhali eYiputa. Izikolo zefilosofi eGrisi. Intetho yaseRoma. IiGurukuls eIndiya. Izikolo zobukhosi eTshayina.",
-                timeline_sa_indigenous_title: "Imfundo Yemveli eMzantsi Afrika (Ngaphambi ko-1652)", timeline_sa_indigenous_date: "EMazantsi eAfrika", timeline_sa_indigenous_desc: "AmaKhoisan badlulisa ubulumko bendalo. AmaNguni/Sotho-Tswana basebenzisa ulwaluko/bojale kuqeqesho.",
-                timeline_sa_colonial_title: "Izikolo Zamakholoniyali eMzantsi Afrika", timeline_sa_colonial_date: "1652 - 1800s (EMzantsi Afrika)", timeline_sa_colonial_desc: "AmaDatshi aseka isikolo eKapa. Abavangeli bazisa imfundo yaseNtshona. Ufikelelo lunqongophele.",
-                timeline_mass_schooling_title: "Ukwanda Kwezikolo Zesininzi", timeline_mass_schooling_date: "19th Century (Ihlabathi Lonke)", timeline_mass_schooling_desc: "Inguquko yemizi-mveliso ifuna abasebenzi abafundileyo. Izikolo zikarhulumente ziyanda.",
-                timeline_bantu_edu_title: "Ucalucalulo Nemfundo Yabantu Abamnyama", timeline_bantu_edu_date: "1900s - 1994 (EMzantsi Afrika)", timeline_bantu_edu_desc: "UMthetho weMfundo yaBantu (1953) udala inkqubo esemgangathweni ophantsi. Uluntu luyachasa.",
-                timeline_digital_age_title: "Emva Kocalucalulo Nexesha Ledijithali", timeline_digital_age_date: "1994 - Ngoku (Ihlabathi Lonke NeMzantsi Afrika)", timeline_digital_age_desc: "UMzantsi Afrika uya kwidemokhrasi. I-Intanethi iguqula ufikelelo. ISazi.life iyavela.",
-                timeline_note_carousel: "(Umboniso wexesha othe tyaba. Cofa izinto ngeenkcukacha. Sebenzisa amaqhosha ukuhambisa.)", learn_more_link: "Funda Ngakumbi",
-                sazi_guide_section_title: "Vumela iSazi Ikhokele Ukufunda Kwakho", sazi_guide_section_desc: "Awuqinisekanga ukuba yeyiphi imodyuli yeSazi.life ekulungeleyo wena okanye usapho lwakho? Phendula imibuzo embalwa elula, kwaye iSazi Guide yethu iya kukhanyisa indlela yakho eya elwazini!",
-                wizard_interest_q_main: "Yintoni ekutsala umdla kakhulu?", select_option: "-- Khetha Umdla --", interest_opt_language: "Ulwimi", interest_opt_tech: "Ukuqhoda/ITeknoloji", interest_opt_home: "Izakhono Zasekhaya", interest_opt_trades: "Imisebenzi Yezandla",
-                wizard_age_q_main: "Olu hambo lokufunda lolwabani?", select_option_age: "-- Khetha Iqela Leminyaka --", age_opt_child: "Umntwana (4-11)", age_opt_teen: "Okwishumi Elivisayo (12-17)", age_opt_adult: "Omdala (18+)", age_opt_family: "Usapho Lonke",
-                find_module_now_btn: "Fumana Imodyuli Yam!",
-                sazi_community_title: "Yiba Lilonxalenye YoLuntu LweSazi", community_desc_main: "ISazi.life ichuma kulwazi olwabelwanayo nenkxaso. Bhalisa ukuze uqhagamshelane nabanye abafundi, wabelane ngeengcinga zakho, ufake isandla kumxholo, kwaye ube ngumongameli. Kunye, sakha amava okufunda atyebileyo kuye wonke umntu.",
-                join_community_today_btn: "Sijoyine Namhlanje", community_values_footer: "Ukuxhobisana, isifundo esinye ngexesha.",
-                sazi_ai_chat_title: "Umncedisi weSazi AI", sazi_ai_greeting: "Molweni! Ndingakunceda njani ukuba uphonononge iSazi.life namhlanje?", sazi_ai_placeholder: "Buza kwiSazi AI...", user_chat_name: "Wena"
-            }
-        };
-
-        function changeLanguage(lang) {
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (saziTranslations[lang] && saziTranslations[lang][key]) {
-                    el.textContent = saziTranslations[lang][key];
-                } else if (saziTranslations['en'] && saziTranslations['en'][key]) {
-                    el.textContent = saziTranslations['en'][key]; 
-                }
-            });
-            document.getElementById('language-switcher-desktop-transkei').value = lang;
-            document.getElementById('language-switcher-mobile-transkei').value = lang;
-        }
-        const initialLangTranskei = navigator.language.split('-')[0] || 'en';
-        if (saziTranslations[initialLangTranskei]) {
-            changeLanguage(initialLangTranskei);
-        } else {
-            changeLanguage('en');
-        }
-
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/chatbot.js"></script>
 </body>
 </html>
